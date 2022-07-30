@@ -1,1 +1,44 @@
-$border-radius: 6px;
+$s-white-color: #fff;
+$s-white-text-color: rgba(255, 255, 255, 0.9);
+
+// 主题色
+$s-primary-color: rgb(50, 86, 136);
+$s-primary-color-hover: rgb(52, 91, 146);
+$s-primary-color-active: rgb(42, 94, 149);
+
+// normal
+$s-normal-color: rgb(240, 240, 240);
+$s-normal-color-hover: rgb(235, 235, 235);
+$s-normal-color-active: rgb(217, 217, 217);
+
+// success
+$s-success-color: rgb(49, 196, 141);
+$s-success-color-hover: rgb(40, 176, 126);
+$s-success-color-active: rgb(28, 157, 110);
+
+// warning
+$s-warning-color: rgb(227, 179, 68);
+$s-warning-color-hover: rgb(222, 161, 17);
+$s-warning-color-active: rgb(187, 133, 7);
+
+// error
+$s-error-color: rgb(249, 128, 128);
+$s-error-color-hover: rgb(231, 113, 113);
+$s-error-color-active: rgb(204, 92, 92);
+
+// 圆角
+$s-border-radius-sm: 2px;
+$s-border-radius-base: 4px;
+$s-border-radius-lg: 6px;
+
+// 字体颜色
+$s-text-color-0: rgb(20, 20, 20);
+$s-text-color-1: rgb(30, 30, 30);
+$s-text-color-2: rgb(50, 50, 50);
+$s-text-color-3: rgb(70, 70, 70);
+$s-text-color-4: rgb(90, 90, 90);
+$s-text-color-5: rgb(110, 110, 110);
+$s-text-color-6: rgb(130, 130, 130);
+$s-text-color-7: rgb(150, 150, 150);
+$s-text-color-8: rgb(170, 170, 170);
+$s-text-color-9: rgb(190, 190, 190);

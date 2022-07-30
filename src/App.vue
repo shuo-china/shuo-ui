@@ -1,12 +1,11 @@
 <template>
   <div class="container">
-    <s-button class="btn">我是按钮</s-button>
+    <router-view />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.btn {
-  width: 50px;
-  height: 50px;
+.container {
+  display: flex;
 }
 </style>

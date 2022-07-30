@@ -6,6 +6,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   resolve: {
     alias: {
+      '@': resolve(__dirname, 'src'),
       'shuo-ui': resolve(__dirname, 'packages')
     }
   },
@@ -22,6 +23,14 @@ export default defineConfig({
       entry: resolve(__dirname, './packages/index.ts'),
       name: 'shuo-ui',
       fileName: format => `shuo.${format}.ts`
+    },
+    rollupOptions: {
+      external: ['vue'],
+      output: {
+        globals: {
+          vue: 'Vue'
+        }
+      }
     }
   }
 })
