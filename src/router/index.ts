@@ -1,4 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import docs from '../docs'
+
 import Layout from '@/layout/index.vue'
 
 const routes = [
@@ -6,12 +8,7 @@ const routes = [
   {
     path: '/components',
     component: Layout,
-    children: [
-      {
-        path: '/button',
-        component: () => import('@/docs/button/button.vue')
-      }
-    ]
+    children: docs
   }
 ]
 

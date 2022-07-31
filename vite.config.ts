@@ -10,13 +10,6 @@ export default defineConfig({
       'shuo-ui': resolve(__dirname, 'packages')
     }
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: '@import "shuo-ui/styles/var.scss";'
-      }
-    }
-  },
   plugins: [vue()],
   build: {
     lib: {

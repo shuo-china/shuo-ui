@@ -12,7 +12,7 @@ const props = defineProps({
     type: String,
     default: 'primary',
     validator(value: string) {
-      return ['primary', 'normal', 'success', 'error', 'warning'].includes(value)
+      return ['primary', 'info', 'success', 'error', 'warning'].includes(value)
     }
   },
   size: {
@@ -25,6 +25,10 @@ const props = defineProps({
   loading: {
     type: Boolean,
     default: false
+  },
+  round: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -32,7 +36,8 @@ const classNames = computed(() => [
   's-button',
   `s-button-${props.type}`,
   `s-button-${props.size}`,
-  props.loading ? 's-button-loading' : ''
+  props.loading ? 's-button-loading' : '',
+  props.round ? 's-button-round' : ''
 ])
 </script>
 
@@ -48,7 +53,7 @@ const classNames = computed(() => [
   white-space: nowrap;
   text-align: center;
   border: none;
-  border-radius: $s-border-radius-base;
+  border-radius: var(--s-border-radius-base);
   cursor: pointer;
   transition: all 0.1s;
   user-select: none;
@@ -61,7 +66,7 @@ const classNames = computed(() => [
   &-small {
     min-width: 50px;
     height: 24px;
-    padding: 0px 8px;
+    padding: 0 8px;
     font-size: 12px;
   }
 
@@ -75,73 +80,73 @@ const classNames = computed(() => [
   &-large {
     min-width: 70px;
     height: 36px;
-    padding: 0px 20px;
+    padding: 0 20px;
     font-size: 16px;
   }
 
   // 颜色
   &-primary {
-    background-color: $s-primary-color;
-    color: $s-white-text-color;
+    color: var(--s-white-text-color);
+    background-color: var(--s-primary-color);
 
     &:hover {
-      background-color: $s-primary-color-hover;
+      background-color: var(--s-primary-color-hover);
     }
 
     &:active {
-      background-color: $s-primary-color-active;
+      background-color: var(--s-primary-color-active);
     }
   }
 
-  &-normal {
-    background-color: $s-normal-color;
-    color: $s-text-color-3;
+  &-info {
+    color: var(--s-text-color-3);
+    background-color: var(--s-info-color);
 
     &:hover {
-      background-color: $s-normal-color-hover;
+      background-color: var(--s-info-color-hover);
     }
 
     &:active {
-      background-color: $s-normal-color-active;
+      background-color: var(--s-info-color-active);
     }
   }
 
   &-success {
-    background-color: $s-success-color;
-    color: $s-white-text-color;
+    color: var(--s-white-text-color);
+    background-color: var(--s-success-color);
 
     &:hover {
-      background-color: $s-success-color-hover;
+      background-color: var(--s-success-color-hover);
     }
 
     &:active {
-      background-color: $s-success-color-active;
+      background-color: var(--s-success-color-active);
     }
   }
 
   &-warning {
-    background-color: $s-warning-color;
-    color: $s-white-text-color;
+    color: var(--s-white-text-color);
+    background-color: var(--s-warning-color);
 
     &:hover {
-      background-color: $s-warning-color-hover;
+      background-color: var(--s-warning-color-hover);
     }
 
     &:active {
-      background-color: $s-warning-color-active;
+      background-color: var(--s-warning-color-active);
     }
   }
 
   &-error {
-    background-color: $s-error-color;
-    color: $s-white-text-color;
+    color: var(--s-white-text-color);
+    background-color: var(--s-error-color);
 
     &:hover {
-      background-color: $s-error-color-hover;
+      background-color: var(--s-error-color-hover);
     }
 
     &:active {
-      background-color: $s-error-color-active;
+      background-color: var(--s-error-color-active);
     }
   }
 
@@ -153,16 +158,29 @@ const classNames = computed(() => [
       position: absolute;
       top: 50%;
       left: 50%;
-      content: '';
-      border: 2.5px solid rgba(0, 0, 0, 0.25);
-      border-left-color: rgba(255, 255, 255, 0.85);
-      border-radius: 50%;
       width: 11px;
       height: 11px;
-      animation: donut-spin 0.8s linear infinite;
-      transition: all 0.15s;
+      border: 2.5px solid rgb(0 0 0 / 25%);
+      border-left-color: rgb(255 255 255 / 85%);
+      border-radius: 50%;
       transform: translate(-50%, -50%);
+      transition: all 0.15s;
+      animation: donut-spin 0.8s linear infinite;
+      content: '';
     }
+  }
+
+  // round
+  &-round {
+    border-radius: 50px;
+  }
+
+  // disabled
+  &[disabled] {
+    color: var(--s-text-color-3);
+    background: var(--s-normal-color);
+    cursor: no-drop;
+    opacity: var(--s-disabled-opacity);
   }
 }
 
