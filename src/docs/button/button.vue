@@ -2,6 +2,7 @@
   <div class="container">
     <p>类型</p>
     <div class="demo-item">
+      <s-button>default</s-button>
       <s-button type="primary">primary</s-button>
       <s-button type="success">success</s-button>
       <s-button type="warning">warning</s-button>
@@ -33,9 +34,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import {} from 'vue'
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 .container {

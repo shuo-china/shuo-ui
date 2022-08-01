@@ -2,7 +2,7 @@
   <transition name="s-message-fade">
     <div v-show="visible" :class="classNames">
       <div></div>
-      <div class="s-message-content">{{ content }}</div>
+      <div class="s-message__content">{{ content }}</div>
     </div>
   </transition>
 </template>
@@ -12,12 +12,12 @@ import { ref, computed, onMounted } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    type?: 'primary' | 'info' | 'success' | 'warning' | 'error'
+    type?: 'info' | 'success' | 'warning' | 'error'
     duration?: number
     content: string
   }>(),
   {
-    type: 'primary',
+    type: 'info',
     duration: 3000,
     content: ''
   }
@@ -31,7 +31,7 @@ onMounted(() => {
   }
 })
 
-const classNames = computed(() => ['s-message', `s-message-${props.type}`])
+const classNames = computed(() => ['s-message', `s-message--${props.type}`])
 
 const visible = ref(false)
 
@@ -53,31 +53,27 @@ defineExpose({
   margin-top: 16px;
   padding: 0 24px;
   font-size: 14px;
-  background-color: var(--s-message-bgcolor);
+  background-color: rgb(255 255 255 / 90%);
   border-radius: 4px;
   box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
 
-  &-primary {
-    color: var(--s-primary-color);
+  &--info {
+    color: $info-color-dark;
   }
 
-  &-info {
-    color: var(--s-info-color);
+  &--success {
+    color: $success-color-dark;
   }
 
-  &-success {
-    color: var(--s-success-color);
+  &--warning {
+    color: $warning-color-dark;
   }
 
-  &-warning {
-    color: var(--s-warning-color);
+  &--error {
+    color: $error-color-dark;
   }
 
-  &-error {
-    color: var(--s-error-color);
-  }
-
-  &-content {
+  &__content {
     max-width: 500px;
     overflow: hidden;
     white-space: nowrap;

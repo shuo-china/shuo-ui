@@ -10,9 +10,9 @@ import { computed } from 'vue'
 const props = defineProps({
   type: {
     type: String,
-    default: 'primary',
+    default: 'default',
     validator(value: string) {
-      return ['primary', 'info', 'success', 'error', 'warning'].includes(value)
+      return ['default', 'primary', 'info', 'success', 'error', 'warning'].includes(value)
     }
   },
   size: {
@@ -34,10 +34,12 @@ const props = defineProps({
 
 const classNames = computed(() => [
   's-button',
-  `s-button-${props.type}`,
-  `s-button-${props.size}`,
-  props.loading ? 's-button-loading' : '',
-  props.round ? 's-button-round' : ''
+  `s-button--${props.type}`,
+  `s-button--${props.size}`,
+  {
+    's-button--loading': !!props.loading,
+    's-button--round': !!props.round
+  }
 ])
 </script>
 
@@ -53,7 +55,8 @@ const classNames = computed(() => [
   white-space: nowrap;
   text-align: center;
   border: none;
-  border-radius: var(--s-border-radius-base);
+  border-radius: $border-radius-base;
+  outline: none;
   cursor: pointer;
   transition: all 0.1s;
   user-select: none;
@@ -62,22 +65,28 @@ const classNames = computed(() => [
     transform: scale(0.96);
   }
 
+  // disabled
+  &[disabled] {
+    cursor: no-drop;
+    opacity: $disabled-opacity;
+  }
+
   // 尺寸
-  &-small {
+  &--small {
     min-width: 50px;
     height: 24px;
     padding: 0 8px;
     font-size: 12px;
   }
 
-  &-medium {
+  &--medium {
     min-width: 60px;
     height: 30px;
     padding: 0 14px;
     font-size: 14px;
   }
 
-  &-large {
+  &--large {
     min-width: 70px;
     height: 36px;
     padding: 0 20px;
@@ -85,73 +94,86 @@ const classNames = computed(() => [
   }
 
   // 颜色
-  &-primary {
-    color: var(--s-white-text-color);
-    background-color: var(--s-primary-color);
+  &--default {
+    color: $black-text-color;
+    background-color: $default-color;
 
     &:hover {
-      background-color: var(--s-primary-color-hover);
+      background-color: $default-color-hover;
     }
 
     &:active {
-      background-color: var(--s-primary-color-active);
+      background-color: $default-color-active;
     }
   }
 
-  &-info {
-    color: var(--s-white-text-color);
-    background-color: var(--s-info-color);
+  &--primary {
+    color: $white-text-color;
+    background-color: $primary-color;
 
     &:hover {
-      background-color: var(--s-info-color-hover);
+      background-color: $primary-color-hover;
     }
 
     &:active {
-      background-color: var(--s-info-color-active);
+      background-color: $primary-color-active;
     }
   }
 
-  &-success {
-    color: var(--s-white-text-color);
-    background-color: var(--s-success-color);
+  &--info {
+    color: $white-text-color;
+    background-color: $info-color;
 
     &:hover {
-      background-color: var(--s-success-color-hover);
+      background-color: $info-color-hover;
     }
 
     &:active {
-      background-color: var(--s-success-color-active);
+      background-color: $info-color-active;
     }
   }
 
-  &-warning {
-    color: var(--s-white-text-color);
-    background-color: var(--s-warning-color);
+  &--success {
+    color: $white-text-color;
+    background-color: $success-color;
 
     &:hover {
-      background-color: var(--s-warning-color-hover);
+      background-color: $success-color-hover;
     }
 
     &:active {
-      background-color: var(--s-warning-color-active);
+      background-color: $success-color-active;
     }
   }
 
-  &-error {
-    color: var(--s-white-text-color);
-    background-color: var(--s-error-color);
+  &--warning {
+    color: $white-text-color;
+    background-color: $warning-color;
 
     &:hover {
-      background-color: var(--s-error-color-hover);
+      background-color: $warning-color-hover;
     }
 
     &:active {
-      background-color: var(--s-error-color-active);
+      background-color: $warning-color-active;
+    }
+  }
+
+  &--error {
+    color: $white-text-color;
+    background-color: $error-color;
+
+    &:hover {
+      background-color: $error-color-hover;
+    }
+
+    &:active {
+      background-color: $error-color-active;
     }
   }
 
   // loading
-  &-loading {
+  &--loading {
     font-size: 0;
 
     &::after {
@@ -171,15 +193,8 @@ const classNames = computed(() => [
   }
 
   // round
-  &-round {
+  &--round {
     border-radius: 50px;
-  }
-
-  // disabled
-  &[disabled] {
-    background: var(--s-info-color);
-    cursor: no-drop;
-    opacity: var(--s-disabled-opacity);
   }
 }
 
