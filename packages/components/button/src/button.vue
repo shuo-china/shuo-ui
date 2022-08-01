@@ -74,7 +74,7 @@ const classNames = computed(() => [
     min-width: 60px;
     height: 30px;
     padding: 0 14px;
-    font-style: 14px;
+    font-size: 14px;
   }
 
   &-large {
@@ -99,7 +99,7 @@ const classNames = computed(() => [
   }
 
   &-info {
-    color: var(--s-text-color-3);
+    color: var(--s-white-text-color);
     background-color: var(--s-info-color);
 
     &:hover {
@@ -177,8 +177,7 @@ const classNames = computed(() => [
 
   // disabled
   &[disabled] {
-    color: var(--s-text-color-3);
-    background: var(--s-normal-color);
+    background: var(--s-info-color);
     cursor: no-drop;
     opacity: var(--s-disabled-opacity);
   }

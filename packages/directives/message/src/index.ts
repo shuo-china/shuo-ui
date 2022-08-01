@@ -1,6 +1,7 @@
 import type { App, ComponentPublicInstance } from 'vue'
 import { createApp, watch } from 'vue'
 import MessageComponent from './message.vue'
+import '../styles/index.scss'
 
 type Options =
   | string
@@ -10,17 +11,13 @@ type Options =
       content: string
     }
 
+const rootDomId = 's-message'
+
 const types = ['primary', 'info', 'success', 'warning', 'error'] as const
 
-function handleOptions(options: Options) {
-  if (typeof options === 'string') {
-    return {
-      content: options
-    }
-  }
-
-  return options
-}
+types.forEach(type => {
+  message[type] = options => message({ ...handleOptions(options), type })
+})
 
 function message(options: Options) {
   const messageApp = createApp(MessageComponent, handleOptions(options))
@@ -33,15 +30,32 @@ function message(options: Options) {
   return hideMessage
 }
 
-types.forEach(type => {
-  message[type] = options => message({ ...handleOptions(options), type })
-})
+function handleOptions(options: Options) {
+  if (typeof options === 'string') {
+    return {
+      content: options
+    }
+  }
+
+  return options
+}
+
+function createRootDom() {
+  const div = document.createElement('div')
+  div.setAttribute('id', rootDomId)
+  return document.body.appendChild(div)
+}
 
 function showMessage(app: App) {
+  let rootDom = document.getElementById(rootDomId)
+  if (!rootDom) {
+    rootDom = createRootDom()
+  }
+
   const fragment = document.createDocumentFragment()
   const vm: ComponentPublicInstance<any> = app.mount(fragment)
 
-  document.body.appendChild(fragment)
+  rootDom.appendChild(fragment)
   vm.setVisible(true)
 
   watch(

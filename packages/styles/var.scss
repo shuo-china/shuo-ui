@@ -5,6 +5,7 @@
   --s-black-color: #000;
   --s-black-text-color: rgb(0 0 0 / 90%);
   --s-disabled-opacity: 0.5;
+  --s-message-bgcolor: rgb(255 255 255 / 90%);
 
   // 主题色
   --s-primary-color: rgb(50 86 136);
@@ -12,9 +13,9 @@
   --s-primary-color-active: rgb(42 94 149);
 
   // info
-  --s-info-color: rgb(240 240 240);
-  --s-info-color-hover: rgb(235 235 235);
-  --s-info-color-active: rgb(217 217 217);
+  --s-info-color: rgb(84 81 81);
+  --s-info-color-hover: rgb(88 88 88);
+  --s-info-color-active: rgb(75 75 75);
 
   // success
   --s-success-color: rgb(49 196 141);
@@ -35,11 +36,6 @@
   --s-border-radius-sm: 2px;
   --s-border-radius-base: 4px;
   --s-border-radius-lg: 6px;
-
-  .test {
-    width: 100px;
-    height: 100px;
-  }
 
   // 字体颜色
   @for $i from 0 through 9 {

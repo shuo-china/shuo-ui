@@ -4,5 +4,8 @@
     "source.fixAll": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "stylelint.validate": ["css", "scss", "vue"]
+  "stylelint.validate": ["css", "scss", "vue"],
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
