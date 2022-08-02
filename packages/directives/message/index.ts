@@ -1,1 +1,3 @@
-export { default as Message } from './src'
+import Message from './src'
+
+export default Message

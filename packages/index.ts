@@ -3,8 +3,8 @@ import * as components from './components'
 import './styles/normalize.css'
 
 const install = function (app: App) {
-  Object.entries(components).forEach(([name, component]) => {
-    app.component(name, component)
+  Object.entries(components).forEach(([, component]) => {
+    app.component(component.name, component)
   })
 }
 

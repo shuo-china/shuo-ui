@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
+import defineOptions from 'unplugin-vue-define-options/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,12 +18,13 @@ export default defineConfig({
       }
     }
   },
-  plugins: [vue()],
+  plugins: [vue(), defineOptions()],
   build: {
     lib: {
       entry: resolve(__dirname, './packages/index.ts'),
       name: 'shuo-ui',
-      fileName: format => `shuo.${format}.ts`
+      fileName: format => `shuo.${format}.js`,
+      formats: ['es', 'umd']
     },
     rollupOptions: {
       external: ['vue'],

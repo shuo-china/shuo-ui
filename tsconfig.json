@@ -17,7 +17,8 @@
       "@/*": ["src/*"],
       "shuo-ui/*": ["packages/*"]
     },
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "types": ["unplugin-vue-define-options"]
   },
   "include": [
     "src/**/*.ts",

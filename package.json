@@ -1,7 +1,7 @@
 {
   "name": "shuo-ui",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.13",
   "description": "A Component Library for Vue3.js.",
   "keywords": [
     "vue3",
@@ -9,12 +9,13 @@
   ],
   "author": "zhangjinshuo",
   "license": "MIT",
-  "main": "./dist/shuo.umd.ts",
-  "module": "./dist/shuo.es.ts",
+  "main": "./dist/shuo.umd.js",
+  "module": "./dist/shuo.es.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/shuo.es.ts",
-      "require": "./dist/shuo.umd.ts"
+      "import": "./dist/shuo.es.js",
+      "require": "./dist/shuo.umd.js"
     },
     "./dist/style.css": {
       "import": "./dist/style.css",
@@ -28,10 +29,10 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build"
   },
-  "dependencies": {
-    "vue": "^3.2.37",
-    "vue-router": "^4.1.3"
+  "peerDependencies": {
+    "vue": "^3.2.0"
   },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^18.6.2",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
@@ -52,7 +53,10 @@
     "stylelint-config-standard-scss": "^5.0.0",
     "stylelint-config-standard-vue": "^1.0.0",
     "typescript": "^4.6.4",
+    "unplugin-vue-define-options": "^0.7.1",
     "vite": "^3.0.0",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.3",
     "vue-tsc": "^0.38.4"
   }
 }

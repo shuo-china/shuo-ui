@@ -7,6 +7,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+defineOptions({
+  name: 'SButton'
+})
+
 const props = defineProps({
   type: {
     type: String,
