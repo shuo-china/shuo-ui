@@ -12,12 +12,12 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
+    "noImplicitAny": false,
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
       "shuo-ui/*": ["packages/*"]
     },
-    "noImplicitAny": false,
     "types": ["unplugin-vue-define-options"]
   },
   "include": [
@@ -28,7 +28,9 @@
     "packages/**/*.ts",
     "packages/**/*.d.ts",
     "packages/**/*.tsx",
-    "packages/**/*.vue"
+    "packages/**/*.vue",
+    ".env.d.ts",
+    "vue-shim.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

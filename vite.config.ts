@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
 import defineOptions from 'unplugin-vue-define-options/vite'
+import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,10 +19,10 @@ export default defineConfig({
       }
     }
   },
-  plugins: [vue(), defineOptions()],
+  plugins: [vue(), defineOptions(), dts()],
   build: {
     lib: {
-      entry: resolve(__dirname, './packages/index.ts'),
+      entry: resolve(__dirname, 'packages/index.ts'),
       name: 'shuo-ui',
       fileName: format => `shuo.${format}.js`,
       formats: ['es', 'umd']

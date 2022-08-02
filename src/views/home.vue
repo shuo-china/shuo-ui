@@ -1,7 +1,7 @@
 <template>
-  <div>home</div>
+  <div>
+    <s-button>home</s-button>
+  </div>
 </template>
 
 <script setup lang="ts"></script>
-
-<style lang="scss" scoped></style>
