@@ -1,7 +1,7 @@
 import { App } from 'vue'
 import * as components from './components'
 import * as functions from './functions'
-import './styles/normalize.css'
+import './styles/index.scss'
 
 const install = function (app: App) {
   Object.entries(components).forEach(([, component]) => {
