@@ -4,37 +4,23 @@
   </button>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="SButton">
 import { computed } from 'vue'
 
-defineOptions({
-  name: 'SButton'
-})
-
-const props = defineProps({
-  type: {
-    type: String,
-    default: 'default',
-    validator(value: string) {
-      return ['default', 'primary', 'info', 'success', 'error', 'warning'].includes(value)
-    }
-  },
-  size: {
-    type: String,
-    default: 'medium',
-    validator(value: string) {
-      return ['small', 'medium', 'large'].includes(value)
-    }
-  },
-  loading: {
-    type: Boolean,
-    default: false
-  },
-  round: {
-    type: Boolean,
-    default: false
+const props = withDefaults(
+  defineProps<{
+    type?: 'default' | 'primary' | 'info' | 'success' | 'error' | 'warning'
+    size?: 'small' | 'medium' | 'large'
+    loading?: boolean
+    round?: boolean
+  }>(),
+  {
+    type: 'default',
+    size: 'medium',
+    loading: false,
+    round: false
   }
-})
+)
 
 const classNames = computed(() => [
   's-button',

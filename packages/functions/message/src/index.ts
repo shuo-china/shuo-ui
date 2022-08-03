@@ -3,23 +3,27 @@ import { createApp, watch } from 'vue'
 import MessageComponent from './message.vue'
 import '../styles/index.scss'
 
+const rootDomId = 's-message'
+
+const types = ['info', 'success', 'warning', 'error'] as const
+
+export type MessageType = typeof types[number]
+
 type Options =
   | string
   | {
-      type?: typeof types[number]
+      type?: MessageType
       duration?: number
       content: string
     }
 
-const rootDomId = 's-message'
+type MessageFn = (options: Options) => () => void
 
-const types = ['primary', 'info', 'success', 'warning', 'error'] as const
+type Message = {
+  [key in MessageType]: MessageFn
+} & MessageFn
 
-types.forEach(type => {
-  message[type] = options => message({ ...handleOptions(options), type })
-})
-
-function message(options: Options) {
+const message = (options => {
   const messageApp = createApp(MessageComponent, handleOptions(options))
   const vm = showMessage(messageApp)
 
@@ -28,7 +32,11 @@ function message(options: Options) {
   }
 
   return hideMessage
-}
+}) as Message
+
+types.forEach(type => {
+  message[type] = options => message({ ...handleOptions(options), type })
+})
 
 function handleOptions(options: Options) {
   if (typeof options === 'string') {

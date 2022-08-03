@@ -1,4 +1,6 @@
 import Button from './src/button.vue'
-import { withInstall } from 'shuo-ui/utils'
+import { withInstall } from '@shuo-ui/utils'
 
-export default withInstall(Button)
+const SButton = withInstall(Button)
+
+export { SButton }

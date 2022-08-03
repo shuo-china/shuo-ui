@@ -8,11 +8,12 @@
 </template>
 
 <script setup lang="ts">
+import type { MessageType } from './index'
 import { ref, computed, onMounted } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    type?: 'info' | 'success' | 'warning' | 'error'
+    type?: MessageType
     duration?: number
     content: string
   }>(),
