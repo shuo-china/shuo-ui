@@ -15,11 +15,10 @@ import Navbar from '@/layout/navbar.vue'
 .wrapper {
   width: 100%;
   height: 100%;
-  background-color: #fafafa;
 
   .body {
-    min-height: calc(100vh - 60px);
-    padding-top: 60px;
+    min-height: calc(100vh - $navbar-height);
+    padding-top: $navbar-height;
   }
 }
 </style>

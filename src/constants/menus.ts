@@ -39,7 +39,7 @@ export const menuGroups: Record<string, MenuGroup> = {
       items: [
         {
           name: '安装',
-          path: './install'
+          path: '/install'
         }
       ]
     }

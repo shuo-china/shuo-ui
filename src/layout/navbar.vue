@@ -18,8 +18,6 @@ const router = useRouter()
 </script>
 
 <style lang="scss" scoped>
-$navbar-height: 60px;
-
 .navbar {
   position: fixed;
   top: 0;
@@ -30,13 +28,15 @@ $navbar-height: 60px;
   justify-content: space-between;
   box-sizing: border-box;
   height: $navbar-height;
-  padding: 0 36px;
+  padding: 0 $padding-lg;
   background-color: #fff;
-  border-bottom: 1px solid #ebebeb;
+  border-bottom: 1px solid $border-color;
   user-select: none;
 
   .logo {
     height: $navbar-height;
+    color: $text-color;
+    font-size: 22px;
     line-height: $navbar-height;
     cursor: pointer;
   }
@@ -47,8 +47,8 @@ $navbar-height: 60px;
     a,
     .menu-item {
       height: $navbar-height;
-      padding: 0 12px;
-      color: #333;
+      padding: 0 $padding-sm;
+      color: $text-color;
       font-size: 14px;
       line-height: $navbar-height;
       text-decoration: none;
@@ -62,7 +62,7 @@ $navbar-height: 60px;
     }
 
     .menu-item:nth-last-child(2) {
-      margin-right: 24px;
+      margin-right: 48px;
     }
   }
 }

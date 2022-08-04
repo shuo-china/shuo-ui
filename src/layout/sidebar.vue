@@ -2,7 +2,13 @@
   <div class="sidebar">
     <div v-for="(list, i) in group" :key="`group${i}`" class="group">
       <div class="title">{{ list.title }}</div>
-      <div v-for="(item, j) in list.items" :key="`items${j}`" class="item" @click="toPath(item)">
+      <div
+        v-for="(item, j) in list.items"
+        :key="`items${j}`"
+        class="item"
+        :class="{ active: route.path === item.path }"
+        @click="toPath(item)"
+      >
         {{ item.name }}
       </div>
     </div>
@@ -42,22 +48,67 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-$sidebar-width: 230px;
-
 .sidebar {
   position: fixed;
-  top: 60px;
+  top: $navbar-height;
   bottom: 0;
   left: 0;
+  box-sizing: border-box;
   width: $sidebar-width;
+  padding: $padding-base;
   overflow-y: auto;
+  font-size: 14px;
   background-color: #fff;
-  border-right: 1px solid #ebebeb;
+  border-right: 1px solid $border-color;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar {
+      width: $scroll-width;
+    }
+  }
+
+  .group {
+    padding-top: $padding-base;
+
+    &:first-of-type {
+      padding-top: 0;
+    }
+
+    .title {
+      margin-bottom: 12px;
+    }
+
+    .item {
+      padding: 10px $padding-sm;
+      color: $text-color;
+      border-radius: $border-base;
+      cursor: pointer;
+      opacity: 0.7;
+
+      &:hover {
+        color: $text-color;
+        background-color: #f5f5f5;
+        opacity: 1;
+      }
+
+      &.active {
+        color: #fff;
+        background-color: #3b79d0;
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .app-main {
-  height: 100%;
+  box-sizing: border-box;
+  min-height: calc(100vh - $navbar-height);
   margin-left: $sidebar-width;
-  padding: 36px;
+  padding: $padding-lg;
+  background-color: $bg-color;
 }
 </style>

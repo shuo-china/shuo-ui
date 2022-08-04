@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-for="(item, index) in iconList" :key="index" class="icon-item">
-      <s-icon :name="item" :size="28"></s-icon>
+      <s-icon :name="item" :size="22"></s-icon>
       <span>{{ item }}</span>
     </div>
   </div>
@@ -12,7 +12,7 @@ import { iconList } from '@/constants'
 </script>
 
 <style lang="scss" scoped>
-$column: 7;
+$column: 8;
 $border-color: #dcdfe6;
 
 .container {
@@ -28,7 +28,7 @@ $border-color: #dcdfe6;
     justify-content: center;
     padding: 20px 0;
     color: #606266;
-    font-size: 14px;
+    font-size: 13px;
     border-top: 1px solid $border-color;
     border-left: 1px solid $border-color;
 

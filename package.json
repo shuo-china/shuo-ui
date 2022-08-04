@@ -21,14 +21,16 @@
       "import": "./dist/shuo-ui.es.js",
       "require": "./dist/shuo-ui.umd.js"
     },
-    "./*": "./*"
+    "./dist/style.css": "./dist/style.css",
+    "./dist/types/global.d.ts": "./dist/types/global.d.ts"
   },
   "files": [
     "dist"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build"
+    "build:doc": "vue-tsc --noEmit && vite build --mode doc",
+    "build:package": "vue-tsc --noEmit && vite build --mode package"
   },
   "peerDependencies": {
     "vue": "^3.2.0"
