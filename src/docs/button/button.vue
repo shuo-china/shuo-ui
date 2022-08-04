@@ -37,7 +37,6 @@
 
 <style lang="scss" scoped>
 .container {
-  .demo-item {
     display: flex;
     gap: 24px;
     align-items: flex-end;
