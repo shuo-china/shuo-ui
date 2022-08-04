@@ -15,7 +15,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: '@import "@shuo-ui/styles/var.scss";'
+        additionalData: '@import "@shuo-ui/styles/variables.scss";'
       }
     }
   },

@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <p>类型</p>
     <div class="demo-item">
       <s-button>default</s-button>
       <s-button type="primary">primary</s-button>
@@ -38,11 +37,8 @@
 
 <style lang="scss" scoped>
 .container {
-  padding: 0 24px;
-
   .demo-item {
     display: flex;
-    gap: 20px;
     align-items: flex-end;
   }
 }

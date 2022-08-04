@@ -1,5 +1,5 @@
 <template>
-  <div>homt</div>
+  <div>安装</div>
 </template>
 
 <script setup lang="ts"></script>

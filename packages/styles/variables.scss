@@ -41,7 +41,7 @@ $error-color-hover: adjust_color($error-color, $lightness: 10%);
 $error-color-active: adjust_color($error-color, $lightness: -10%);
 $error-color-dark: adjust_color($error-color, $lightness: -20%);
 
-// 圆角
+// border
 $border-radius-sm: 2px;
 $border-radius-base: 4px;
 $border-radius-lg: 6px;

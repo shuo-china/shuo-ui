@@ -1,14 +1,24 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import Sidebar from '@/layout/sidebar.vue'
+import Home from '@/pages/home.vue'
+import Install from '@/pages/guide/install.vue'
 import docs from '../docs'
 
-import Layout from '@/layout/index.vue'
-
 const routes = [
-  { path: '/', component: () => import('@/views/home.vue') },
+  { path: '/', name: 'Home', component: Home },
   {
     path: '/components',
-    component: Layout,
+    name: 'Components',
+    component: Sidebar,
+    redirect: docs[0].path,
     children: docs
+  },
+  {
+    path: '/guide',
+    name: 'Guide',
+    component: Sidebar,
+    redirect: '/install',
+    children: [{ path: '/install', name: 'Install', component: Install }]
   }
 ]
 
