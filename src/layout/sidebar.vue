@@ -14,7 +14,11 @@
     </div>
   </div>
   <div class="app-main">
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+      <transition name="app-fade" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -107,11 +111,22 @@ watch(
   box-sizing: border-box;
   min-height: calc(100vh - $navbar-height);
   margin-left: $sidebar-width;
-  padding: $padding-lg;
+  padding: 48px;
   background-color: $bg-color;
+}
 
-  :deep(.hljs) {
-    border-radius: $border-radius-lg;
-  }
+.app-fade-enter-active,
+.app-fade-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.app-fade-enter-from {
+  transform: translateX(-24px);
+  opacity: 0;
+}
+
+.app-fade-leave-to {
+  transform: translateX(24px);
+  opacity: 0;
 }
 </style>

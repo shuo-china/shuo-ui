@@ -1,7 +1,7 @@
-import Preview from '@/components/preview.vue'
+import Demo from '@/components/demo.vue'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Preview: typeof Preview
+    Demo: typeof Demo
   }
 }

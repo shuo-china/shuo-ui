@@ -1,3 +1,28 @@
+.doc {
+  &__title {
+    margin-bottom: 12px;
+    color: $text-color;
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  &__desc {
+    margin: 12px 0;
+    color: adjust_color($text-color, $lightness: 20%);
+    font-size: 14px;
+    line-height: 32px;
+  }
+
+  &__code {
+    overflow: hidden;
+    border-radius: $border-radius-base;
+
+    pre {
+      margin: 0 !important;
+    }
+  }
+}
+
 ::-webkit-scrollbar {
   width: $scroll-width;
 
