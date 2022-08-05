@@ -1,7 +1,7 @@
 {
   "name": "shuo-ui",
   "private": false,
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "A Component Library for Vue3.js.",
   "keywords": [
     "vue3",

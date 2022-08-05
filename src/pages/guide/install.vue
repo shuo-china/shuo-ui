@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="doc__title">安装</div>
+    <div class="doc__title--lm">安装</div>
     <div class="doc__desc">使用npm安装</div>
     <div class="doc__code">
       <pre v-highlight><code>npm install shuo-ui --save</code></pre>

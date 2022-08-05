@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Sidebar from '@/layout/sidebar.vue'
 import Home from '@/pages/home.vue'
-import { Install } from '@/pages/guide'
+import { Install, Start } from '@/pages/guide'
 import docs from '../docs'
 
 const routes = [
@@ -18,7 +18,10 @@ const routes = [
     name: 'Guide',
     component: Sidebar,
     redirect: '/install',
-    children: [{ path: '/install', name: 'Install', component: Install }]
+    children: [
+      { path: '/install', name: 'Install', component: Install },
+      { path: '/start', name: 'Start', component: Start }
+    ]
   }
 ]
 

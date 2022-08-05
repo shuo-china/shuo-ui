@@ -40,6 +40,10 @@ export const menuGroups: Record<string, MenuGroup> = {
         {
           name: '安装',
           path: '/install'
+        },
+        {
+          name: '快速开始',
+          path: '/start'
         }
       ]
     }
