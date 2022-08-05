@@ -8,7 +8,7 @@ const highlight: Plugin = {
       mounted(el) {
         const blocks = el.querySelectorAll('pre code')
         blocks.forEach(block => {
-          hljs.highlightBlock(block)
+          hljs.highlightElement(block)
         })
       }
     })

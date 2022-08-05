@@ -36,8 +36,6 @@ watch(
   newRoute => {
     const componentName = newRoute.matched[0]?.name as string | undefined
     if (componentName && Object.keys(menuGroups).includes(componentName)) {
-      console.log('reset menu data')
-
       group.value = menuGroups[componentName]
     }
   },
@@ -60,6 +58,7 @@ watch(
   font-size: 14px;
   background-color: #fff;
   border-right: 1px solid $border-color;
+  user-select: none;
 
   &::-webkit-scrollbar {
     width: 0;
@@ -110,5 +109,9 @@ watch(
   margin-left: $sidebar-width;
   padding: $padding-lg;
   background-color: $bg-color;
+
+  :deep(.hljs) {
+    border-radius: $border-radius-lg;
+  }
 }
 </style>

@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Sidebar from '@/layout/sidebar.vue'
 import Home from '@/pages/home.vue'
-import Install from '@/pages/guide/install.vue'
+import { Install } from '@/pages/guide'
 import docs from '../docs'
 
 const routes = [
