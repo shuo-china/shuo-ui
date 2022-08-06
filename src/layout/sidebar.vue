@@ -1,11 +1,18 @@
 <template>
-  <div class="sidebar">
-    <div v-for="(list, i) in group" :key="`group${i}`" class="group">
+  <div
+    class="sidebar-switch"
+    :class="{ 'sidebar-switch--open': isShowSidebar }"
+    @click="isShowSidebar = !isShowSidebar"
+  >
+    <s-icon name="menu" :size="18" />
+  </div>
+  <div class="sidebar" :class="{ 'sidebar--open': isShowSidebar }">
+    <div v-for="(list, i) in group" :key="`group${i}`" class="sidebar__group">
       <div class="title">{{ list.title }}</div>
       <div
         v-for="(item, j) in list.items"
         :key="`items${j}`"
-        class="item"
+        class="sidebar__group__item"
         :class="{ active: route.path === item.path }"
         @click="toPath(item)"
       >
@@ -28,6 +35,8 @@ import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { menuGroups } from '@/constants'
 
+const isShowSidebar = ref(false)
+
 const router = useRouter()
 const toPath = (item: Item) => {
   router.push(item.path)
@@ -42,6 +51,7 @@ watch(
     if (componentName && Object.keys(menuGroups).includes(componentName)) {
       group.value = menuGroups[componentName]
     }
+    isShowSidebar.value = false
   },
   {
     immediate: true
@@ -55,6 +65,7 @@ watch(
   top: $navbar-height;
   bottom: 0;
   left: 0;
+  z-index: 999;
   box-sizing: border-box;
   width: $sidebar-width;
   padding: $padding-base;
@@ -74,7 +85,7 @@ watch(
     }
   }
 
-  .group {
+  &__group {
     padding-top: $padding-base;
 
     &:first-of-type {
@@ -85,7 +96,7 @@ watch(
       margin-bottom: 12px;
     }
 
-    .item {
+    &__item {
       padding: 10px $padding-sm;
       color: $text-color;
       border-radius: $border-base;
@@ -111,7 +122,8 @@ watch(
   box-sizing: border-box;
   min-height: calc(100vh - $navbar-height);
   margin-left: $sidebar-width;
-  padding: 48px;
+  padding: 36px;
+  overflow-x: auto;
   background-color: $bg-color;
 }
 
@@ -128,5 +140,43 @@ watch(
 .app-fade-leave-to {
   transform: translateX(24px);
   opacity: 0;
+}
+
+.sidebar-switch {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar-switch {
+    position: fixed;
+    top: $navbar-height;
+    left: 0;
+    z-index: 999;
+    display: inline-flex;
+    justify-content: center;
+    padding: 6px 10px;
+    color: #fff;
+    background-color: #3b79d0;
+    transition: all 0.4s;
+    user-select: none;
+
+    &--open {
+      transform: translateX($sidebar-width);
+    }
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: all 0.4s;
+
+    &--open {
+      transform: translateX(0%);
+    }
+  }
+
+  .app-main {
+    margin-left: 0;
+    padding: 48px 24px;
+  }
 }
 </style>

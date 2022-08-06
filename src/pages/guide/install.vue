@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="doc__title--lm">安装</div>
+    <div class="doc__title space-bottom">安装</div>
     <div class="doc__desc">使用npm安装</div>
     <div class="doc__code">
       <pre v-highlight><code>npm install shuo-ui --save</code></pre>
     </div>
-    <div class="doc__desc">使用yarn安装</div>
+    <div class="doc__desc space-top">使用yarn安装</div>
     <div class="doc__code">
       <pre v-highlight><code>yarn add shuo-ui</code></pre>
     </div>

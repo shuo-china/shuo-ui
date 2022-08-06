@@ -61,6 +61,7 @@ const isShowCode = ref(false)
 
     .showcase {
       padding: $padding-lg;
+      overflow-x: auto;
     }
 
     .showcode {

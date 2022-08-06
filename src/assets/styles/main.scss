@@ -1,5 +1,6 @@
 ::-webkit-scrollbar {
   width: $scroll-width;
+  height: $scroll-height;
 
   &-thumb {
     background-color: #ccc;
@@ -17,13 +18,6 @@
     color: $text-color;
     font-weight: bold;
     font-size: 24px;
-
-    &--lm {
-      margin-bottom: 32px;
-      color: $text-color;
-      font-weight: bold;
-      font-size: 24px;
-    }
   }
 
   &__sec_title {
@@ -50,6 +44,12 @@
   }
 }
 
-.space-top {
-  margin-top: 32px;
+.space {
+  &-top {
+    margin-top: 32px;
+  }
+
+  &-bottom {
+    margin-bottom: 32px;
+  }
 }

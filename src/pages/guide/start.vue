@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="doc__title--lm">快速开始</div>
+    <div class="doc__title space-bottom">快速开始</div>
     <!-- 完整引入 -->
     <div class="doc__sec_title">完整引入</div>
     <div class="doc__desc">如果你对打包后的文件大小不是很在乎，那么使用完整导入会更方便</div>
