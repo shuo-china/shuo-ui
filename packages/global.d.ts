@@ -5,7 +5,7 @@ declare module '@vue/runtime-core' {
   }
 
   interface ComponentCustomProperties {
-    $message: typeof import('shuo-ui')['SMessage']
+    $sMessage: typeof import('shuo-ui')['SMessage']
   }
 }
 

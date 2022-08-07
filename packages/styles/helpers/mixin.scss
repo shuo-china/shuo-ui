@@ -1,0 +1,3 @@
+@mixin set-css-var-value($name, $value) {
+  #{join-var-name($name)}: #{$value};
+}

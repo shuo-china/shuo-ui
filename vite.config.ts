@@ -22,7 +22,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       css: {
         preprocessorOptions: {
           scss: {
-            additionalData: '@import "@shuo-ui/styles/variables.scss";@import "@/assets/styles/variables.scss";'
+            additionalData: '@import "@shuo-ui/styles/helpers";@import "@/assets/styles/variables.scss";'
           }
         }
       },
