@@ -1,15 +1,24 @@
 <template>
-  <transition name="s-message-fade">
-    <div v-show="visible" :class="classNames">
+  <transition name="message-fade">
+    <div v-show="visible" class="message-notice">
       <div></div>
-      <div class="s-message__content">{{ content }}</div>
+      <div :class="iconClassNames"><s-icon :name="iconTypes[type]" :spin="props.type === 'loading'" /></div>
+      <div class="message-notice-content">{{ content }}</div>
     </div>
   </transition>
 </template>
 
 <script setup lang="ts">
 import type { MessageType } from './index'
-import { ref, computed, onMounted } from 'vue'
+import { SIcon } from '@shuo-ui/components'
+import { ref, onMounted, computed } from 'vue'
+const iconTypes = {
+  info: 'info-circle-fill',
+  success: 'check-circle-fill',
+  warning: 'warning-circle-fill',
+  error: 'close-circle-fill',
+  loading: 'reload'
+}
 
 const props = withDefaults(
   defineProps<{
@@ -24,6 +33,8 @@ const props = withDefaults(
   }
 )
 
+const iconClassNames = computed(() => ['message-notice-icon', `message-notice-icon--${props.type}`])
+
 onMounted(() => {
   if (props.duration !== 0) {
     setTimeout(() => {
@@ -31,8 +42,6 @@ onMounted(() => {
     }, props.duration)
   }
 })
-
-const classNames = computed(() => ['s-message', `s-message--${props.type}`])
 
 const visible = ref(false)
 
@@ -47,49 +56,59 @@ defineExpose({
 </script>
 
 <style scoped lang="scss">
-.s-message {
+.message-notice {
   display: flex;
   align-items: center;
-  height: 35px;
-  margin-top: 16px;
-  padding: 0 24px;
-  font-size: 14px;
-  background-color: rgb(255 255 255 / 90%);
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+  margin-bottom: 12px;
+  padding: 10px 20px;
+  color: get-css-var('text-color');
+  background-color: get-css-var('color', 'white');
+  border-radius: get-css-var('border-radius');
+  box-shadow: get-css-var('shadow');
 
-  &--info {
-    color: $info-color-dark;
+  &-icon {
+    margin-right: 8px;
+
+    :deep([class*='s-icon-']) {
+      font-size: 18px;
+    }
+
+    &--loading,
+    &--info {
+      color: get-css-var('color', 'primary');
+    }
+
+    &--success {
+      color: get-css-var('color', 'success');
+    }
+
+    &--warning {
+      color: get-css-var('color', 'warning');
+    }
+
+    &--error {
+      color: get-css-var('color', 'error');
+    }
   }
 
-  &--success {
-    color: $success-color-dark;
-  }
-
-  &--warning {
-    color: $warning-color-dark;
-  }
-
-  &--error {
-    color: $error-color-dark;
-  }
-
-  &__content {
-    max-width: 500px;
+  &-content {
+    max-width: 720px;
     overflow: hidden;
+    font-size: 14px;
+    line-height: 1.6;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 }
 
-.s-message-fade-enter-from,
-.s-message-fade-leave-to {
+.message-fade-enter-from,
+.message-fade-leave-to {
   transform: translateY(-16px);
   opacity: 0;
 }
 
-.s-message-fade-enter-active,
-.s-message-fade-leave-active {
+.message-fade-enter-active,
+.message-fade-leave-active {
   transition: all 0.25s ease;
 }
 </style>

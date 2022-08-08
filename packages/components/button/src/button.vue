@@ -9,7 +9,7 @@ import { computed } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    type?: 'default' | 'primary' | 'info' | 'success' | 'error' | 'warning'
+    type?: 'default' | 'primary' | 'success' | 'error' | 'warning'
     size?: 'small' | 'medium' | 'large'
     loading?: boolean
     round?: boolean
@@ -23,18 +23,18 @@ const props = withDefaults(
 )
 
 const classNames = computed(() => [
-  's-button',
-  `s-button--${props.type}`,
-  `s-button--${props.size}`,
+  'button',
+  `button--${props.type}`,
+  `button--${props.size}`,
   {
-    's-button--loading': !!props.loading,
-    's-button--round': !!props.round
+    'button--loading': !!props.loading,
+    'button--round': !!props.round
   }
 ])
 </script>
 
 <style lang="scss" scoped>
-.s-button {
+.button {
   position: relative;
   display: inline-flex;
   flex-shrink: 0;
@@ -45,20 +45,16 @@ const classNames = computed(() => [
   white-space: nowrap;
   text-align: center;
   border: none;
-  border-radius: $border-radius-base;
+  border-radius: get-css-var('border-radius');
   outline: none;
   cursor: pointer;
   transition: all 0.1s;
   user-select: none;
 
-  &:active {
-    transform: scale(0.96);
-  }
-
   // disabled
   &[disabled] {
     cursor: no-drop;
-    opacity: $disabled-opacity;
+    opacity: 0.7;
   }
 
   // 尺寸
@@ -85,80 +81,70 @@ const classNames = computed(() => [
 
   // 颜色
   &--default {
-    color: $black-text-color;
-    background-color: $default-color;
+    color: get-css-var('text-color');
+    background-color: get-css-var('color', 'white');
+    border: 1px solid get-css-var('border-color');
 
     &:hover {
-      background-color: $default-color-hover;
+      color: get-css-var('color', 'primary', 'hover');
+      border-color: get-css-var('color', 'primary', 'hover');
     }
 
     &:active {
-      background-color: $default-color-active;
+      color: get-css-var('color', 'primary', 'active');
+      border-color: get-css-var('color', 'primary', 'active');
     }
   }
 
   &--primary {
-    color: $white-text-color;
-    background-color: $primary-color;
+    color: get-css-var('color', 'white');
+    background-color: get-css-var('color', 'primary');
 
     &:hover {
-      background-color: $primary-color-hover;
+      background-color: get-css-var('color', 'primary', 'hover');
     }
 
     &:active {
-      background-color: $primary-color-active;
-    }
-  }
-
-  &--info {
-    color: $white-text-color;
-    background-color: $info-color;
-
-    &:hover {
-      background-color: $info-color-hover;
-    }
-
-    &:active {
-      background-color: $info-color-active;
+      background-color: get-css-var('color', 'primary', 'active');
     }
   }
 
   &--success {
-    color: $white-text-color;
-    background-color: $success-color;
+    color: get-css-var('color', 'white');
+    background-color: get-css-var('color', 'success');
 
     &:hover {
-      background-color: $success-color-hover;
+      background-color: get-css-var('color', 'success', 'hover');
     }
 
     &:active {
-      background-color: $success-color-active;
+      background-color: get-css-var('color', 'success', 'active');
     }
   }
 
   &--warning {
-    color: $white-text-color;
-    background-color: $warning-color;
+    color: get-css-var('color', 'white');
+    background-color: get-css-var('color', 'warning');
 
     &:hover {
-      background-color: $warning-color-hover;
+      background-color: get-css-var('color', 'warning', 'hover');
     }
 
     &:active {
-      background-color: $warning-color-active;
+      background-color: get-css-var('color', 'warning', 'active');
     }
   }
 
   &--error {
-    color: $white-text-color;
-    background-color: $error-color;
+    color: get-css-var('color', 'white');
+    background-color: get-css-var('color', 'error');
 
     &:hover {
-      background-color: $error-color-hover;
+      background-color: get-css-var('color', 'error', 'hover');
     }
 
     &:active {
-      background-color: $error-color-active;
+      background-color: get-css-var('color', 'error', 'active');
     }
   }
 
@@ -184,7 +170,7 @@ const classNames = computed(() => [
 
   // round
   &--round {
-    border-radius: 50px;
+    border-radius: get-css-var('border-radius', 'circle');
   }
 }
 

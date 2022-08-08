@@ -22,7 +22,7 @@ const router = useRouter()
   box-sizing: border-box;
   min-height: calc(100vh - $navbar-height);
   padding: 0 24px;
-  background-color: $bg-color;
+  background-color: $bg-color-primary;
 
   .logo {
     width: 180px;

@@ -35,13 +35,13 @@ const router = useRouter()
   height: $navbar-height;
   padding: 0 $padding-lg;
   background-color: #fff;
-  border-bottom: 1px solid $border-color;
+  border-bottom: 1px solid $border-color-primary;
   user-select: none;
 
   &__left {
     display: flex;
     align-items: center;
-    color: $text-color;
+    color: $text-color-primary;
     font-size: 22px;
     cursor: pointer;
 
@@ -66,7 +66,7 @@ const router = useRouter()
         display: flex;
         align-items: center;
         padding: 0 $padding-sm;
-        color: $text-color;
+        color: $text-color-primary;
         font-size: 14px;
         cursor: pointer;
         opacity: 0.7;
@@ -86,7 +86,7 @@ const router = useRouter()
         display: flex;
         align-items: center;
         padding: 0 $padding-sm;
-        color: $text-color;
+        color: $text-color-primary;
         text-decoration: none;
         opacity: 0.7;
 

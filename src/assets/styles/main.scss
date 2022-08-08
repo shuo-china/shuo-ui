@@ -15,21 +15,21 @@
 .doc {
   &__title {
     margin-bottom: 16px;
-    color: $text-color;
+    color: $text-color-primary;
     font-weight: bold;
     font-size: 24px;
   }
 
   &__sec_title {
     margin: 16px 0;
-    color: $text-color;
+    color: $text-color-primary;
     font-weight: bold;
     font-size: 16px;
   }
 
   &__desc {
     margin: 16px 0;
-    color: adjust_color($text-color, $lightness: 20%);
+    color: adjust_color($text-color-primary, $lightness: 20%);
     font-size: 14px;
   }
 

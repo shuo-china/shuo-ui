@@ -1,18 +1,111 @@
 @use 'sass:map';
+@use 'sass:math';
+@use 'sass:color';
 
-$prefix: 's';
 $types: primary, info, success, warning, error;
-$colors: (
-  'white': #fff,
-  'black': #000,
-  'primary': #409eff,
-  'info': #909399,
-  'success': #67c23a,
-  'warning': #e6a23c,
-  'error': #f56c6c
+
+// colors
+$colors: ();
+$colors: map.deep-merge(
+  (
+    'white': #fff,
+    'black': #000,
+    'info': (
+      'base': #2080f0
+    ),
+    'primary': (
+      'base': #2080f0
+    ),
+    'success': (
+      'base': #18a058
+    ),
+    'warning': (
+      'base': #f0a020
+    ),
+    'error': (
+      'base': #d03050
+    )
+  ),
+  $colors
+);
+$color-white: map.get($colors, 'white');
+$color-black: map.get($colors, 'black');
+
+@each $type in $types {
+  @for $i from 1 through 9 {
+    $colors: map.deep-merge(
+      (
+        $type: (
+          'light-#{$i}': color.mix($color-white, map.get($colors, $type, 'base'), math.percentage(math.div($i, 10))),
+          'dark-#{$i}': color.mix($color-black, map.get($colors, $type, 'base'), math.percentage(math.div($i, 10)))
+        )
+      ),
+      $colors
+    );
+  }
+}
+
+// text-color
+$text-color: () !default;
+$text-color: map.merge(
+  (
+    'default': #303133,
+    'regular': #606266,
+    'secondary': #909399,
+    'placeholder': #a8abb2,
+    'disabled': #c0c4cc
+  ),
+  $text-color
 );
 
-@debug map.get($colors, 'white');
+// background
+$bg-color: () !default;
+$bg-color: map.merge(
+  (
+    'default': #fff
+  ),
+  $bg-color
+);
+
+// border-color
+$border-color: () !default;
+$border-color: map.merge(
+  (
+    'default': #dcdfe6,
+    'light': #e4e7ed,
+    'lighter': #ebeef5,
+    'dark': #d4d7de,
+    'darker': #cdd0d6
+  ),
+  $border-color
+);
+
+// border-radius
+$border-radius: () !default;
+$border-radius: map.merge(
+  (
+    'default': 4px,
+    'small': 2px,
+    'large': 6px,
+    'round': 20px,
+    'circle': 100%
+  ),
+  $border-radius
+);
+
+// shadow
+$shadow: () !default;
+$shadow-color: rgb(0 0 0 / 20%);
+$shadow: map.merge(
+  (
+    'default': 0 1px 6px $shadow-color,
+    'top': 0 -1px 6px $shadow-color,
+    'bottom': 0 1px 6px $shadow-color,
+    'left': -1px 0 6px $shadow-color,
+    'right': 1px 0 6px $shadow-color
+  ),
+  $shadow
+);
 
 // 全局
 $white-color: #fff;

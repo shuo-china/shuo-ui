@@ -1,0 +1,22 @@
+:root {
+  @include set-css-var-value('color-white', $color-white);
+  @include set-css-var-value('color-black', $color-black);
+
+  // --s-color-#{$type}-light-{$i}
+  @include set-css-color-types;
+
+  // --s-text-color-#{$type}
+  @include set-component-css-var('text-color', $text-color);
+
+  // --s-bg-color-#{$type}
+  @include set-component-css-var('bg-color', $bg-color);
+
+  // --s-border-color-#{$type}
+  @include set-component-css-var('border-color', $border-color);
+
+  // --s-border-radius-#{$type}
+  @include set-component-css-var('border-radius', $border-radius);
+
+  // --s-shadow-#{$type}
+  @include set-component-css-var('shadow', $shadow);
+}

@@ -5,6 +5,5 @@
     <s-button type="success">success</s-button>
     <s-button type="warning">warning</s-button>
     <s-button type="error">error</s-button>
-    <s-button type="info">info</s-button>
   </div>
 </template>

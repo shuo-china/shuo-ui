@@ -42,21 +42,21 @@ const isShowCode = ref(false)
 
   &__title {
     margin-bottom: 12px;
-    color: $text-color;
+    color: $text-color-primary;
     font-weight: bold;
     font-size: 16px;
   }
 
   &__desc {
     margin: 12px 0 24px;
-    color: adjust_color($text-color, $lightness: 20%);
+    color: adjust_color($text-color-primary, $lightness: 20%);
     font-size: 14px;
   }
 
   &__example {
     margin: 12px 0;
     background-color: #fff;
-    border: 1px solid $border-color;
+    border: 1px solid $border-color-primary;
     border-radius: $border-radius-base;
 
     .showcase {
@@ -79,13 +79,13 @@ const isShowCode = ref(false)
       line-height: 30px;
       text-align: center;
       background-color: #fff;
-      border-top: 1px solid $border-color;
+      border-top: 1px solid $border-color-primary;
       cursor: pointer;
       transition: all 0.25s;
       user-select: none;
 
       &:hover {
-        color: $text-color;
+        color: $text-color-primary;
         background-color: #ebebeb;
       }
 

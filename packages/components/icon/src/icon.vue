@@ -11,12 +11,29 @@ const props = defineProps<{
   name: string
   size?: number | string
   color?: string
+  spin?: boolean
 }>()
 
-const classNames = computed(() => [`s-icon-${props.name}`])
+const classNames = computed(() => ['s-icon', `s-icon-${props.name}`, { spin: props.spin }])
 
 const styles = computed<CSSProperties>(() => ({
   fontSize: isUndefined(props.size) ? undefined : addUnit(props.size),
   color: props.color
 }))
 </script>
+
+<style lang="scss" scoped>
+.s-icon {
+  display: inline-block;
+}
+
+.spin {
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>

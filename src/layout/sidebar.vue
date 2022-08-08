@@ -72,7 +72,7 @@ watch(
   overflow-y: auto;
   font-size: 14px;
   background-color: #fff;
-  border-right: 1px solid $border-color;
+  border-right: 1px solid $border-color-primary;
   user-select: none;
 
   &::-webkit-scrollbar {
@@ -98,13 +98,13 @@ watch(
 
     &__item {
       padding: 10px $padding-sm;
-      color: $text-color;
+      color: $text-color-primary;
       border-radius: $border-base;
       cursor: pointer;
       opacity: 0.7;
 
       &:hover {
-        color: $text-color;
+        color: $text-color-primary;
         background-color: #f5f5f5;
         opacity: 1;
       }
@@ -124,7 +124,7 @@ watch(
   margin-left: $sidebar-width;
   padding: 36px;
   overflow-x: auto;
-  background-color: $bg-color;
+  background-color: $bg-color-primary;
 }
 
 .app-fade-enter-active,

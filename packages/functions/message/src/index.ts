@@ -5,7 +5,7 @@ import '../styles/index.scss'
 
 const rootDomId = 's-message'
 
-const types = ['info', 'success', 'warning', 'error'] as const
+const types = ['info', 'success', 'warning', 'error', 'loading'] as const
 
 export type MessageType = typeof types[number]
 

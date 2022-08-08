@@ -1,5 +1,5 @@
 @function join-var-name($list) {
-  $name: '--' + $prefix;
+  $name: '--s';
   @each $item in $list {
     @if $item != '' {
       $name: $name + '-' + $item;
@@ -8,6 +8,12 @@
   @return $name;
 }
 
+// get-css-var('button', 'text-color') => var(--s-button-text-color)
 @function get-css-var($args...) {
   @return var(#{join-var-name($args)});
+}
+
+// get-css-var-name('button', 'text-color') => '--s-button-text-color'
+@function get-css-var-name($args...) {
+  @return join-var-name($args);
 }
