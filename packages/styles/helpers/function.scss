@@ -1,5 +1,8 @@
+@use 'sass:color';
+@use 'sass:math';
+
 @function join-var-name($list) {
-  $name: '--s';
+  $name: '--' + $prefix;
   @each $item in $list {
     @if $item != '' {
       $name: $name + '-' + $item;
@@ -16,4 +19,12 @@
 // get-css-var-name('button', 'text-color') => '--s-button-text-color'
 @function get-css-var-name($args...) {
   @return join-var-name($args);
+}
+
+@function get-mix-color-light($color, $number) {
+  @return color.mix($color-white, $color, math.percentage(math.div($number, 10)));
+}
+
+@function get-mix-color-dark($color, $number) {
+  @return color.mix($color-black, $color, math.percentage(math.div($number, 10)));
 }

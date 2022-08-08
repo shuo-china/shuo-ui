@@ -16,8 +16,8 @@
       @include set-css-var-value(('color', $type, 'dark', $i), map.get($colors, $type, 'dark-#{$i}'));
     }
 
-    @include set-css-var-value(('color', $type, 'hover'), get-css-var('color', $type, 'light-3'));
-    @include set-css-var-value(('color', $type, 'active'), get-css-var('color', $type, 'dark-3'));
+    @include set-css-var-value(('color', $type, 'hover'), get-css-var('color', $type, 'light-2'));
+    @include set-css-var-value(('color', $type, 'active'), get-css-var('color', $type, 'dark-2'));
   }
 }
 

@@ -1,43 +1,42 @@
 @use 'sass:map';
-@use 'sass:math';
-@use 'sass:color';
 
 $types: primary, info, success, warning, error;
+$prefix: 's';
 
 // colors
-$colors: ();
-$colors: map.deep-merge(
-  (
-    'white': #fff,
-    'black': #000,
-    'info': (
-      'base': #2080f0
-    ),
-    'primary': (
-      'base': #2080f0
-    ),
-    'success': (
-      'base': #18a058
-    ),
-    'warning': (
-      'base': #f0a020
-    ),
-    'error': (
-      'base': #d03050
-    )
+$colors: (
+  'white': #fff,
+  'black': #000,
+  'info': (
+    'base': #2080f0
   ),
-  $colors
+  'primary': (
+    'base': #2080f0
+  ),
+  'success': (
+    'base': #18a058
+  ),
+  'warning': (
+    'base': #f0a020
+  ),
+  'error': (
+    'base': #d03050
+  )
 );
 $color-white: map.get($colors, 'white');
 $color-black: map.get($colors, 'black');
+
+@function test() {
+  @return 1;
+}
 
 @each $type in $types {
   @for $i from 1 through 9 {
     $colors: map.deep-merge(
       (
         $type: (
-          'light-#{$i}': color.mix($color-white, map.get($colors, $type, 'base'), math.percentage(math.div($i, 10))),
-          'dark-#{$i}': color.mix($color-black, map.get($colors, $type, 'base'), math.percentage(math.div($i, 10)))
+          'light-#{$i}': get-mix-color-light(map.get($colors, $type, 'base'), $i),
+          'dark-#{$i}': get-mix-color-dark(map.get($colors, $type, 'base'), $i)
         )
       ),
       $colors
@@ -46,66 +45,49 @@ $color-black: map.get($colors, 'black');
 }
 
 // text-color
-$text-color: () !default;
+$text-color: (
+  'default': #333639
+);
 $text-color: map.merge(
   (
-    'default': #303133,
-    'regular': #606266,
-    'secondary': #909399,
-    'placeholder': #a8abb2,
-    'disabled': #c0c4cc
+    'secondary': get-mix-color-light(map.get($text-color, 'default'), 1),
+    'placeholder': get-mix-color-light(map.get($text-color, 'default'), 2),
+    'disabled': get-mix-color-light(map.get($text-color, 'default'), 6)
   ),
   $text-color
 );
 
 // background
-$bg-color: () !default;
-$bg-color: map.merge(
-  (
-    'default': #fff
-  ),
-  $bg-color
+$bg-color: (
+  'default': #f5f5f5
 );
 
 // border-color
-$border-color: () !default;
-$border-color: map.merge(
-  (
-    'default': #dcdfe6,
-    'light': #e4e7ed,
-    'lighter': #ebeef5,
-    'dark': #d4d7de,
-    'darker': #cdd0d6
-  ),
-  $border-color
+$border-color: (
+  'default': #d9d9d9
 );
 
 // border-radius
-$border-radius: () !default;
-$border-radius: map.merge(
-  (
-    'default': 4px,
-    'small': 2px,
-    'large': 6px,
-    'round': 20px,
-    'circle': 100%
-  ),
-  $border-radius
+$border-radius: (
+  'default': 4px,
+  'small': 2px,
+  'large': 6px,
+  'round': 20px,
+  'circle': 100%
 );
 
 // shadow
-$shadow: () !default;
 $shadow-color: rgb(0 0 0 / 20%);
-$shadow: map.merge(
-  (
-    'default': 0 1px 6px $shadow-color,
-    'top': 0 -1px 6px $shadow-color,
-    'bottom': 0 1px 6px $shadow-color,
-    'left': -1px 0 6px $shadow-color,
-    'right': 1px 0 6px $shadow-color
-  ),
-  $shadow
+$shadow: (
+  'default': 0 1px 6px $shadow-color,
+  'top': 0 -1px 6px $shadow-color,
+  'bottom': 0 1px 6px $shadow-color,
+  'left': -1px 0 6px $shadow-color,
+  'right': 1px 0 6px $shadow-color
 );
+
+// opacity-disabled
+$opacity-disabled: 0.5;
 
 // 全局
 $white-color: #fff;

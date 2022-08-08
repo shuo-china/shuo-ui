@@ -461,7 +461,7 @@ export const iconList = [
   'cloud-download',
   'alibaba',
   'cloud-sync',
-  'antdesign',
+  'loading',
   'video',
   'ant-cloud',
   'notification',

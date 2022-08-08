@@ -1,7 +1,6 @@
 <template>
   <transition name="message-fade">
     <div v-show="visible" class="message-notice">
-      <div></div>
       <div :class="iconClassNames"><s-icon :name="iconTypes[type]" :spin="props.type === 'loading'" /></div>
       <div class="message-notice-content">{{ content }}</div>
     </div>
@@ -17,7 +16,7 @@ const iconTypes = {
   success: 'check-circle-fill',
   warning: 'warning-circle-fill',
   error: 'close-circle-fill',
-  loading: 'reload'
+  loading: 'loading'
 }
 
 const props = withDefaults(
@@ -59,7 +58,7 @@ defineExpose({
 .message-notice {
   display: flex;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   padding: 10px 20px;
   color: get-css-var('text-color');
   background-color: get-css-var('color', 'white');

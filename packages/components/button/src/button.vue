@@ -1,11 +1,16 @@
 <template>
   <button :class="classNames">
-    <slot></slot>
+    <span v-if="loading" class="s-button-icon">
+      <s-icon name="loading" :spin="true"></s-icon>
+    </span>
+
+    <span><slot></slot></span>
   </button>
 </template>
 
 <script setup lang="ts" name="SButton">
 import { computed } from 'vue'
+import { SIcon } from '@shuo-ui/components'
 
 const props = withDefaults(
   defineProps<{
@@ -23,18 +28,18 @@ const props = withDefaults(
 )
 
 const classNames = computed(() => [
-  'button',
-  `button--${props.type}`,
-  `button--${props.size}`,
+  's-button',
+  `s-button--${props.type}`,
+  `s-button--${props.size}`,
   {
-    'button--loading': !!props.loading,
-    'button--round': !!props.round
+    's-button--loading': !!props.loading,
+    's-button--round': !!props.round
   }
 ])
 </script>
 
 <style lang="scss" scoped>
-.button {
+.s-button {
   position: relative;
   display: inline-flex;
   flex-shrink: 0;
@@ -48,38 +53,29 @@ const classNames = computed(() => [
   border-radius: get-css-var('border-radius');
   outline: none;
   cursor: pointer;
-  transition: all 0.1s;
+  transition: all 0.3s;
   user-select: none;
 
-  // disabled
-  &[disabled] {
-    cursor: no-drop;
-    opacity: 0.7;
-  }
-
-  // 尺寸
+  // size
   &--small {
-    min-width: 50px;
-    height: 24px;
-    padding: 0 8px;
-    font-size: 12px;
+    height: 28px;
+    padding: 0 10px;
+    font-size: 13px;
   }
 
   &--medium {
-    min-width: 60px;
-    height: 30px;
+    height: 34px;
     padding: 0 14px;
     font-size: 14px;
   }
 
   &--large {
-    min-width: 70px;
-    height: 36px;
-    padding: 0 20px;
-    font-size: 16px;
+    height: 40px;
+    padding: 0 18px;
+    font-size: 15px;
   }
 
-  // 颜色
+  // colors
   &--default {
     color: get-css-var('text-color');
     background-color: get-css-var('color', 'white');
@@ -150,37 +146,26 @@ const classNames = computed(() => [
 
   // loading
   &--loading {
-    font-size: 0;
+    opacity: get-css-var('opacity-disabled');
+    pointer-events: none;
+  }
 
-    &::after {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 11px;
-      height: 11px;
-      border: 2.5px solid rgb(0 0 0 / 25%);
-      border-left-color: rgb(255 255 255 / 85%);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      transition: all 0.15s;
-      animation: donut-spin 0.8s linear infinite;
-      content: '';
-    }
+  // disabled
+  &[disabled] {
+    color: get-css-var('text-color', 'disabled');
+    background-color: get-css-var('bg-color');
+    border: 1px solid get-css-var('border-color');
+    cursor: no-drop;
   }
 
   // round
   &--round {
-    border-radius: get-css-var('border-radius', 'circle');
-  }
-}
-
-@keyframes donut-spin {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
+    border-radius: get-css-var('border-radius', 'round');
   }
 
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
+  // icon
+  &-icon {
+    margin-right: 6px;
   }
 }
 </style>

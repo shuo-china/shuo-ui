@@ -19,4 +19,7 @@
 
   // --s-shadow-#{$type}
   @include set-component-css-var('shadow', $shadow);
+
+  // --s-opacity-disabled
+  @include set-css-var-value('opacity-disabled', $opacity-disabled);
 }

@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont";
-  src: url('@shuo-ui/styles/iconfont/iconfont.woff2') format('woff2'),
-       url('@shuo-ui/styles/iconfont/iconfont.woff') format('woff'),
-       url('@shuo-ui/styles/iconfont/iconfont.ttf') format('truetype');
+  src: url("@shuo-ui/styles/iconfont/iconfont.woff2") format("woff2"),
+    url("@shuo-ui/styles/iconfont/iconfont.woff") format("woff"),
+    url("@shuo-ui/styles/iconfont/iconfont.ttf") format("truetype");
 }
 
 [class*="s-icon-"] {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.s-icon-loading:before {
+  content: "\e64f";
 }
 
 .s-icon-indent:before {
@@ -1859,10 +1863,6 @@
 
 .s-icon-cloud-sync:before {
   content: "\e82a";
-}
-
-.s-icon-antdesign:before {
-  content: "\e92a";
 }
 
 .s-icon-video:before {
