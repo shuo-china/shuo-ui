@@ -61,10 +61,17 @@ $text-color: map.merge(
 $bg-color: (
   'default': #f5f5f5
 );
+$bg-color: map.merge(
+  (
+    'light': get-mix-color-light(map.get($bg-color, 'default'), 3),
+    'dark': get-mix-color-dark(map.get($bg-color, 'default'), 3)
+  ),
+  $bg-color
+);
 
 // border-color
 $border-color: (
-  'default': #d9d9d9
+  'default': #e0e0e6
 );
 
 // border-radius
@@ -86,53 +93,19 @@ $shadow: (
   'right': 1px 0 6px $shadow-color
 );
 
+// padding
+$padding: (
+  'default': 24px,
+  'small': 16px,
+  'large': 32px
+);
+
+// font-size
+$font-size: (
+  'default': 14px,
+  'small': 12px,
+  'large': 16px
+);
+
 // opacity-disabled
 $opacity-disabled: 0.5;
-
-// 全局
-$white-color: #fff;
-$white-text-color: rgb(255 255 255 / 90%);
-$black-color: #000;
-$black-text-color: rgb(0 0 0 / 90%);
-$disabled-opacity: 0.5;
-
-// 主题色
-$primary-color: rgb(50 86 136);
-$primary-color-hover: adjust_color($primary-color, $lightness: 10%);
-$primary-color-active: adjust_color($primary-color, $lightness: -10%);
-$primary-color-dark: adjust_color($primary-color, $lightness: -20%);
-
-// default
-$default-color: rgb(240 240 240);
-$default-color-hover: adjust_color($default-color, $lightness: -5%);
-$default-color-active: adjust_color($default-color, $lightness: -15%);
-$default-color-dark: adjust_color($default-color, $lightness: -20%);
-
-// info
-$info-color: rgb(144 147 153);
-$info-color-hover: adjust_color($info-color, $lightness: 10%);
-$info-color-active: adjust_color($info-color, $lightness: -10%);
-$info-color-dark: adjust_color($info-color, $lightness: -20%);
-
-// success
-$success-color: rgb(49 196 141);
-$success-color-hover: adjust_color($success-color, $lightness: 10%);
-$success-color-active: adjust_color($success-color, $lightness: -10%);
-$success-color-dark: adjust_color($success-color, $lightness: -20%);
-
-// warning
-$warning-color: rgb(227 179 68);
-$warning-color-hover: adjust_color($warning-color, $lightness: 10%);
-$warning-color-active: adjust_color($warning-color, $lightness: -10%);
-$warning-color-dark: adjust_color($warning-color, $lightness: -20%);
-
-// error
-$error-color: rgb(249 128 128);
-$error-color-hover: adjust_color($error-color, $lightness: 10%);
-$error-color-active: adjust_color($error-color, $lightness: -10%);
-$error-color-dark: adjust_color($error-color, $lightness: -20%);
-
-// border
-$border-radius-sm: 2px;
-$border-radius-base: 4px;
-$border-radius-lg: 6px;

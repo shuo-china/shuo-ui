@@ -47,10 +47,14 @@ const route = useRoute()
 watch(
   route,
   newRoute => {
-    const componentName = newRoute.matched[0]?.name as string | undefined
-    if (componentName && Object.keys(menuGroups).includes(componentName)) {
-      group.value = menuGroups[componentName]
+    const menuGroupsKeys = Object.keys(menuGroups)
+    const matched = newRoute.matched.find(r => menuGroupsKeys.includes(r.name as string))
+    if (matched) {
+      group.value = menuGroups[matched.name as string]
+    } else {
+      group.value = []
     }
+
     isShowSidebar.value = false
   },
   {
@@ -68,11 +72,11 @@ watch(
   z-index: 999;
   box-sizing: border-box;
   width: $sidebar-width;
-  padding: $padding-base;
+  padding: get-css-var('padding');
   overflow-y: auto;
-  font-size: 14px;
+  font-size: get-css-var('font-size');
   background-color: #fff;
-  border-right: 1px solid $border-color-primary;
+  border-right: 1px solid get-css-var('border-color');
   user-select: none;
 
   &::-webkit-scrollbar {
@@ -86,7 +90,7 @@ watch(
   }
 
   &__group {
-    padding-top: $padding-base;
+    padding-top: get-css-var('padding');
 
     &:first-of-type {
       padding-top: 0;
@@ -97,21 +101,20 @@ watch(
     }
 
     &__item {
-      padding: 10px $padding-sm;
-      color: $text-color-primary;
-      border-radius: $border-base;
+      padding: 10px get-css-var('padding', 'small');
+      color: get-css-var('text-color');
+      border-radius: get-css-var('border-radius');
       cursor: pointer;
       opacity: 0.7;
 
       &:hover {
-        color: $text-color-primary;
-        background-color: #f5f5f5;
+        background-color: get-css-var('bg-color');
         opacity: 1;
       }
 
       &.active {
         color: #fff;
-        background-color: #3b79d0;
+        background-color: get-css-var('color', 'primary');
         opacity: 1;
       }
     }
@@ -122,9 +125,9 @@ watch(
   box-sizing: border-box;
   min-height: calc(100vh - $navbar-height);
   margin-left: $sidebar-width;
-  padding: 36px;
+  padding: 48px;
   overflow-x: auto;
-  background-color: $bg-color-primary;
+  background-color: get-css-var('bg-color', 'light');
 }
 
 .app-fade-enter-active,
@@ -156,7 +159,7 @@ watch(
     justify-content: center;
     padding: 6px 10px;
     color: #fff;
-    background-color: #3b79d0;
+    background-color: get-css-var('color', 'primary');
     transition: all 0.4s;
     user-select: none;
 
@@ -176,7 +179,8 @@ watch(
 
   .app-main {
     margin-left: 0;
-    padding: 48px 24px;
+    padding-right: get-css-var('padding');
+    padding-left: get-css-var('padding');
   }
 }
 </style>

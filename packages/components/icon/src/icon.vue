@@ -14,7 +14,7 @@ const props = defineProps<{
   spin?: boolean
 }>()
 
-const classNames = computed(() => ['s-icon', `s-icon-${props.name}`, { spin: props.spin }])
+const classNames = computed(() => ['s-icon', `s-icon-${props.name}`, { spin: !!props.spin }])
 
 const styles = computed<CSSProperties>(() => ({
   fontSize: isUndefined(props.size) ? undefined : addUnit(props.size),

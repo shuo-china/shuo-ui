@@ -20,6 +20,12 @@
   // --s-shadow-#{$type}
   @include set-component-css-var('shadow', $shadow);
 
+  // --s-padding-#{$type}
+  @include set-component-css-var('padding', $padding);
+
+  // --s-font-size-#{$type}
+  @include set-component-css-var('font-size', $font-size);
+
   // --s-opacity-disabled
   @include set-css-var-value('opacity-disabled', $opacity-disabled);
 }

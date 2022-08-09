@@ -15,28 +15,28 @@
 .doc {
   &__title {
     margin-bottom: 16px;
-    color: $text-color-primary;
+    color: get-css-var('text-color');
     font-weight: bold;
     font-size: 24px;
   }
 
   &__sec_title {
     margin: 16px 0;
-    color: $text-color-primary;
+    color: get-css-var('text-color');
     font-weight: bold;
     font-size: 16px;
   }
 
   &__desc {
     margin: 16px 0;
-    color: adjust_color($text-color-primary, $lightness: 20%);
+    color: get-css-var('text-color', 'secondary');
     font-size: 14px;
   }
 
   &__code {
     margin: 16px 0;
     overflow: hidden;
-    border-radius: $border-radius-base;
+    border-radius: get-css-var('border-radius');
 
     pre {
       margin: 0;

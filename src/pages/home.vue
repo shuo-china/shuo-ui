@@ -22,7 +22,7 @@ const router = useRouter()
   box-sizing: border-box;
   min-height: calc(100vh - $navbar-height);
   padding: 0 24px;
-  background-color: $bg-color-primary;
+  background-color: get-css-var('bg-color', 'light');
 
   .logo {
     width: 180px;
@@ -59,7 +59,7 @@ const router = useRouter()
       width: 170px;
       height: 50px;
       font-size: 16px;
-      background-color: #0b95dc;
+      background-color: get-css-var('color', 'primary');
     }
   }
 }

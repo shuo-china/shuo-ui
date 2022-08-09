@@ -42,25 +42,25 @@ const isShowCode = ref(false)
 
   &__title {
     margin-bottom: 12px;
-    color: $text-color-primary;
+    color: get-css-var('text-color');
     font-weight: bold;
     font-size: 16px;
   }
 
   &__desc {
     margin: 12px 0 24px;
-    color: adjust_color($text-color-primary, $lightness: 20%);
+    color: get-css-var('text-color', 'secondary');
     font-size: 14px;
   }
 
   &__example {
     margin: 12px 0;
     background-color: #fff;
-    border: 1px solid $border-color-primary;
-    border-radius: $border-radius-base;
+    border: 1px solid get-css-var('border-color');
+    border-radius: get-css-var('border-radius');
 
     .showcase {
-      padding: $padding-lg;
+      padding: get-css-var('padding', 'large');
       overflow-x: auto;
     }
 
@@ -79,13 +79,13 @@ const isShowCode = ref(false)
       line-height: 30px;
       text-align: center;
       background-color: #fff;
-      border-top: 1px solid $border-color-primary;
+      border-top: 1px solid get-css-var('border-color');
       cursor: pointer;
       transition: all 0.25s;
       user-select: none;
 
       &:hover {
-        color: $text-color-primary;
+        color: get-css-var('text-color');
         background-color: #ebebeb;
       }
 

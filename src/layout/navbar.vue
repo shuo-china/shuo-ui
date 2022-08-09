@@ -33,15 +33,15 @@ const router = useRouter()
   justify-content: space-between;
   box-sizing: border-box;
   height: $navbar-height;
-  padding: 0 $padding-lg;
+  padding: 0 get-css-var('padding', 'large');
   background-color: #fff;
-  border-bottom: 1px solid $border-color-primary;
+  border-bottom: 1px solid get-css-var('border-color');
   user-select: none;
 
   &__left {
     display: flex;
     align-items: center;
-    color: $text-color-primary;
+    color: get-css-var('text-color');
     font-size: 22px;
     cursor: pointer;
 
@@ -65,11 +65,11 @@ const router = useRouter()
       .menu-item {
         display: flex;
         align-items: center;
-        padding: 0 $padding-sm;
-        color: $text-color-primary;
-        font-size: 14px;
+        padding: 0 get-css-var('padding', 'small');
+        color: get-css-var('text-color');
+        font-size: get-css-var('font-size');
         cursor: pointer;
-        opacity: 0.7;
+        opacity: 0.8;
         transition: all 0.5s;
 
         &:hover {
@@ -80,15 +80,14 @@ const router = useRouter()
 
     &__links {
       display: flex;
-      margin-right: -12px;
 
       a {
         display: flex;
         align-items: center;
-        padding: 0 $padding-sm;
-        color: $text-color-primary;
+        padding: 0 get-css-var('padding', 'small');
+        color: get-css-var('text-color');
         text-decoration: none;
-        opacity: 0.7;
+        opacity: 0.8;
 
         &:hover {
           opacity: 1;
@@ -100,7 +99,7 @@ const router = useRouter()
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 0 24px;
+    padding: 0 get-css-var('padding');
 
     &__left {
       .name {
