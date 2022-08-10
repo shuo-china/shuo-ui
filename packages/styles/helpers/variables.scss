@@ -50,9 +50,9 @@ $text-color: (
 );
 $text-color: map.merge(
   (
-    'secondary': get-mix-color-light(map.get($text-color, 'default'), 1),
-    'placeholder': get-mix-color-light(map.get($text-color, 'default'), 2),
-    'disabled': get-mix-color-light(map.get($text-color, 'default'), 6)
+    'secondary': get-mix-color-light(map.get($text-color, 'default'), 3),
+    'placeholder': get-mix-color-light(map.get($text-color, 'default'), 4),
+    'disabled': get-mix-color-light(map.get($text-color, 'default'), 5)
   ),
   $text-color
 );
@@ -60,13 +60,6 @@ $text-color: map.merge(
 // background
 $bg-color: (
   'default': #f5f5f5
-);
-$bg-color: map.merge(
-  (
-    'light': get-mix-color-light(map.get($bg-color, 'default'), 3),
-    'dark': get-mix-color-dark(map.get($bg-color, 'default'), 3)
-  ),
-  $bg-color
 );
 
 // border-color
@@ -79,7 +72,7 @@ $border-radius: (
   'default': 4px,
   'small': 2px,
   'large': 6px,
-  'round': 20px,
+  'round': 30px,
   'circle': 100%
 );
 
@@ -103,9 +96,9 @@ $padding: (
 // font-size
 $font-size: (
   'default': 14px,
-  'small': 12px,
-  'large': 16px
+  'small': 13px,
+  'large': 15px
 );
 
 // opacity-disabled
-$opacity-disabled: 0.5;
+$opacity-disabled: 0.6;

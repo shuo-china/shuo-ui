@@ -25,6 +25,7 @@ const styles = computed<CSSProperties>(() => ({
 <style lang="scss" scoped>
 .s-icon {
   display: inline-block;
+  line-height: 1;
 }
 
 .spin {

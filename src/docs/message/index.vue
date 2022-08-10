@@ -1,18 +1,13 @@
 <template>
-  <div class="container">
-    <s-button type="info" @click="$sMessage.info('这是一个demo信息')">info</s-button>
-    <s-button type="success" @click="$sMessage.success('这是一个demo信息')">success</s-button>
-    <s-button type="warning" @click="$sMessage.warning('这是一个demo信息')">warning</s-button>
-    <s-button type="error" @click="$sMessage.error('这是一个demo信息')">error</s-button>
-    <s-button type="success" @click="$sMessage.loading('Loading...')">loading</s-button>
+  <div class="demo-wrapper">
+    <div class="doc__title">Message</div>
+    <div class="doc__desc">全局展示操作反馈信息。</div>
+    <demo :code="Demo1_Code" title="基础">
+      <demo1 />
+    </demo>
   </div>
 </template>
 
-<script setup lang="ts"></script>
-
-<style lang="scss" scoped>
-.container {
-  display: flex;
-  gap: 24px;
-}
-</style>
+<script setup lang="ts">
+import { Demo1, Demo1_Code } from './demo'
+</script>

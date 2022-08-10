@@ -93,7 +93,7 @@ defineExpose({
   &-content {
     max-width: 720px;
     overflow: hidden;
-    font-size: 14px;
+    font-size: get-css-var('font-size');
     line-height: 1.6;
     white-space: nowrap;
     text-overflow: ellipsis;

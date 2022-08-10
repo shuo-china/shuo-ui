@@ -1,7 +1,7 @@
 <template>
   <div class="demo">
     <div class="demo__title">{{ title }}</div>
-    <div v-if="!!desc" class="doc__desc">{{ desc }}</div>
+    <div v-if="desc" class="demo__desc">{{ desc }}</div>
     <div class="demo__example">
       <div class="showcase">
         <slot></slot>
@@ -13,11 +13,11 @@
       </transition>
       <div class="showbar" @click="isShowCode = !isShowCode">
         <div class="icon">
-          <s-icon v-if="isShowCode" name="up" />
-          <s-icon v-else name="down" />
+          <s-icon v-if="isShowCode" name="up" :size="14" />
+          <s-icon v-else name="down" :size="14" />
         </div>
         <span>
-          {{ isShowCode ? '收起' : '显示代码' }}
+          {{ isShowCode ? '收起代码' : '显示代码' }}
         </span>
       </div>
     </div>
@@ -38,17 +38,17 @@ const isShowCode = ref(false)
 
 <style lang="scss" scoped>
 .demo {
-  margin: 36px 0;
+  margin: 48px 0;
 
   &__title {
     margin-bottom: 12px;
     color: get-css-var('text-color');
     font-weight: bold;
-    font-size: 16px;
+    font-size: get-css-var('text-color', 'large');
   }
 
   &__desc {
-    margin: 12px 0 24px;
+    margin: 12px 0;
     color: get-css-var('text-color', 'secondary');
     font-size: 14px;
   }
@@ -60,7 +60,7 @@ const isShowCode = ref(false)
     border-radius: get-css-var('border-radius');
 
     .showcase {
-      padding: get-css-var('padding', 'large');
+      padding: get-css-var('padding');
       overflow-x: auto;
     }
 
@@ -73,10 +73,9 @@ const isShowCode = ref(false)
     .showbar {
       display: flex;
       justify-content: center;
-      height: 30px;
-      color: #999;
-      font-size: 14px;
-      line-height: 30px;
+      padding: 8px 0;
+      color: get-css-var('text-color', 'secondary');
+      font-size: get-css-var('font-size');
       text-align: center;
       background-color: #fff;
       border-top: 1px solid get-css-var('border-color');
@@ -86,7 +85,7 @@ const isShowCode = ref(false)
 
       &:hover {
         color: get-css-var('text-color');
-        background-color: #ebebeb;
+        background-color: get-css-var('bg-color');
       }
 
       .icon {
@@ -103,6 +102,6 @@ const isShowCode = ref(false)
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  opacity: 0.5;
+  opacity: get-css-var('opacity-disabled');
 }
 </style>

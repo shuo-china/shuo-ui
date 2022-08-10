@@ -3,10 +3,10 @@
     <div class="logo">
       <img src="@/assets/images/logo.png" alt="logo" />
     </div>
-    <div class="title">极简设计，创造高效愉悦的工作体验</div>
-    <div class="desc">完美支持vite+vue3版本</div>
+    <div class="title">一个极简的Vue3组件库</div>
+    <div class="desc">简约，但不简单</div>
     <div class="btns">
-      <s-button type="primary" round class="btns__start" @click="router.push(`/components`)">立即开始</s-button>
+      <s-button type="primary" class="btns__start" @click="router.push(`/components`)">立即开始</s-button>
     </div>
   </div>
 </template>
@@ -21,8 +21,8 @@ const router = useRouter()
 .wrapper {
   box-sizing: border-box;
   min-height: calc(100vh - $navbar-height);
-  padding: 0 24px;
-  background-color: get-css-var('bg-color', 'light');
+  padding: 0 get-css-var('padding');
+  background-color: $main-bg-color;
 
   .logo {
     width: 180px;
@@ -38,7 +38,7 @@ const router = useRouter()
 
   .title {
     margin-top: 32px;
-    color: #4a5264;
+    color: get-css-var('text-color');
     font-weight: bold;
     font-size: 26px;
     text-align: center;
@@ -46,8 +46,8 @@ const router = useRouter()
 
   .desc {
     margin-top: 16px;
-    color: #636e86;
-    font-size: 14px;
+    color: get-css-var('text-color', 'secondary');
+    font-size: get-css-var('font-size');
     text-align: center;
   }
 
@@ -58,8 +58,8 @@ const router = useRouter()
     &__start {
       width: 170px;
       height: 50px;
-      font-size: 16px;
-      background-color: get-css-var('color', 'primary');
+      font-size: get-css-var('font-size', 'large');
+      border-radius: 30px;
     }
   }
 }

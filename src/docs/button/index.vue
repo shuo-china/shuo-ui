@@ -1,13 +1,22 @@
 <template>
-  <div>
+  <div class="demo-wrapper">
     <div class="doc__title">Button</div>
     <div class="doc__desc">常用的操作按钮。</div>
-    <demo :code="Demo1_Code" title="普通">
+    <demo :code="Demo1_Code" title="基础">
       <demo1 />
+    </demo>
+    <demo :code="Demo2_Code" title="尺寸">
+      <demo2 />
+    </demo>
+    <demo :code="Demo3_Code" title="加载中">
+      <demo3 />
+    </demo>
+    <demo :code="Demo4_Code" title="禁用">
+      <demo4 />
     </demo>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Demo1, Demo1_Code } from './demo'
+import { Demo1, Demo1_Code, Demo2, Demo2_Code, Demo3, Demo3_Code, Demo4, Demo4_Code } from './demo'
 </script>

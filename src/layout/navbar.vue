@@ -66,14 +66,13 @@ const router = useRouter()
         display: flex;
         align-items: center;
         padding: 0 get-css-var('padding', 'small');
-        color: get-css-var('text-color');
+        color: get-css-var('text-color', 'secondary');
         font-size: get-css-var('font-size');
         cursor: pointer;
-        opacity: 0.8;
         transition: all 0.5s;
 
         &:hover {
-          opacity: 1;
+          color: get-css-var('text-color');
         }
       }
     }
@@ -85,12 +84,11 @@ const router = useRouter()
         display: flex;
         align-items: center;
         padding: 0 get-css-var('padding', 'small');
-        color: get-css-var('text-color');
-        text-decoration: none;
-        opacity: 0.8;
+        color: get-css-var('text-color', 'secondary');
+        transition: all 0.5s;
 
         &:hover {
-          opacity: 1;
+          color: get-css-var('text-color');
         }
       }
     }

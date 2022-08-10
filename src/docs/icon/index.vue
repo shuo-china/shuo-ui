@@ -1,44 +1,48 @@
 <template>
-  <div class="container">
-    <div v-for="(item, index) in iconList" :key="index" class="icon-item">
-      <s-icon :name="item" :size="22"></s-icon>
-      <span>{{ item }}</span>
+  <div class="demo-wrapper">
+    <div class="doc__title">Icon</div>
+    <div class="doc__desc">提供了一套常用的图标集合。</div>
+    <demo :code="Demo1_Code" title="基础">
+      <demo1 />
+    </demo>
+    <div class="icon-list">
+      <div v-for="(item, index) in iconList" :key="index" class="icon-item">
+        <div class="icon">
+          <s-icon :name="item" :size="32"></s-icon>
+        </div>
+        <div class="icon-info">{{ item }}</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { iconList } from '@/constants'
+import { Demo1, Demo1_Code } from './demo'
 </script>
 
 <style lang="scss" scoped>
-$column: 8;
-$border-color: #dcdfe6;
-
-.container {
+.icon-list {
   display: grid;
-  grid-template-columns: repeat($column, 1fr);
-  width: 100%;
+  grid-gap: 16px;
+  grid-template-columns: repeat(auto-fill, 240px);
 
   .icon-item {
     display: flex;
-    flex-direction: column;
-    gap: 8px 0;
     align-items: center;
-    justify-content: center;
-    padding: 20px 0;
-    color: #606266;
-    font-size: 13px;
-    border-top: 1px solid $border-color;
-    border-left: 1px solid $border-color;
+    height: 64px;
+    padding: 0 get-css-var('padding', 'small');
+    background-color: #fff;
+    border-radius: get-css-var('border-radius');
 
-    &:nth-child(#{$column}n),
-    &:last-child {
-      border-right: 1px solid $border-color;
+    .icon {
+      color: get-css-var('text-color');
     }
 
-    &:nth-last-child(-n + #{$column}) {
-      border-bottom: 1px solid $border-color;
+    .icon-info {
+      margin-left: 8px;
+      color: get-css-var('text-color', 'secondary');
+      font-size: get-css-var('font-size', 'small');
     }
   }
 }

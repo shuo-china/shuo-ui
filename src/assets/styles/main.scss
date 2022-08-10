@@ -1,17 +1,3 @@
-::-webkit-scrollbar {
-  width: $scroll-width;
-  height: $scroll-height;
-
-  &-thumb {
-    background-color: #ccc;
-    border-radius: 10px;
-
-    &:hover {
-      background-color: #b2b2b2;
-    }
-  }
-}
-
 .doc {
   &__title {
     margin-bottom: 16px;
@@ -21,20 +7,20 @@
   }
 
   &__sec_title {
-    margin: 16px 0;
+    margin-bottom: 16px;
     color: get-css-var('text-color');
     font-weight: bold;
     font-size: 16px;
   }
 
   &__desc {
-    margin: 16px 0;
+    margin-bottom: 16px;
     color: get-css-var('text-color', 'secondary');
     font-size: 14px;
   }
 
   &__code {
-    margin: 16px 0;
+    margin-bottom: 16px;
     overflow: hidden;
     border-radius: get-css-var('border-radius');
 
@@ -44,12 +30,30 @@
   }
 }
 
-.space {
-  &-top {
-    margin-top: 32px;
-  }
+a {
+  text-decoration: none;
+}
 
-  &-bottom {
-    margin-bottom: 32px;
+::-webkit-scrollbar {
+  width: $scroll-width;
+  height: $scroll-height;
+
+  &-thumb {
+    background-color: #bfbfbf;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: #999;
+    }
+  }
+}
+
+@for $i from 0 through 80 {
+  @if $i % 2 == 0 or $i % 5 == 0 {
+    @each $short, $long in l left, t top, r right, b bottom {
+      .m-#{$short}-#{$i} {
+        margin-#{$long}: $i + px !important;
+      }
+    }
   }
 }
