@@ -102,20 +102,18 @@ watch(
 
     &__item {
       padding: 10px get-css-var('padding', 'small');
-      color: get-css-var('text-color');
+      color: get-css-var('text-color', 'secondary');
       border-radius: get-css-var('border-radius');
       cursor: pointer;
-      opacity: 0.7;
 
       &:hover {
+        color: get-css-var('text-color');
         background-color: get-css-var('bg-color');
-        opacity: 1;
       }
 
       &.active {
-        color: #fff;
+        color: get-css-var('color', 'white');
         background-color: get-css-var('color', 'primary');
-        opacity: 1;
       }
     }
   }

@@ -75,7 +75,7 @@ defineExpose({
       margin-right: 8px;
 
       :deep([class*='s-icon-']) {
-        font-size: 18px;
+        font-size: 20px;
       }
 
       &--loading,
