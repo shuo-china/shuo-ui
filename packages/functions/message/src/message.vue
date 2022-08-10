@@ -1,8 +1,10 @@
 <template>
   <transition name="message-fade">
-    <div v-show="visible" class="message-notice">
-      <div :class="iconClassNames"><s-icon :name="iconTypes[type]" :spin="props.type === 'loading'" /></div>
-      <div class="message-notice-content">{{ content }}</div>
+    <div v-show="visible" class="message-wrapper">
+      <div class="message-notice">
+        <div :class="iconClassNames"><s-icon :name="iconTypes[type]" :spin="props.type === 'loading'" /></div>
+        <div class="message-notice-content">{{ content }}</div>
+      </div>
     </div>
   </transition>
 </template>
@@ -55,48 +57,53 @@ defineExpose({
 </script>
 
 <style scoped lang="scss">
-.message-notice {
-  display: flex;
-  align-items: center;
+.message-wrapper {
   margin-bottom: 16px;
-  padding: 10px 20px;
-  color: get-css-var('text-color');
-  background-color: get-css-var('color', 'white');
-  border-radius: get-css-var('border-radius');
-  box-shadow: get-css-var('shadow');
+  text-align: center;
 
-  &-icon {
-    margin-right: 8px;
+  .message-notice {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    color: get-css-var('text-color');
+    background-color: get-css-var('color', 'white');
+    border-radius: get-css-var('border-radius');
+    box-shadow: get-css-var('shadow');
 
-    :deep([class*='s-icon-']) {
-      font-size: 18px;
+    &-icon {
+      margin-right: 8px;
+
+      :deep([class*='s-icon-']) {
+        font-size: 18px;
+      }
+
+      &--loading,
+      &--info {
+        color: get-css-var('color', 'primary');
+      }
+
+      &--success {
+        color: get-css-var('color', 'success');
+      }
+
+      &--warning {
+        color: get-css-var('color', 'warning');
+      }
+
+      &--error {
+        color: get-css-var('color', 'error');
+      }
     }
 
-    &--loading,
-    &--info {
-      color: get-css-var('color', 'primary');
+    &-content {
+      max-width: 720px;
+      overflow: hidden;
+      font-size: get-css-var('font-size');
+      line-height: 1.6;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
-
-    &--success {
-      color: get-css-var('color', 'success');
-    }
-
-    &--warning {
-      color: get-css-var('color', 'warning');
-    }
-
-    &--error {
-      color: get-css-var('color', 'error');
-    }
-  }
-
-  &-content {
-    max-width: 720px;
-    overflow: hidden;
-    font-size: get-css-var('font-size');
-    line-height: 1.6;
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 }
 

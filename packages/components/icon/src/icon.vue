@@ -24,7 +24,9 @@ const styles = computed<CSSProperties>(() => ({
 
 <style lang="scss" scoped>
 .s-icon {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
 }
 
