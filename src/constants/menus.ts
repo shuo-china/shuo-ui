@@ -24,6 +24,15 @@ export const menuGroups: Record<string, MenuGroup> = {
       ]
     },
     {
+      title: '数据录入',
+      items: [
+        {
+          name: 'Input',
+          path: './input'
+        }
+      ]
+    },
+    {
       title: '反馈',
       items: [
         {

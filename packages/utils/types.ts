@@ -1,6 +1,8 @@
 // eslint-disable-next-line
 import { isArray, isObject } from '@vue/shared'
 
+export { isNil } from 'lodash'
+
 // eslint-disable-next-line
 export { isArray, isFunction, isObject, isString, isDate, isPromise, isSymbol } from '@vue/shared'
 
