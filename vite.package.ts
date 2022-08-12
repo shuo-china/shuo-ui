@@ -33,7 +33,7 @@ const config: UserConfig = {
       formats: ['es', 'umd']
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'lodash'],
       output: {
         globals: {
           vue: 'Vue'

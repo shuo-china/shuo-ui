@@ -19,12 +19,10 @@
 </template>
 
 <script setup lang="ts" name="SInput">
-import { inject, ref, watch } from 'vue'
-import { formItemContextKey } from '@shuo-ui/constants'
+import { ref, watch } from 'vue'
+import { useFormItem } from '@shuo-ui/hooks'
 
 type TargetElement = HTMLInputElement | HTMLTextAreaElement
-
-const formItem = inject(formItemContextKey, undefined)
 
 const props = withDefaults(
   defineProps<{
@@ -45,12 +43,14 @@ const emit = defineEmits<{
   (e: 'blur', value: Event): void
 }>()
 
+const { formItem } = useFormItem()
+
 const currentValue = ref(props.modelValue)
 
 const setCurrentValue = value => {
   if (value === currentValue.value) return
   currentValue.value = value
-  formItem?.onFieldChange(value)
+  formItem?.validate('change')
 }
 
 const handleInput = async (event: Event) => {
@@ -70,7 +70,7 @@ const handleFocus = (event: Event) => {
 
 const handleBlur = (event: Event) => {
   emit('blur', event)
-  formItem?.onFieldBlur(currentValue.value)
+  formItem?.validate('blur')
 }
 
 watch(
@@ -80,5 +80,3 @@ watch(
   }
 )
 </script>
-
-<style lang="scss" scoped></style>
