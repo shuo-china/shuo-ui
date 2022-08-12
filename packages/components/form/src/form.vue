@@ -7,10 +7,18 @@
 <script setup lang="ts" name="SForm">
 import { provide, toRef } from 'vue'
 import { castArray } from 'lodash'
+import { isEmpty } from '@shuo-ui/utils/types'
 import { formContextKey } from '@shuo-ui/constants'
 import type { PropType } from 'vue'
 import type { ValidateFieldsError } from 'async-validator'
-import type { FormRules, FormContext, FormItemContext, FormValidateCallback } from '@shuo-ui/constants'
+import type {
+  FormRules,
+  FormContext,
+  FormItemContext,
+  FormValidateCallback,
+  FormValidationResult,
+  FormItemProp
+} from '@shuo-ui/constants'
 
 const props = defineProps({
   model: Object,
@@ -32,48 +40,55 @@ const removeField: FormContext['removeField'] = field => {
   }
 }
 
-const getFilteredFields = (props: string | string[]): FormItemContext[] => {
+/**
+ * 根据prop获取对应fields
+ * @param props - 为空数组时，获取全部fields
+ */
+const getFieldsByProps = (props: FormItemProp): FormItemContext[] => {
   if (fields.length === 0) return []
-  const normalized = castArray(props)
-
-  return normalized.length ? fields.filter(field => field.prop.value && normalized.includes(field.prop.value)) : fields
+  const propsArr = castArray(props)
+  return propsArr.length ? fields.filter(field => field.prop.value && propsArr.includes(field.prop.value)) : fields
 }
 
-const doValidateField = async (props: string | string[]): Promise<true> => {
-  const fields = getFilteredFields(props)
+// 验证具体字段的实现逻辑
+const handleValidateField = async (props: FormItemProp): Promise<true> => {
+  const fields = getFieldsByProps(props)
 
   if (fields.length === 0) return true
 
   let validationErrors: ValidateFieldsError = {}
 
   for (const field of fields) {
-    try {
-      await field.validate('')
-    } catch (fields) {
+    const result = await field.validate('')
+    if (!result.valid) {
       validationErrors = {
         ...validationErrors,
-        ...(fields as ValidateFieldsError)
+        ...result.fields
       }
     }
   }
 
-  if (Object.keys(validationErrors).length === 0) return true
+  if (isEmpty(validationErrors)) return true
   return Promise.reject(validationErrors)
 }
 
-const validateField: (props?: string | string[], callback?: FormValidateCallback) => Promise<true> = async (
+// 验证具体的某些字段
+const validateField: (props?: FormItemProp, callback?: FormValidateCallback) => Promise<true> = async (
   props = [],
   callback
 ) => {
-  try {
-    await doValidateField(props)
-    callback?.(true)
-    return true
-  } catch (err: ValidateFieldsError) {
-    callback?.(false, err)
-    return Promise.reject(err)
-  }
+  return handleValidateField(props)
+    .then(() => {
+      callback?.(true)
+      return true as const
+    })
+    .catch(err => {
+      callback?.(false, err)
+      return Promise.reject(err)
+    })
 }
+
+const validate = async (callback?: FormValidateCallback): FormValidationResult => validateField(undefined, callback)
 
 provide(formContextKey, {
   model: toRef(props, 'model'),
@@ -83,6 +98,7 @@ provide(formContextKey, {
 })
 
 defineExpose({
+  validate,
   validateField
 })
 </script>
