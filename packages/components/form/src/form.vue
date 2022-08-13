@@ -6,8 +6,7 @@
 
 <script setup lang="ts" name="SForm">
 import { provide, toRef } from 'vue'
-import { castArray } from 'lodash'
-import { isEmpty } from '@shuo-ui/utils/types'
+import { castArray, isEqual } from 'lodash'
 import { formContextKey } from '@shuo-ui/constants'
 import type { PropType } from 'vue'
 import type { ValidateFieldsError } from 'async-validator'
@@ -24,6 +23,14 @@ const props = defineProps({
   model: Object,
   rules: {
     type: Object as PropType<FormRules>
+  },
+  labelWidth: [Number, String],
+  labelPosition: {
+    type: String,
+    default: 'right',
+    validator: (value: string) => {
+      return ['top', 'left', 'right'].includes(value)
+    }
   }
 })
 
@@ -46,59 +53,78 @@ const removeField: FormContext['removeField'] = field => {
  */
 const getFieldsByProps = (props: FormItemProp): FormItemContext[] => {
   if (fields.length === 0) return []
+
   const propsArr = castArray(props)
-  return propsArr.length ? fields.filter(field => field.prop.value && propsArr.includes(field.prop.value)) : fields
-}
-
-// 验证具体字段的实现逻辑
-const handleValidateField = async (props: FormItemProp): Promise<true> => {
-  const fields = getFieldsByProps(props)
-
-  if (fields.length === 0) return true
-
-  let validationErrors: ValidateFieldsError = {}
-
-  for (const field of fields) {
-    const result = await field.validate('')
-    if (!result.valid) {
-      validationErrors = {
-        ...validationErrors,
-        ...result.fields
-      }
-    }
-  }
-
-  if (isEmpty(validationErrors)) return true
-  return Promise.reject(validationErrors)
+  return propsArr.length
+    ? fields.filter(field => field.prop.value && propsArr.some(prop => isEqual(field.prop.value, prop)))
+    : fields
 }
 
 // 验证具体的某些字段
-const validateField: (props?: FormItemProp, callback?: FormValidateCallback) => Promise<true> = async (
+const validateField: (props: FormItemProp, callback?: FormValidateCallback) => Promise<void> = (
   props = [],
   callback
 ) => {
-  return handleValidateField(props)
-    .then(() => {
-      callback?.(true)
-      return true as const
+  return new Promise((resolve, reject) => {
+    let valid = true
+    let count = 0
+    let validationErrors: ValidateFieldsError = {}
+
+    const fields = getFieldsByProps(props)
+    if (fields.length === 0) {
+      callback?.(valid)
+      resolve()
+    }
+
+    fields.forEach(field => {
+      field.validate('', (isValid, invalidFields) => {
+        if (!isValid) {
+          validationErrors = {
+            ...validationErrors,
+            ...invalidFields
+          }
+          valid = false
+        }
+
+        if (++count === fields.length) {
+          if (valid) {
+            callback?.(true)
+            resolve()
+          } else {
+            callback?.(false, validationErrors)
+            reject(validationErrors)
+          }
+        }
+      })
     })
-    .catch(err => {
-      callback?.(false, err)
-      return Promise.reject(err)
-    })
+  })
 }
 
-const validate = async (callback?: FormValidateCallback): FormValidationResult => validateField(undefined, callback)
+const validate = async (callback?: FormValidateCallback): FormValidationResult => validateField([], callback)
 
-provide(formContextKey, {
+const resetFields = (properties: FormItemProp = []) => {
+  if (!props.model) {
+    return
+  }
+
+  const fields = getFieldsByProps(properties)
+  fields.forEach(field => field.resetField())
+}
+
+const context: FormContext = {
   model: toRef(props, 'model'),
   rules: toRef(props, 'rules'),
+  labelPosition: toRef(props, 'labelPosition'),
+  labelWidth: toRef(props, 'labelWidth'),
   addField,
   removeField
-})
+}
+
+provide(formContextKey, context)
 
 defineExpose({
   validate,
-  validateField
+  validateField,
+  resetFields
 })
 </script>

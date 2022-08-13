@@ -21,7 +21,7 @@ import 'shuo-ui/dist/style.css'
 页面
 
 ```vue
-<script setup lang="ts">
+<script setup>
 import { SButton } from 'shuo-ui'
 </script>
 
