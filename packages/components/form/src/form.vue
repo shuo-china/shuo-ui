@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <form autocomplete="off">
     <slot></slot>
-  </div>
+  </form>
 </template>
 
 <script setup lang="ts" name="SForm">
-import { provide, toRef } from 'vue'
+import { provide, toRefs } from 'vue'
 import { castArray, isEqual } from 'lodash'
 import { formContextKey } from '@shuo-ui/constants'
 import type { PropType } from 'vue'
@@ -31,6 +31,10 @@ const props = defineProps({
     validator: (value: string) => {
       return ['top', 'left', 'right'].includes(value)
     }
+  },
+  inline: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -112,13 +116,10 @@ const resetFields = (properties: FormItemProp = []) => {
 }
 
 const context: FormContext = {
-  model: toRef(props, 'model'),
-  rules: toRef(props, 'rules'),
-  labelPosition: toRef(props, 'labelPosition'),
-  labelWidth: toRef(props, 'labelWidth'),
+  ...toRefs(props),
   addField,
   removeField
-}
+} as FormContext
 
 provide(formContextKey, context)
 

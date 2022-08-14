@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="s-input-wrapper">
     <template v-if="type !== 'textarea'">
       <div>
         <input
@@ -80,3 +80,9 @@ watch(
   }
 )
 </script>
+
+<style lang="scss" scoped>
+.s-input-wrapper {
+  border: 1px solid pink;
+}
+</style>

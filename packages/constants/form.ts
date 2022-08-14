@@ -8,9 +8,10 @@ export type FormValidateCallback = (isValid: boolean, invalidFields?: ValidateFi
 export type FormValidationResult = Promise<void>
 
 export interface FormContext {
+  inline: Ref<boolean>
+  labelPosition: Ref<string>
   model: Ref<Record<string, any> | undefined>
   rules: Ref<FormRules | undefined>
-  labelPosition: Ref<string>
   labelWidth: Ref<number | string | undefined>
   addField: (field: FormItemContext) => void
   removeField: (field: FormItemContext) => void
@@ -23,7 +24,11 @@ export interface FormItemRule extends RuleItem {
 export type FormItemValidateCallback = FormValidateCallback
 
 export interface FormItemContext {
+  labelWidth: Ref<string | number>
+  required: Ref<number | undefined>
+  label: Ref<string | undefined>
   prop: Ref<FormItemProp | undefined>
+  rules: Ref<Arrayable<FormItemRule> | undefined>
   validate: (trigger: string, callback?: FormItemValidateCallback) => void
   resetField(): void
 }

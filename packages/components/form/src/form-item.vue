@@ -1,17 +1,19 @@
 <template>
-  <div :class="classNames">
-    <label v-if="label" :style="labelStyles" class="s-form-item-label">{{ label }}</label>
-    <div class="s-form-item-content">
+  <div :class="itemClassNames">
+    <label v-if="label || slots.label" :style="labelStyles" :class="labelClassNames">
+      <slot name="label">{{ label }}</slot>
+    </label>
+    <div class="s-form-item-content" :style="contentStyles">
       <slot></slot>
       <transition name="error-fade">
-        <div v-if="validateState === 'error'" class="s-form-item-error">{{ validateMessage }}</div>
+        <div v-if="validateState === 'error'" class="s-form-item-content-error">{{ validateMessage }}</div>
       </transition>
     </div>
   </div>
 </template>
 
 <script setup lang="ts" name="SFormItem">
-import { computed, inject, nextTick, onBeforeUnmount, onMounted, provide, ref, toRef } from 'vue'
+import { computed, inject, nextTick, onBeforeUnmount, onMounted, provide, ref, toRefs, useSlots } from 'vue'
 import { castArray, get, set, clone, isEqual } from 'lodash'
 import Schema from 'async-validator'
 import { addUnit, isArray, isString, isUndefined } from '@shuo-ui/utils'
@@ -36,7 +38,9 @@ const props = defineProps({
   }
 })
 
-let initialValues: any = undefined
+const slots = useSlots()
+
+let initialValues = undefined
 
 const validateState = ref<'' | 'error' | 'validating' | 'success'>('')
 const validateMessage = ref('')
@@ -47,11 +51,42 @@ const labelStyles = computed<CSSProperties>(() => {
   if (formContext?.labelPosition.value === 'top') {
     return {}
   }
-
   const labelWidth = addUnit(props.labelWidth || formContext?.labelWidth.value || '')
-  if (labelWidth) return { width: labelWidth }
+  if (labelWidth) {
+    return {
+      width: labelWidth
+    }
+  }
   return {}
 })
+
+const contentStyles = computed<CSSProperties>(() => {
+  if (formContext?.labelPosition.value === 'top') {
+    return {}
+  }
+  const labelWidth = addUnit(props.labelWidth || formContext?.labelWidth.value || '')
+  if (labelWidth) {
+    return {
+      marginLeft: labelWidth
+    }
+  }
+  return {}
+})
+
+const itemClassNames = computed(() => [
+  's-form-item',
+  {
+    's-form-item-inline': formContext?.inline.value
+  }
+])
+
+const labelClassNames = computed(() => [
+  's-form-item-label',
+  `s-form-item-label-${formContext?.labelPosition.value}`,
+  {
+    's-form-item-label-required': isRequired.value
+  }
+])
 
 const propString = computed(() => {
   if (!props.prop) return ''
@@ -86,13 +121,6 @@ const allRules = computed(() => {
 })
 
 const isRequired = computed(() => allRules.value.some(rule => rule.required === true))
-
-const classNames = computed(() => [
-  's-form-item',
-  {
-    's-form-item-required': isRequired.value
-  }
-])
 
 const getFilteredRules: (trigger: string) => RuleItem[] = trigger => {
   const rules = allRules.value
@@ -165,56 +193,71 @@ onBeforeUnmount(() => {
 })
 
 const context: FormItemContext = {
-  prop: toRef(props, 'prop'),
+  ...toRefs(props),
   validate,
   resetField
-}
+} as FormItemContext
 
 provide(formItemContextKey, context)
 </script>
 
 <style lang="scss" scoped>
 .s-form-item {
-  display: flex;
   margin-bottom: 24px;
-  font-size: get-css-var('font-size');
-  background-color: pink;
+  vertical-align: top;
 
   &-label {
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-end;
+    float: left;
     box-sizing: border-box;
-    height: 32px;
-    padding-right: 12px;
+    padding: 10px 12px 10px 0;
     color: get-css-var('text-color');
+    font-size: get-css-var('font-size');
+    line-height: 1;
+
+    &-left {
+      text-align: left;
+    }
+
+    &-right {
+      text-align: right;
+    }
+
+    &-top {
+      display: block;
+      float: none;
+      padding: 0 0 10px;
+    }
+
+    &-required {
+      &::before {
+        display: inline-block;
+        margin-right: 4px;
+        color: get-css-var('color', 'error');
+        line-height: 1;
+        content: '*';
+      }
+    }
   }
 
   &-content {
     position: relative;
-    display: flex;
-    flex: 1;
-    align-items: center;
-    height: 32px;
-  }
+    font-size: get-css-var('font-size');
+    line-height: 34px;
 
-  &-error {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 4px 0 0 2px;
-    color: get-css-var('color', 'error');
-    line-height: 1;
-  }
-
-  &-required {
-    .s-form-item-label {
-      &::before {
-        margin-right: 4px;
-        color: get-css-var('color', 'error');
-        content: '*';
-      }
+    &-error {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding: 4px 0 0 2px;
+      color: get-css-var('color', 'error');
+      font-size: get-css-var('font-size');
+      line-height: 1;
     }
+  }
+
+  &-inline {
+    display: inline-block;
+    margin-right: 16px;
   }
 }
 

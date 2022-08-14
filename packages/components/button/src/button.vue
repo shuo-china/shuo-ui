@@ -1,5 +1,5 @@
 <template>
-  <button :class="classNames">
+  <button :class="classNames" :type="nativeType">
     <span v-if="loading" class="s-button-icon">
       <s-icon name="loading" :spin="true"></s-icon>
     </span>
@@ -18,12 +18,14 @@ const props = withDefaults(
     size?: 'small' | 'medium' | 'large'
     loading?: boolean
     round?: boolean
+    nativeType?: 'button' | 'submit' | 'reset'
   }>(),
   {
     type: 'default',
     size: 'medium',
     loading: false,
-    round: false
+    round: false,
+    nativeType: 'button'
   }
 )
 
