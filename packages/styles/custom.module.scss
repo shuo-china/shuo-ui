@@ -1,0 +1,56 @@
+$css-prefix: s-;
+$css-prefix-iconfont: s-icon-;
+
+// Base
+$opacity-disabled: 0.5;
+$transition-duration: 0.3s;
+
+// Color
+$white: #fff;
+$black: #000;
+$primary-color: #2080f0;
+$info-color: $primary-color;
+$success-color: #18a058;
+$warning-color: #f0a020;
+$error-color: #d03050;
+$text-color: #333639;
+$text-secondary-color: #767c82;
+$border-color: #e0e0e6;
+$shadow-color: rgb(0 0 0 / 20%);
+$bg-color: #f5f5f5;
+
+// Border
+$border-radius-small: 2px;
+$border-radius-base: 4px;
+$border-radius-large: 6px;
+$border-radius-round: 30px;
+$border-radius-circle: 100%;
+
+// Shadow
+$shadow-top: 0 -1px 6px $shadow-color;
+$shadow-bottom: 0 1px 6px $shadow-color;
+$shadow-left: -1 0 6px $shadow-color;
+$shadow-right: 1 0 6px $shadow-color;
+$shadow-base: $shadow-bottom;
+
+// Padding
+$padding-small: 16px;
+$padding-base: 24px;
+$padding-large: 32px;
+
+// Font Size
+$font-size-small: 13px;
+$font-size-base: 14px;
+$font-size-large: 15px;
+
+// Font Family
+$font-family: 'Helvetica Neue', helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', arial,
+  sans-serif;
+
+/* stylelint-disable-next-line selector-pseudo-class-no-unknown */
+:export {
+  /* stylelint-disable-next-line property-no-unknown */
+  cssPrefix: $css-prefix;
+  /* stylelint-disable-next-line property-no-unknown */
+  cssPrefixIconfont: $css-prefix-iconfont;
+}

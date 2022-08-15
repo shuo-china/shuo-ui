@@ -1,9 +1,9 @@
-import type { App, ComponentPublicInstance } from 'vue'
 import { createApp, watch } from 'vue'
+import { getPrefixCls } from '@shuo-ui/utils'
 import MessageComponent from './message.vue'
-import '../styles/index.scss'
+import type { App, ComponentPublicInstance } from 'vue'
 
-const rootDomId = 's-message'
+const prefixCls = getPrefixCls('message')
 
 const types = ['info', 'success', 'warning', 'error', 'loading'] as const
 
@@ -50,12 +50,12 @@ function handleOptions(options: Options) {
 
 function createRootDom() {
   const div = document.createElement('div')
-  div.setAttribute('id', rootDomId)
+  div.setAttribute('id', prefixCls)
   return document.body.appendChild(div)
 }
 
 function showMessage(app: App) {
-  let rootDom = document.getElementById(rootDomId)
+  let rootDom = document.getElementById(prefixCls)
   if (!rootDom) {
     rootDom = createRootDom()
   }
@@ -73,7 +73,7 @@ function showMessage(app: App) {
         // 等待动画结束后卸载
         setTimeout(() => {
           app.unmount()
-        }, 250)
+        }, 300)
       }
     }
   )

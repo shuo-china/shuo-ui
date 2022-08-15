@@ -10,13 +10,6 @@ const config: UserConfig = {
       '@shuo-ui': resolve(__dirname, 'packages')
     }
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: '@import "@shuo-ui/styles/helpers";'
-      }
-    }
-  },
   plugins: [
     vue(),
     dts({

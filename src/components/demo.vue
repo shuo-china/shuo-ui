@@ -6,7 +6,7 @@
       <div class="showcase">
         <slot></slot>
       </div>
-      <transition name="slide-fade">
+      <transition name="fade">
         <div v-show="isShowCode" v-highlight class="showcode">
           <pre><code v-text="code"></code></pre>
         </div>
@@ -37,30 +37,32 @@ const isShowCode = ref(false)
 </script>
 
 <style lang="scss" scoped>
+@import '@shuo-ui/styles/custom.module';
+
 .demo {
   margin: 48px 0;
 
   &__title {
     margin-bottom: 12px;
-    color: get-css-var('text-color');
+    color: $text-color;
     font-weight: bold;
-    font-size: get-css-var('text-color', 'large');
+    font-size: $font-size-large;
   }
 
   &__desc {
     margin: 12px 0;
-    color: get-css-var('text-color', 'secondary');
+    color: $text-secondary-color;
     font-size: 14px;
   }
 
   &__example {
     margin: 12px 0;
     background-color: #fff;
-    border: 1px solid get-css-var('border-color');
-    border-radius: get-css-var('border-radius');
+    border: 1px solid $border-color;
+    border-radius: $border-radius-base;
 
     .showcase {
-      padding: get-css-var('padding');
+      padding: $padding-base;
       overflow-x: auto;
     }
 
@@ -74,18 +76,18 @@ const isShowCode = ref(false)
       display: flex;
       justify-content: center;
       padding: 8px 0;
-      color: get-css-var('text-color', 'secondary');
-      font-size: get-css-var('font-size');
+      color: $text-secondary-color;
+      font-size: $font-size-base;
       text-align: center;
       background-color: #fff;
-      border-top: 1px solid get-css-var('border-color');
+      border-top: 1px solid $border-color;
       cursor: pointer;
-      transition: all 0.25s;
+      transition: all $transition-duration;
       user-select: none;
 
       &:hover {
-        color: get-css-var('text-color');
-        background-color: get-css-var('bg-color');
+        color: $text-color;
+        background-color: $bg-color;
       }
 
       .icon {
@@ -93,15 +95,5 @@ const isShowCode = ref(false)
       }
     }
   }
-}
-
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: all 0.1s linear;
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  opacity: get-css-var('opacity-disabled');
 }
 </style>

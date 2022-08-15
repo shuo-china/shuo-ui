@@ -1,0 +1,124 @@
+$button-prefix-cls: #{$css-prefix}button;
+
+.#{$button-prefix-cls} {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: auto;
+  white-space: nowrap;
+  text-align: center;
+  border: none;
+  border-radius: $border-radius-base;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+
+  &-small {
+    height: 28px;
+    padding: 0 10px;
+    font-size: $font-size-small;
+  }
+
+  &-medium {
+    height: 34px;
+    padding: 0 14px;
+    font-size: $font-size-base;
+  }
+
+  &-large {
+    height: 40px;
+    padding: 0 18px;
+    font-size: $font-size-large;
+  }
+
+  &-round {
+    border-radius: $border-radius-round;
+  }
+
+  &-icon {
+    margin-right: 6px;
+  }
+
+  &-loading {
+    opacity: $opacity-disabled;
+    pointer-events: none;
+  }
+
+  &[disabled] {
+    background-color: $bg-color;
+    border: 1px solid $border-color;
+    cursor: no-drop;
+  }
+
+  &-default {
+    color: $text-color;
+    background-color: $white;
+    border: 1px solid $border-color;
+
+    &:hover {
+      color: get-color-light($primary-color, 2);
+      border-color: get-color-light($primary-color, 2);
+    }
+
+    &:active {
+      color: get-color-dark($primary-color, 2);
+      border-color: get-color-dark($primary-color, 2);
+    }
+  }
+
+  &-primary {
+    color: $white;
+    background-color: $primary-color;
+
+    &:hover {
+      background-color: get-color-light($primary-color, 2);
+    }
+
+    &:active {
+      background-color: get-color-dark($primary-color, 2);
+    }
+  }
+
+  &-success {
+    color: $white;
+    background-color: $success-color;
+
+    &:hover {
+      background-color: get-color-light($success-color, 2);
+    }
+
+    &:active {
+      background-color: get-color-dark($success-color, 2);
+    }
+  }
+
+  &-warning {
+    color: $white;
+    background-color: $warning-color;
+
+    &:hover {
+      background-color: get-color-light($warning-color, 2);
+    }
+
+    &:active {
+      background-color: get-color-dark($warning-color, 2);
+    }
+  }
+
+  &-error {
+    color: $white;
+    background-color: $error-color;
+
+    &:hover {
+      background-color: get-color-light($error-color, 2);
+    }
+
+    &:active {
+      background-color: get-color-dark($error-color, 2);
+    }
+  }
+}

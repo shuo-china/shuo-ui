@@ -23,6 +23,8 @@ const router = useRouter()
 </script>
 
 <style lang="scss" scoped>
+@import '@shuo-ui/styles/custom.module';
+
 .navbar {
   position: fixed;
   top: 0;
@@ -33,15 +35,15 @@ const router = useRouter()
   justify-content: space-between;
   box-sizing: border-box;
   height: $navbar-height;
-  padding: 0 get-css-var('padding', 'large');
-  background-color: #fff;
-  border-bottom: 1px solid get-css-var('border-color');
+  padding: 0 $padding-large;
+  background-color: $white;
+  border-bottom: 1px solid $border-color;
   user-select: none;
 
   &__left {
     display: flex;
     align-items: center;
-    color: get-css-var('text-color');
+    color: $text-color;
     font-size: 22px;
     cursor: pointer;
 
@@ -65,14 +67,14 @@ const router = useRouter()
       .menu-item {
         display: flex;
         align-items: center;
-        padding: 0 get-css-var('padding', 'small');
-        color: get-css-var('text-color', 'secondary');
-        font-size: get-css-var('font-size');
+        padding: 0 $padding-small;
+        color: $text-secondary-color;
+        font-size: $font-size-base;
         cursor: pointer;
-        transition: all 0.5s;
+        transition: all $transition-duration;
 
         &:hover {
-          color: get-css-var('text-color');
+          color: $text-color;
         }
       }
     }
@@ -83,12 +85,12 @@ const router = useRouter()
       a {
         display: flex;
         align-items: center;
-        padding: 0 get-css-var('padding', 'small');
-        color: get-css-var('text-color', 'secondary');
-        transition: all 0.5s;
+        padding: 0 $padding-small;
+        color: $text-secondary-color;
+        transition: all $transition-duration;
 
         &:hover {
-          color: get-css-var('text-color');
+          color: $text-color;
         }
       }
     }
@@ -97,7 +99,8 @@ const router = useRouter()
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 0 get-css-var('padding');
+    padding: 0 10px;
+    background-color: $bg-color;
 
     &__left {
       .name {

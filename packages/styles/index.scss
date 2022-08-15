@@ -1,3 +1,6 @@
-@import './normalize.css';
-@import './iconfont/iconfont.css';
-@import './main';
+@import './custom.module';
+@import './common/index';
+@import './functions/index';
+@import './mixins/index';
+@import './animation/index';
+@import './components/index';

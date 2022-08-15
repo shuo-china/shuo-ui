@@ -64,6 +64,8 @@ watch(
 </script>
 
 <style lang="scss" scoped>
+@import '@shuo-ui/styles/custom.module';
+
 .sidebar {
   position: fixed;
   top: $navbar-height;
@@ -72,11 +74,11 @@ watch(
   z-index: 999;
   box-sizing: border-box;
   width: $sidebar-width;
-  padding: get-css-var('padding');
+  padding: $padding-base;
   overflow-y: auto;
-  font-size: get-css-var('font-size');
+  font-size: $font-size-base;
   background-color: #fff;
-  border-right: 1px solid get-css-var('border-color');
+  border-right: 1px solid $border-color;
   user-select: none;
 
   &::-webkit-scrollbar {
@@ -90,7 +92,7 @@ watch(
   }
 
   &__group {
-    padding-top: get-css-var('padding');
+    padding-top: $padding-base;
 
     &:first-of-type {
       padding-top: 0;
@@ -101,19 +103,19 @@ watch(
     }
 
     &__item {
-      padding: 10px get-css-var('padding', 'small');
-      color: get-css-var('text-color', 'secondary');
-      border-radius: get-css-var('border-radius');
+      padding: 10px $padding-small;
+      color: $text-secondary-color;
+      border-radius: $border-radius-base;
       cursor: pointer;
 
       &:hover {
-        color: get-css-var('text-color');
-        background-color: get-css-var('bg-color');
+        color: $text-color;
+        background-color: $bg-color;
       }
 
       &.active {
-        color: get-css-var('color', 'white');
-        background-color: get-css-var('color', 'primary');
+        color: $white;
+        background-color: $primary-color;
       }
     }
   }

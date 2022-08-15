@@ -1,0 +1,18 @@
+$icon-prefix-cls: #{$css-prefix}icon;
+
+.#{$icon-prefix-cls} {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+
+  &--spin {
+    animation: spin 1s infinite linear;
+  }
+
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

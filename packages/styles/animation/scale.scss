@@ -1,0 +1,12 @@
+.scale-enter-active,
+.scale-leave-active {
+  transition-timing-function: linear;
+  transition-duration: $transition-duration;
+  transition-property: transform, opacity;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  transform: scale(0.9);
+  opacity: 0;
+}

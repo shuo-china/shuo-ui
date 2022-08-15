@@ -1,0 +1,31 @@
+@use 'sass:map';
+
+$directions: (
+  up: (
+    translate: translateY(100%)
+  ),
+  down: (
+    translate: translateY(-100%)
+  ),
+  left: (
+    translate: translateX(100%)
+  ),
+  right: (
+    translate: translateX(-100%)
+  )
+);
+
+@each $direction, $styles in $directions {
+  .move-#{$direction}-enter-active,
+  .move-#{$direction}-leave-active {
+    transition-timing-function: ease-out;
+    transition-duration: $transition-duration;
+    transition-property: transform, opacity;
+  }
+
+  .move-#{$direction}-enter-from,
+  .move-#{$direction}-leave-to {
+    transform: map.get($styles, 'translate');
+    opacity: 0;
+  }
+}
