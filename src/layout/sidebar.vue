@@ -159,7 +159,7 @@ watch(
     justify-content: center;
     padding: 6px 10px;
     color: #fff;
-    background-color: get-css-var('color', 'primary');
+    background-color: $primary-color;
     transition: all 0.4s;
     user-select: none;
 
@@ -179,8 +179,7 @@ watch(
 
   .app-main {
     margin-left: 0;
-    padding-right: get-css-var('padding');
-    padding-left: get-css-var('padding');
+    padding: 0 $padding-base;
   }
 }
 </style>

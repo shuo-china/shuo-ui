@@ -18,10 +18,12 @@ const router = useRouter()
 </script>
 
 <style lang="scss" scoped>
+@import '@shuo-ui/styles/custom.module';
+
 .wrapper {
   box-sizing: border-box;
   min-height: calc(100vh - $navbar-height);
-  padding: 0 get-css-var('padding');
+  padding: 0 $padding-base;
   background-color: $main-bg-color;
 
   .logo {
@@ -38,7 +40,7 @@ const router = useRouter()
 
   .title {
     margin-top: 32px;
-    color: get-css-var('text-color');
+    color: $text-color;
     font-weight: bold;
     font-size: 26px;
     text-align: center;
@@ -46,8 +48,8 @@ const router = useRouter()
 
   .desc {
     margin-top: 16px;
-    color: get-css-var('text-color', 'secondary');
-    font-size: get-css-var('font-size');
+    color: $text-secondary-color;
+    font-size: $font-size-base;
     text-align: center;
   }
 
@@ -58,7 +60,7 @@ const router = useRouter()
     &__start {
       width: 170px;
       height: 50px;
-      font-size: get-css-var('font-size', 'large');
+      font-size: $font-size-large;
       border-radius: 30px;
     }
   }

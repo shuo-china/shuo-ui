@@ -1,28 +1,30 @@
+@import '@shuo-ui/styles/custom.module';
+
 .doc {
   &__title {
     margin-bottom: 16px;
-    color: get-css-var('text-color');
+    color: $text-color;
     font-weight: bold;
     font-size: 24px;
   }
 
   &__sec_title {
     margin-bottom: 16px;
-    color: get-css-var('text-color');
+    color: $text-color;
     font-weight: bold;
     font-size: 16px;
   }
 
   &__desc {
     margin-bottom: 16px;
-    color: get-css-var('text-color', 'secondary');
+    color: $text-secondary-color;
     font-size: 14px;
   }
 
   &__code {
     margin-bottom: 16px;
     overflow: hidden;
-    border-radius: get-css-var('border-radius');
+    border-radius: $border-radius-base;
 
     pre {
       margin: 0;

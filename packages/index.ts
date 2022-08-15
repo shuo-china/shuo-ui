@@ -1,6 +1,6 @@
 import { App } from 'vue'
 import * as components from './components'
-import * as functions from './functions'
+import * as methods from './methods'
 import './styles/index.scss'
 
 const install = function (app: App) {
@@ -8,8 +8,8 @@ const install = function (app: App) {
     component.install?.(app)
   })
 
-  Object.entries(functions).forEach(([, fn]) => {
-    fn.install?.(app)
+  Object.entries(methods).forEach(([, method]) => {
+    method.install?.(app)
   })
 }
 
@@ -18,4 +18,4 @@ export default {
 }
 
 export * from './components'
-export * from './functions'
+export * from './methods'

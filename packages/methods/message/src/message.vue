@@ -1,10 +1,12 @@
 <template>
   <transition name="move-down">
     <div v-show="visible" :class="[prefixCls + '-notice']">
-      <div :class="iconClassNames">
-        <s-icon :name="iconTypes[type]" :size="20" :spin="props.type === 'loading'" />
+      <div :class="[prefixCls + '-content']">
+        <div :class="iconClassNames">
+          <s-icon :name="iconTypes[type]" :size="20" :spin="props.type === 'loading'" />
+        </div>
+        <div :class="[prefixCls + '-text']">{{ content }}</div>
       </div>
-      <div :class="[prefixCls + '-content']">{{ content }}</div>
     </div>
   </transition>
 </template>
@@ -33,7 +35,7 @@ const props = withDefaults(
   }>(),
   {
     type: 'info',
-    duration: 300000,
+    duration: 3000,
     content: ''
   }
 )

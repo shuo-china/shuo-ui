@@ -22,6 +22,8 @@ import { Demo1, Demo1_Code } from './demo'
 </script>
 
 <style lang="scss" scoped>
+@import '@shuo-ui/styles/custom.module';
+
 .icon-list {
   display: grid;
   grid-gap: 16px;
@@ -31,18 +33,18 @@ import { Demo1, Demo1_Code } from './demo'
     display: flex;
     align-items: center;
     height: 64px;
-    padding: 0 get-css-var('padding', 'small');
+    padding: 0 $padding-small;
     background-color: #fff;
-    border-radius: get-css-var('border-radius');
+    border-radius: $border-radius-base;
 
     .icon {
-      color: get-css-var('text-color');
+      color: $text-color;
     }
 
     .icon-info {
       margin-left: 8px;
-      color: get-css-var('text-color', 'secondary');
-      font-size: get-css-var('font-size', 'small');
+      color: $text-secondary-color;
+      font-size: $font-size-small;
     }
   }
 }
