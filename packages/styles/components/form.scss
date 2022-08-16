@@ -27,7 +27,7 @@ $form-item-prefix-cls: #{$css-prefix}form-item;
     .#{$form-item-prefix-cls} {
       display: inline-block;
       margin-right: 10px;
-      vertical-align: top;
+      vertical-align: middle;
     }
   }
 }
@@ -58,7 +58,7 @@ $form-item-prefix-cls: #{$css-prefix}form-item;
     padding: 4px 0 0 2px;
     color: $error-color;
     font-size: $font-size-base;
-    line-height: 1;
+    line-height: 1.25;
   }
 
   &-required {
