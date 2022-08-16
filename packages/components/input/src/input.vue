@@ -2,6 +2,7 @@
   <div>
     <template v-if="type !== 'textarea'">
       <input
+        v-bind="$attrs"
         :class="inputClassNames"
         :type="type"
         :value="currentValue"
@@ -17,7 +18,14 @@
   </div>
 </template>
 
-<script setup lang="ts" name="SInput">
+<script lang="ts">
+export default {
+  name: 'SInput',
+  inheritAttrs: false
+}
+</script>
+
+<script setup lang="ts">
 import { ref, watch, computed } from 'vue'
 import { useFormItem } from '@shuo-ui/hooks'
 import { getPrefixCls } from '@shuo-ui/utils'
@@ -44,6 +52,8 @@ const emit = defineEmits<{
   (e: 'focus', value: Event): void
   (e: 'blur', value: Event): void
 }>()
+
+const wrapClasses = computed(() => [`${prefixCls}-wrapper`])
 
 const inputClassNames = computed(() => [prefixCls])
 

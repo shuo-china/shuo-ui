@@ -20,7 +20,7 @@
       :inline="inline"
     >
       <s-form-item prop="name" label="姓名">
-        <s-input v-model="data.name" type="text"></s-input>
+        <s-input v-model="data.name" type="text" placeholder="123"></s-input>
       </s-form-item>
       <s-form-item prop="age" label="年龄">
         <s-input v-model="data.age" type="text"></s-input>

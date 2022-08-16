@@ -1,0 +1,19 @@
+@mixin placeholder($color: tint($text-color, 7)) {
+  // Firefox
+  &::placeholder {
+    color: $color;
+    opacity: 1;
+  }
+
+  // Internet Explorer 10+
+  /* stylelint-disable-next-line selector-pseudo-class-no-unknown */
+  &:input-placeholder {
+    color: $color;
+  }
+
+  // Safari and Chrome
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  &::input-placeholder {
+    color: $color;
+  }
+}
