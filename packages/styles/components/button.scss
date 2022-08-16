@@ -60,13 +60,13 @@ $button-prefix-cls: #{$css-prefix}button;
     border: 1px solid $border-color;
 
     &:hover {
-      color: get-color-light($primary-color, 2);
-      border-color: get-color-light($primary-color, 2);
+      color: tint($primary-color, 2);
+      border-color: tint($primary-color, 2);
     }
 
     &:active {
-      color: get-color-dark($primary-color, 2);
-      border-color: get-color-dark($primary-color, 2);
+      color: shade($primary-color, 2);
+      border-color: shade($primary-color, 2);
     }
   }
 
@@ -75,11 +75,11 @@ $button-prefix-cls: #{$css-prefix}button;
     background-color: $primary-color;
 
     &:hover {
-      background-color: get-color-light($primary-color, 2);
+      background-color: tint($primary-color, 2);
     }
 
     &:active {
-      background-color: get-color-dark($primary-color, 2);
+      background-color: shade($primary-color, 2);
     }
   }
 
@@ -88,11 +88,11 @@ $button-prefix-cls: #{$css-prefix}button;
     background-color: $success-color;
 
     &:hover {
-      background-color: get-color-light($success-color, 2);
+      background-color: tint($success-color, 2);
     }
 
     &:active {
-      background-color: get-color-dark($success-color, 2);
+      background-color: shade($success-color, 2);
     }
   }
 
@@ -101,11 +101,11 @@ $button-prefix-cls: #{$css-prefix}button;
     background-color: $warning-color;
 
     &:hover {
-      background-color: get-color-light($warning-color, 2);
+      background-color: tint($warning-color, 2);
     }
 
     &:active {
-      background-color: get-color-dark($warning-color, 2);
+      background-color: shade($warning-color, 2);
     }
   }
 
@@ -114,11 +114,11 @@ $button-prefix-cls: #{$css-prefix}button;
     background-color: $error-color;
 
     &:hover {
-      background-color: get-color-light($error-color, 2);
+      background-color: tint($error-color, 2);
     }
 
     &:active {
-      background-color: get-color-dark($error-color, 2);
+      background-color: shade($error-color, 2);
     }
   }
 }

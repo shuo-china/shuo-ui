@@ -1,10 +1,14 @@
 @use 'sass:color';
 @use 'sass:math';
 
-@function get-color-light($color, $number) {
-  @return color.mix($white, $color, math.percentage(math.div($number, 10)));
+@function tint($color, $weight) {
+  @return color.mix($white, $color, math.percentage(math.div($weight, 10)));
 }
 
-@function get-color-dark($color, $number) {
-  @return color.mix($black, $color, math.percentage(math.div($number, 10)));
+@function shade($color, $weight) {
+  @return color.mix($black, $color, math.percentage(math.div($weight, 10)));
+}
+
+@function fade($color, $opacity) {
+  @return rgb(red($color), green($color), blue($color), math.div($opacity, 10));
 }

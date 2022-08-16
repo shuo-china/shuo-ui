@@ -1,12 +1,12 @@
 <template>
-  <div :class="itemClassNames">
-    <label v-if="label || slots.label" :style="labelStyles" :class="labelClassNames">
+  <div :class="classNames">
+    <label v-if="label || slots.label" :class="[prefixCls + '-label']" :style="labelStyles">
       <slot name="label">{{ label }}</slot>
     </label>
-    <div class="s-form-item-content" :style="contentStyles">
+    <div :class="[prefixCls + '-content']" :style="contentStyles">
       <slot></slot>
-      <transition name="error-fade">
-        <div v-if="validateState === 'error'" class="s-form-item-content-error">{{ validateMessage }}</div>
+      <transition name="fade">
+        <div v-if="validateState === 'error'" :class="[prefixCls + '-error-tip']">{{ validateMessage }}</div>
       </transition>
     </div>
   </div>
@@ -16,12 +16,14 @@
 import { computed, inject, nextTick, onBeforeUnmount, onMounted, provide, ref, toRefs, useSlots } from 'vue'
 import { castArray, get, set, clone, isEqual } from 'lodash'
 import Schema from 'async-validator'
-import { addUnit, isArray, isString, isUndefined } from '@shuo-ui/utils'
+import { addUnit, isArray, isString, isUndefined, getPrefixCls } from '@shuo-ui/utils'
 import { formContextKey, formItemContextKey } from '@shuo-ui/constants'
 import type { PropType, CSSProperties } from 'vue'
 import type { RuleItem } from 'async-validator'
 import type { FormItemContext, FormItemRule, FormItemProp } from '@shuo-ui/constants'
 import type { Arrayable } from '@shuo-ui/utils/typescript'
+
+const prefixCls = getPrefixCls('form-item')
 
 const props = defineProps({
   label: String,
@@ -46,6 +48,14 @@ const validateState = ref<'' | 'error' | 'validating' | 'success'>('')
 const validateMessage = ref('')
 
 const formContext = inject(formContextKey, undefined)
+
+const classNames = computed(() => [
+  prefixCls,
+  {
+    [`${prefixCls}-required`]: isRequired.value,
+    [`${prefixCls}-error`]: validateState.value === 'error'
+  }
+])
 
 const labelStyles = computed<CSSProperties>(() => {
   if (formContext?.labelPosition.value === 'top') {
@@ -72,21 +82,6 @@ const contentStyles = computed<CSSProperties>(() => {
   }
   return {}
 })
-
-const itemClassNames = computed(() => [
-  's-form-item',
-  {
-    's-form-item-inline': formContext?.inline.value
-  }
-])
-
-const labelClassNames = computed(() => [
-  's-form-item-label',
-  `s-form-item-label-${formContext?.labelPosition.value}`,
-  {
-    's-form-item-label-required': isRequired.value
-  }
-])
 
 const propString = computed(() => {
   if (!props.prop) return ''
@@ -200,75 +195,3 @@ const context: FormItemContext = {
 
 provide(formItemContextKey, context)
 </script>
-
-<style lang="scss" scoped>
-.s-form-item {
-  margin-bottom: 24px;
-  vertical-align: top;
-
-  &-label {
-    float: left;
-    box-sizing: border-box;
-    padding: 10px 12px 10px 0;
-    color: get-css-var('text-color');
-    font-size: get-css-var('font-size');
-    line-height: 1;
-
-    &-left {
-      text-align: left;
-    }
-
-    &-right {
-      text-align: right;
-    }
-
-    &-top {
-      display: block;
-      float: none;
-      padding: 0 0 10px;
-    }
-
-    &-required {
-      &::before {
-        display: inline-block;
-        margin-right: 4px;
-        color: get-css-var('color', 'error');
-        line-height: 1;
-        content: '*';
-      }
-    }
-  }
-
-  &-content {
-    position: relative;
-    font-size: get-css-var('font-size');
-    line-height: 34px;
-
-    &-error {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      padding: 4px 0 0 2px;
-      color: get-css-var('color', 'error');
-      font-size: get-css-var('font-size');
-      line-height: 1;
-    }
-  }
-
-  &-inline {
-    display: inline-block;
-    margin-right: 16px;
-  }
-}
-
-.error-fade-enter-from,
-.error-fade-leave-to {
-  transform: translateY(-4px);
-  opacity: 0;
-}
-
-.error-fade-enter-active,
-.error-fade-leave-active {
-  transition: all 0.3s ease;
-}
-</style>

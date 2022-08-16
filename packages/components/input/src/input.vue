@@ -1,16 +1,15 @@
 <template>
-  <div class="s-input-wrapper">
+  <div>
     <template v-if="type !== 'textarea'">
-      <div>
-        <input
-          :type="type"
-          :value="currentValue"
-          @input="handleInput"
-          @change="handleChange"
-          @focus="handleFocus"
-          @blur="handleBlur"
-        />
-      </div>
+      <input
+        :class="inputClassNames"
+        :type="type"
+        :value="currentValue"
+        @input="handleInput"
+        @change="handleChange"
+        @focus="handleFocus"
+        @blur="handleBlur"
+      />
     </template>
     <template v-else>
       <textarea></textarea>
@@ -19,10 +18,13 @@
 </template>
 
 <script setup lang="ts" name="SInput">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useFormItem } from '@shuo-ui/hooks'
+import { getPrefixCls } from '@shuo-ui/utils'
 
 type TargetElement = HTMLInputElement | HTMLTextAreaElement
+
+const prefixCls = getPrefixCls('input')
 
 const props = withDefaults(
   defineProps<{
@@ -42,6 +44,8 @@ const emit = defineEmits<{
   (e: 'focus', value: Event): void
   (e: 'blur', value: Event): void
 }>()
+
+const inputClassNames = computed(() => [prefixCls])
 
 const { formItem } = useFormItem()
 
@@ -80,9 +84,3 @@ watch(
   }
 )
 </script>
-
-<style lang="scss" scoped>
-.s-input-wrapper {
-  border: 1px solid pink;
-}
-</style>

@@ -8,7 +8,7 @@
         >Right</s-button
       >
       <s-button :type="labelPosistion === 'top' ? 'primary' : 'default'" @click="setLabelPosition('top')">Top</s-button>
-      <s-button @click="inline = !inline">{{ inline ? 'un inline' : 'inline' }}</s-button>
+      <s-button @click="inline = !inline">{{ inline ? 'uninline' : 'inline' }}</s-button>
     </div>
     <hr />
     <s-form

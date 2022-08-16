@@ -1,0 +1,72 @@
+$form-prefix-cls: #{$css-prefix}form;
+$form-item-prefix-cls: #{$css-prefix}form-item;
+
+.#{$form-prefix-cls} {
+  &-label-left {
+    .#{$form-item-prefix-cls}-label {
+      text-align: left;
+    }
+  }
+
+  &-label-right {
+    .#{$form-item-prefix-cls}-label {
+      text-align: right;
+    }
+  }
+
+  &-label-top {
+    .#{$form-item-prefix-cls}-label {
+      display: block;
+      float: none;
+      padding: 0 0 10px;
+      text-align: left;
+    }
+  }
+
+  &-inline {
+    .#{$form-item-prefix-cls} {
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: top;
+    }
+  }
+}
+
+.#{$form-item-prefix-cls} {
+  margin-bottom: 24px;
+  background-color: skyblue;
+
+  &-label {
+    float: left;
+    box-sizing: border-box;
+    padding: 10px 12px 10px 0;
+    color: $text-color;
+    font-size: $font-size-base;
+    line-height: 1;
+    text-align: right;
+  }
+
+  &-content {
+    position: relative;
+    font-size: $font-size-base;
+    line-height: 34px;
+  }
+
+  &-error-tip {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 4px 0 0 2px;
+    color: $error-color;
+    font-size: $font-size-base;
+    line-height: 1;
+  }
+
+  &-required {
+    .#{$form-item-prefix-cls}-label::before {
+      margin-right: 4px;
+      color: $error-color;
+      content: '*';
+    }
+  }
+}

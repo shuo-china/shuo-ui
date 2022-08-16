@@ -1,12 +1,13 @@
 <template>
-  <form autocomplete="off">
+  <form :class="classNames" autocomplete="off">
     <slot></slot>
   </form>
 </template>
 
 <script setup lang="ts" name="SForm">
-import { provide, toRefs } from 'vue'
+import { computed, provide, toRefs } from 'vue'
 import { castArray, isEqual } from 'lodash'
+import { getPrefixCls } from '@shuo-ui/utils'
 import { formContextKey } from '@shuo-ui/constants'
 import type { PropType } from 'vue'
 import type { ValidateFieldsError } from 'async-validator'
@@ -18,6 +19,8 @@ import type {
   FormValidationResult,
   FormItemProp
 } from '@shuo-ui/constants'
+
+const prefixCls = getPrefixCls('form')
 
 const props = defineProps({
   model: Object,
@@ -37,6 +40,14 @@ const props = defineProps({
     default: false
   }
 })
+
+const classNames = computed(() => [
+  prefixCls,
+  `${prefixCls}-label-${props.labelPosition}`,
+  {
+    [`${prefixCls}-inline`]: props.inline
+  }
+])
 
 const fields: FormItemContext[] = []
 

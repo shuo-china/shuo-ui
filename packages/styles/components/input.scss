@@ -1,0 +1,12 @@
+$input-prefix-cls: #{$css-prefix}input;
+
+.#{$form-item-prefix-cls}-error {
+  .#{$input-prefix-cls} {
+    border: 1px solid $error-color;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px fade($error-color, 2);
+    }
+  }
+}
