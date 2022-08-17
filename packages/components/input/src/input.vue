@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="wrapClasses">
     <template v-if="type !== 'textarea'">
       <input
         v-bind="$attrs"

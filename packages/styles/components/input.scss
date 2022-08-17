@@ -1,6 +1,11 @@
 $input-prefix-cls: #{$css-prefix}input;
 
 .#{$input-prefix-cls} {
+  &-wrapper {
+    display: inline-block;
+    width: 100%;
+  }
+
   box-sizing: border-box;
   width: 100%;
   height: 34px;
@@ -22,6 +27,12 @@ $input-prefix-cls: #{$css-prefix}input;
     border-color: $primary-color;
     outline: none;
     box-shadow: 0 0 0 2px fade($primary-color, 2);
+  }
+
+  &[disabled] {
+    color: $text-secondary-color;
+    background-color: $bg-color;
+    cursor: no-drop;
   }
 }
 

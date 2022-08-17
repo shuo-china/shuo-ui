@@ -20,19 +20,22 @@
       :inline="inline"
     >
       <s-form-item prop="name" label="姓名">
-        <s-input v-model="data.name" type="text" placeholder="123"></s-input>
+        <s-input v-model="data.name" type="text" placeholder="请输入姓名"></s-input>
       </s-form-item>
       <s-form-item prop="age" label="年龄">
-        <s-input v-model="data.age" type="text"></s-input>
+        <s-input v-model="data.age" type="text" disabled></s-input>
       </s-form-item>
 
-      <s-button type="primary">提交</s-button>
+      <s-button type="primary" @click="submit">提交</s-button>
     </s-form>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { SMessage } from '@shuo-ui'
+
+const formRef = ref<any>(null)
 
 const labelPosistion = ref('right')
 const setLabelPosition = (direction: string) => {
@@ -43,7 +46,7 @@ const inline = ref(false)
 
 const data = ref({
   name: '',
-  age: ''
+  age: 18
 })
 
 const rules = {
@@ -55,5 +58,16 @@ const rules = {
     required: true,
     message: '年龄不能为空'
   }
+}
+
+const submit = () => {
+  formRef.value
+    ?.validate()
+    .then(() => {
+      SMessage.success('验证通过')
+    })
+    .catch(() => {
+      SMessage.error('验证失败')
+    })
 }
 </script>

@@ -4,13 +4,13 @@ $form-item-prefix-cls: #{$css-prefix}form-item;
 .#{$form-prefix-cls} {
   &-label-left {
     .#{$form-item-prefix-cls}-label {
-      text-align: left;
+      justify-content: flex-start;
     }
   }
 
   &-label-right {
     .#{$form-item-prefix-cls}-label {
-      text-align: right;
+      justify-content: flex-end;
     }
   }
 
@@ -18,16 +18,17 @@ $form-item-prefix-cls: #{$css-prefix}form-item;
     .#{$form-item-prefix-cls}-label {
       display: block;
       float: none;
-      padding: 0 0 10px;
-      text-align: left;
+      height: 22px;
+      margin-bottom: 8px;
+      line-height: 22px;
     }
   }
 
   &-inline {
     .#{$form-item-prefix-cls} {
       display: inline-block;
-      margin-right: 10px;
-      vertical-align: middle;
+      margin-right: 32px;
+      vertical-align: top;
     }
   }
 }
@@ -36,13 +37,15 @@ $form-item-prefix-cls: #{$css-prefix}form-item;
   margin-bottom: 24px;
 
   &-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
     float: left;
     box-sizing: border-box;
-    padding: 10px 12px 10px 0;
+    height: 34px;
+    padding-right: 12px;
     color: $text-color;
     font-size: $font-size-base;
-    line-height: 1;
-    text-align: right;
   }
 
   &-content {
