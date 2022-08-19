@@ -1,23 +1,30 @@
 <template>
   <div :class="wrapClasses">
     <template v-if="type !== 'textarea'">
-      <!-- clearable -->
-      <s-icon
-        v-if="clearable && currentValue && !itemDisabled"
-        name="close-circle-fill"
-        :class="[prefixCls + '-icon', prefixCls + '-icon-clear']"
-        @click="handleClear"
-      />
       <input
         v-bind="$attrs"
         :class="inputClassNames"
-        :type="type"
+        :type="currentType"
         :value="currentValue"
         :disabled="itemDisabled"
         @input="handleInput"
         @change="handleChange"
         @focus="handleFocus"
         @blur="handleBlur"
+      />
+      <!-- password -->
+      <s-icon
+        v-if="type === 'password'"
+        :name="showPwd ? 'eye' : 'eye-close'"
+        :class="[prefixCls + '-icon', prefixCls + '-icon-pwd']"
+        @click="toogleShowPwd"
+      />
+      <!-- clearable -->
+      <s-icon
+        v-if="clearable && currentValue && !itemDisabled"
+        name="close-circle-fill"
+        :class="[prefixCls + '-icon', prefixCls + '-icon-clear']"
+        @click="handleClear"
       />
     </template>
     <template v-else>
@@ -67,7 +74,14 @@ const emit = defineEmits<{
   (e: 'blur', value: Event): void
 }>()
 
-const wrapClasses = computed(() => [`${prefixCls}-wrapper`, `${prefixCls}-wrapper-${props.size}`])
+const wrapClasses = computed(() => [
+  `${prefixCls}-wrapper`,
+  `${prefixCls}-wrapper-${props.size}`,
+  {
+    [`${prefixCls}-wrapper-disabled`]: itemDisabled.value,
+    [`${prefixCls}-wrapper-focus`]: focused.value
+  }
+])
 
 const inputClassNames = computed(() => [prefixCls])
 
@@ -81,12 +95,33 @@ const itemDisabled = computed(() => {
   return !!state
 })
 
+const focused = ref(false)
+const showPwd = ref(false)
+
+const currentType = computed(() => {
+  let type = props.type
+  if (type === 'password' && showPwd.value) {
+    type = 'text'
+  }
+  return type
+})
+
 const currentValue = ref(props.modelValue)
 
 const setCurrentValue = value => {
   if (value === currentValue.value) return
   currentValue.value = value
   formItem?.validate('change')
+}
+
+const toogleShowPwd = () => {
+  showPwd.value = !showPwd.value
+}
+
+const handleClear = () => {
+  emit('update:modelValue', '')
+  emit('input', '')
+  setCurrentValue('')
 }
 
 const handleInput = async (event: Event) => {
@@ -100,17 +135,13 @@ const handleChange = (event: Event) => {
   emit('change', (event.target as TargetElement).value)
 }
 
-const handleClear = () => {
-  emit('update:modelValue', '')
-  emit('input', '')
-  setCurrentValue('')
-}
-
 const handleFocus = (event: Event) => {
+  focused.value = true
   emit('focus', event)
 }
 
 const handleBlur = (event: Event) => {
+  focused.value = false
   emit('blur', event)
   formItem?.validate('blur')
 }

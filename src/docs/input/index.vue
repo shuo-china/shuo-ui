@@ -20,7 +20,7 @@
       :inline="inline"
     >
       <s-form-item prop="hobby" label="爱好">
-        <s-input v-model="data.hobby" type="text" clearable> </s-input>
+        <s-input v-model="data.hobby" type="password" clearable> </s-input>
       </s-form-item>
       <s-form-item prop="name" label="姓名">
         <s-input v-model="data.name" clearable type="text" placeholder="请输入姓名" size="small"></s-input>

@@ -1,90 +1,88 @@
 $input-prefix-cls: #{$css-prefix}input;
 
 .#{$input-prefix-cls} {
+  flex-grow: 1;
+  height: 100%;
+  padding: 0;
+  color: $text-color;
+  font-size: $font-size-base;
+  background: none;
+  border: none;
+  outline: none;
+  @include placeholder;
+
   &-wrapper {
-    position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
     width: 100%;
-    line-height: normal;
+    height: 34px;
+    padding: 1px 10px;
+    background-color: $white;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-base;
+    transition: all $transition-duration;
 
     &-small {
-      .#{$input-prefix-cls} {
-        height: 24px;
-        padding: 2px 8px;
-        border-radius: $border-radius-small;
+      height: 24px;
 
-        &-icon {
-          height: 24px;
-          font-size: 14px;
-        }
+      .#{$input-prefix-cls}-icon {
+        height: 24px;
+        font-size: 14px;
       }
     }
 
     &-large {
-      .#{$input-prefix-cls} {
-        height: 40px;
-        padding: 6px 8px;
-        font-size: 16px;
+      height: 40px;
 
-        &-icon {
-          height: 40px;
-        }
+      .#{$input-prefix-cls}-icon {
+        height: 40px;
       }
+    }
+
+    &-disabled {
+      background-color: shade($bg-color, 0.3);
+      cursor: no-drop;
+    }
+
+    &-focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px fade($primary-color, 2);
+    }
+
+    &:hover {
+      border-color: $primary-color;
     }
   }
 
-  box-sizing: border-box;
-  width: 100%;
-  height: 34px;
-  padding: 4px 8px;
-  color: $text-color;
-  font-size: $font-size-base;
-  border: 1px solid $border-color;
-  border-radius: $border-radius-base;
-  cursor: text;
-  transition: all $transition-duration;
-  @include placeholder;
-
-  &:hover {
-    border-color: $primary-color;
-  }
-
-  &:focus {
-    border-color: $primary-color;
-    outline: none;
-    box-shadow: 0 0 0 2px fade($primary-color, 2);
-  }
-
   &[disabled] {
-    color: $text-secondary-color;
-    background-color: shade($bg-color, 0.3);
     cursor: no-drop;
   }
 
   &-icon {
-    position: absolute;
-    right: 0;
-    width: 34px;
-    height: 34px;
-    color: $text-secondary-color;
+    margin-left: 8px;
+    color: $text-color;
     font-size: 16px;
 
-    &-clear {
+    &-clear,
+    &-pwd {
+      color: tint($text-secondary-color, 3);
       cursor: pointer;
       transition: all $transition-duration;
 
       &:hover {
-        color: $text-color;
+        color: $text-secondary-color;
       }
     }
   }
 }
 
 .#{$form-item-prefix-cls}-error {
-  .#{$input-prefix-cls} {
+  .#{$input-prefix-cls}-wrapper {
     border-color: $error-color;
 
-    &:focus {
+    &-focus {
       box-shadow: 0 0 0 2px fade($error-color, 2);
     }
   }
