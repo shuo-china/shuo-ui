@@ -8,6 +8,9 @@ $button-prefix-cls: #{$css-prefix}button;
   justify-content: center;
   box-sizing: border-box;
   width: auto;
+  height: 34px;
+  padding: 0 14px;
+  font-size: $font-size-base;
   white-space: nowrap;
   text-align: center;
   border: none;
@@ -21,12 +24,6 @@ $button-prefix-cls: #{$css-prefix}button;
     height: 28px;
     padding: 0 10px;
     font-size: $font-size-small;
-  }
-
-  &-medium {
-    height: 34px;
-    padding: 0 14px;
-    font-size: $font-size-base;
   }
 
   &-large {
@@ -50,7 +47,7 @@ $button-prefix-cls: #{$css-prefix}button;
 
   &[disabled] {
     color: $text-secondary-color;
-    background-color: $bg-color;
+    background-color: shade($bg-color, 0.3);
     border: 1px solid $border-color;
     cursor: no-drop;
 

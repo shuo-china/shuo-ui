@@ -19,14 +19,18 @@
       :label-position="labelPosistion"
       :inline="inline"
     >
+      <s-form-item prop="hobby" label="爱好">
+        <s-input v-model="data.hobby" type="text" clearable> </s-input>
+      </s-form-item>
       <s-form-item prop="name" label="姓名">
-        <s-input v-model="data.name" type="text" placeholder="请输入姓名"></s-input>
+        <s-input v-model="data.name" clearable type="text" placeholder="请输入姓名" size="small"></s-input>
       </s-form-item>
       <s-form-item prop="age" label="年龄">
-        <s-input v-model="data.age" type="text" disabled></s-input>
+        <s-input v-model="data.age" type="text" disabled size="large"> </s-input>
       </s-form-item>
 
       <s-button type="primary" @click="submit">提交</s-button>
+      <s-button @click="formRef.resetFields()">重置</s-button>
     </s-form>
   </div>
 </template>
@@ -46,7 +50,8 @@ const inline = ref(false)
 
 const data = ref({
   name: '',
-  age: 18
+  age: 18,
+  hobby: ''
 })
 
 const rules = {

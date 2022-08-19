@@ -9,6 +9,7 @@ export type FormValidationResult = Promise<void>
 
 export interface FormContext {
   inline: Ref<boolean>
+  disabled: Ref<boolean>
   labelPosition: Ref<string>
   model: Ref<Record<string, any> | undefined>
   rules: Ref<FormRules | undefined>

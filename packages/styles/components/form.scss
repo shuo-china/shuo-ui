@@ -46,6 +46,7 @@ $form-item-prefix-cls: #{$css-prefix}form-item;
     padding-right: 12px;
     color: $text-color;
     font-size: $font-size-base;
+    line-height: 1;
   }
 
   &-content {

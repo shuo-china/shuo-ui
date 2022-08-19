@@ -9,7 +9,7 @@ import { getPrefixCls } from '@shuo-ui/utils'
 import customStyles from '@shuo-ui/styles/custom.module.scss'
 import type { CSSProperties } from 'vue'
 
-const prefixCls = getPrefixCls('icon')
+const prefixCls = getPrefixCls('icons')
 
 const props = defineProps<{
   name: string
@@ -22,7 +22,7 @@ const classNames = computed(() => [
   prefixCls,
   `${customStyles.cssPrefixIconfont}${props.name}`,
   {
-    [`${prefixCls}--spin`]: !!props.spin
+    [`${prefixCls}-spin`]: !!props.spin
   }
 ])
 

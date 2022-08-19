@@ -1,5 +1,5 @@
 import { createApp, watch } from 'vue'
-import { getPrefixCls } from '@shuo-ui/utils'
+import { getPrefixCls, isString } from '@shuo-ui/utils'
 import MessageComponent from './message.vue'
 import type { App, ComponentPublicInstance } from 'vue'
 
@@ -39,7 +39,7 @@ types.forEach(type => {
 })
 
 function handleOptions(options: Options) {
-  if (typeof options === 'string') {
+  if (isString(options)) {
     return {
       content: options
     }

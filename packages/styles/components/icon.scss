@@ -1,4 +1,4 @@
-$icon-prefix-cls: #{$css-prefix}icon;
+$icon-prefix-cls: #{$css-prefix}icons;
 
 .#{$icon-prefix-cls} {
   display: inline-flex;
@@ -6,13 +6,7 @@ $icon-prefix-cls: #{$css-prefix}icon;
   justify-content: center;
   line-height: 1;
 
-  &--spin {
-    animation: spin 1s infinite linear;
-  }
-
-  @keyframes spin {
-    100% {
-      transform: rotate(360deg);
-    }
+  &-spin {
+    animation: loop 1s infinite linear;
   }
 }

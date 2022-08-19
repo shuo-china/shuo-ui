@@ -9,7 +9,6 @@ import { computed, provide, toRefs } from 'vue'
 import { castArray, isEqual } from 'lodash'
 import { getPrefixCls } from '@shuo-ui/utils'
 import { formContextKey } from '@shuo-ui/constants'
-import type { PropType } from 'vue'
 import type { ValidateFieldsError } from 'async-validator'
 import type {
   FormRules,
@@ -22,30 +21,27 @@ import type {
 
 const prefixCls = getPrefixCls('form')
 
-const props = defineProps({
-  model: Object,
-  rules: {
-    type: Object as PropType<FormRules>
-  },
-  labelWidth: [Number, String],
-  labelPosition: {
-    type: String,
-    default: 'right',
-    validator: (value: string) => {
-      return ['top', 'left', 'right'].includes(value)
-    }
-  },
-  inline: {
-    type: Boolean,
-    default: false
+const props = withDefaults(
+  defineProps<{
+    model?: Record<string, any>
+    rules?: FormRules
+    labelWidth?: string | number
+    labelPosition?: 'top' | 'left' | 'right'
+    inline?: boolean
+    disabled?: boolean
+  }>(),
+  {
+    labelPosition: 'right',
+    inline: false,
+    disalbed: false
   }
-})
+)
 
 const classNames = computed(() => [
   prefixCls,
   `${prefixCls}-label-${props.labelPosition}`,
   {
-    [`${prefixCls}-inline`]: props.inline
+    [`${prefixCls}-inline`]: !!props.inline
   }
 ])
 

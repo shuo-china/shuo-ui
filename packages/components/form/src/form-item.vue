@@ -1,10 +1,13 @@
 <template>
   <div :class="classNames">
+    <!-- label -->
     <label v-if="label || slots.label" :class="[prefixCls + '-label']" :style="labelStyles">
       <slot name="label">{{ label }}</slot>
     </label>
+    <!-- content -->
     <div :class="[prefixCls + '-content']" :style="contentStyles">
       <slot></slot>
+      <!-- error-tip -->
       <transition name="fade">
         <div v-if="validateState === 'error'" :class="[prefixCls + '-error-tip']">{{ validateMessage }}</div>
       </transition>
@@ -18,27 +21,20 @@ import { castArray, get, set, clone, isEqual } from 'lodash'
 import Schema from 'async-validator'
 import { addUnit, isArray, isString, isUndefined, getPrefixCls } from '@shuo-ui/utils'
 import { formContextKey, formItemContextKey } from '@shuo-ui/constants'
-import type { PropType, CSSProperties } from 'vue'
+import type { CSSProperties } from 'vue'
 import type { RuleItem } from 'async-validator'
 import type { FormItemContext, FormItemRule, FormItemProp } from '@shuo-ui/constants'
 import type { Arrayable } from '@shuo-ui/utils/typescript'
 
 const prefixCls = getPrefixCls('form-item')
 
-const props = defineProps({
-  label: String,
-  labelWidth: [Number, String],
-  prop: {
-    type: [String, Array] as PropType<FormItemProp>
-  },
-  rules: {
-    type: [Object, Array] as PropType<Arrayable<FormItemRule>>
-  },
-  required: {
-    type: Boolean,
-    default: undefined
-  }
-})
+const props = defineProps<{
+  label?: string
+  labelWidth?: string | number
+  prop?: FormItemProp
+  rules?: Arrayable<FormItemRule>
+  required?: boolean
+}>()
 
 const slots = useSlots()
 

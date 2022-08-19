@@ -28,7 +28,7 @@ export const menuGroups: Record<string, MenuGroup> = {
       items: [
         {
           name: 'Input',
-          path: './input'
+          path: '/input'
         }
       ]
     },
