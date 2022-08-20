@@ -1,31 +1,43 @@
 <template>
-  <div :class="wrapClasses">
+  <div :class="classNames">
     <template v-if="type !== 'textarea'">
-      <input
-        v-bind="$attrs"
-        :class="inputClassNames"
-        :type="currentType"
-        :value="currentValue"
-        :disabled="itemDisabled"
-        @input="handleInput"
-        @change="handleChange"
-        @focus="handleFocus"
-        @blur="handleBlur"
-      />
-      <!-- password -->
-      <s-icon
-        v-if="type === 'password'"
-        :name="showPwd ? 'eye' : 'eye-close'"
-        :class="[prefixCls + '-icon', prefixCls + '-icon-pwd']"
-        @click="toogleShowPwd"
-      />
-      <!-- clearable -->
-      <s-icon
-        v-if="clearable && currentValue && !itemDisabled"
-        name="close-circle-fill"
-        :class="[prefixCls + '-icon', prefixCls + '-icon-clear']"
-        @click="handleClear"
-      />
+      <!-- prepend -->
+      <!-- wrapper -->
+      <div :class="wrapperClassNames">
+        <!-- prefix -->
+        <span :class="inputPrefixCls + '-prefix'">
+          <slot name="prefix"></slot>
+        </span>
+        <input
+          v-bind="$attrs"
+          :class="inputPrefixCls + '-inner'"
+          :type="currentType"
+          :value="currentValue"
+          :disabled="itemDisabled"
+          @input="handleInput"
+          @change="handleChange"
+          @focus="handleFocus"
+          @blur="handleBlur"
+        />
+        <!-- suffix -->
+        <span :class="inputPrefixCls + '-suffix'">
+          <slot name="suffix"></slot>
+          <s-icon
+            v-if="type === 'password' && !itemDisabled"
+            :name="showPwd ? 'eye' : 'eye-close'"
+            :class="[inputPrefixCls + '-icon', inputPrefixCls + '-icon-pwd']"
+            @click="toogleShowPwd"
+          />
+
+          <s-icon
+            v-if="clearable && currentValue && !itemDisabled"
+            name="close-circle-fill"
+            :class="[inputPrefixCls + '-icon', inputPrefixCls + '-icon-clear']"
+            @click="handleClear"
+          />
+        </span>
+      </div>
+      <!-- append -->
     </template>
     <template v-else>
       <textarea></textarea>
@@ -48,7 +60,8 @@ import { getPrefixCls } from '@shuo-ui/utils'
 
 type TargetElement = HTMLInputElement | HTMLTextAreaElement
 
-const prefixCls = getPrefixCls('input')
+const inputPrefixCls = getPrefixCls('input')
+const textareaPrefixCls = getPrefixCls('textarea')
 
 const props = withDefaults(
   defineProps<{
@@ -74,16 +87,17 @@ const emit = defineEmits<{
   (e: 'blur', value: Event): void
 }>()
 
-const wrapClasses = computed(() => [
-  `${prefixCls}-wrapper`,
-  `${prefixCls}-wrapper-${props.size}`,
+const classNames = computed(() =>
+  props.type !== 'textarea' ? [inputPrefixCls, `${inputPrefixCls}-${props.size}`] : textareaPrefixCls
+)
+
+const wrapperClassNames = computed(() => [
+  `${inputPrefixCls}-wrapper`,
   {
-    [`${prefixCls}-wrapper-disabled`]: itemDisabled.value,
-    [`${prefixCls}-wrapper-focus`]: focused.value
+    [`${inputPrefixCls}-wrapper-focus`]: focused.value,
+    [`${inputPrefixCls}-wrapper-disabled`]: itemDisabled.value
   }
 ])
-
-const inputClassNames = computed(() => [prefixCls])
 
 const { form, formItem } = useFormItem()
 
@@ -92,6 +106,7 @@ const itemDisabled = computed(() => {
   if (!state && form) {
     state = form.disabled.value
   }
+
   return !!state
 })
 

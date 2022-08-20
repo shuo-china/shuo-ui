@@ -1,49 +1,35 @@
 $input-prefix-cls: #{$css-prefix}input;
+$textarea-prefix-cls: #{$css-prefix}textarea;
 
 .#{$input-prefix-cls} {
-  flex-grow: 1;
-  height: 100%;
-  padding: 0;
+  display: inline-flex;
+  width: 100%;
   color: $text-color;
   font-size: $font-size-base;
-  background: none;
-  border: none;
-  outline: none;
-  @include placeholder;
+
+  &-large &-inner {
+    height: 40px;
+    line-height: 40px;
+  }
+
+  &-small &-inner {
+    height: 24px;
+    line-height: 24px;
+  }
 
   &-wrapper {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    flex-grow: 1;
     box-sizing: border-box;
-    width: 100%;
-    height: 34px;
-    padding: 1px 10px;
-    background-color: $white;
+    padding: 0 10px;
+    line-height: 34px;
+    background: $white;
     border: 1px solid $border-color;
     border-radius: $border-radius-base;
     transition: all $transition-duration;
 
-    &-small {
-      height: 24px;
-
-      .#{$input-prefix-cls}-icon {
-        height: 24px;
-        font-size: 14px;
-      }
-    }
-
-    &-large {
-      height: 40px;
-
-      .#{$input-prefix-cls}-icon {
-        height: 40px;
-      }
-    }
-
-    &-disabled {
-      background-color: shade($bg-color, 0.3);
-      cursor: no-drop;
+    &:hover {
+      border-color: $primary-color;
     }
 
     &-focus {
@@ -51,30 +37,58 @@ $input-prefix-cls: #{$css-prefix}input;
       box-shadow: 0 0 0 2px fade($primary-color, 2);
     }
 
-    &:hover {
-      border-color: $primary-color;
+    &-disabled {
+      background-color: shade($bg-color, 0.3);
+      cursor: no-drop;
     }
   }
 
-  &[disabled] {
-    cursor: no-drop;
+  &-inner {
+    flex-grow: 1;
+    height: 34px;
+    padding: 0;
+    line-height: 34px;
+    background: none;
+    border: none;
+    outline: none;
+    @include placeholder;
+
+    &[disabled] {
+      cursor: no-drop;
+    }
   }
 
   &-icon {
-    margin-left: 8px;
-    color: $text-color;
+    height: 100%;
+    padding: 0 4px;
+    color: $text-secondary-color;
     font-size: 16px;
 
     &-clear,
     &-pwd {
-      color: tint($text-secondary-color, 3);
       cursor: pointer;
       transition: all $transition-duration;
 
       &:hover {
-        color: $text-secondary-color;
+        color: shade($text-secondary-color, 3);
       }
     }
+  }
+
+  &-prefix,
+  &-suffix {
+    display: inline-flex;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    height: 100%;
+  }
+
+  &-prefix &-icon {
+    margin-right: 4px;
+  }
+
+  &-suffix &-icon {
+    margin-left: 4px;
   }
 }
 

@@ -5,7 +5,7 @@
       <slot name="label">{{ label }}</slot>
     </label>
     <!-- content -->
-    <div :class="[prefixCls + '-content']" :style="contentStyles">
+    <div :class="[prefixCls + '-content']">
       <slot></slot>
       <!-- error-tip -->
       <transition name="fade">
@@ -61,19 +61,6 @@ const labelStyles = computed<CSSProperties>(() => {
   if (labelWidth) {
     return {
       width: labelWidth
-    }
-  }
-  return {}
-})
-
-const contentStyles = computed<CSSProperties>(() => {
-  if (formContext?.labelPosition.value === 'top') {
-    return {}
-  }
-  const labelWidth = addUnit(props.labelWidth || formContext?.labelWidth.value || '')
-  if (labelWidth) {
-    return {
-      marginLeft: labelWidth
     }
   }
   return {}
