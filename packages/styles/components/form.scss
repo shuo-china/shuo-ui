@@ -20,18 +20,28 @@ $form-item-prefix-cls: #{$css-prefix}form-item;
 
       &-label {
         display: block;
-        height: 22px;
+        height: auto;
         margin-bottom: 8px;
         line-height: 22px;
+        text-align: left;
       }
     }
   }
 
   &-inline {
     .#{$form-item-prefix-cls} {
-      display: inline-block;
+      display: inline-flex;
       margin-right: 32px;
       vertical-align: top;
+    }
+
+    &.#{$form-prefix-cls}-label-top {
+      display: flex;
+      flex-wrap: wrap;
+
+      .#{$form-item-prefix-cls} {
+        display: block;
+      }
     }
   }
 }

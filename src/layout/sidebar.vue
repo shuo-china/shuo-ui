@@ -127,7 +127,7 @@ watch(
   margin-left: $sidebar-width;
   padding: 48px;
   overflow-x: auto;
-  background-color: $main-bg-color;
+  background-color: $white;
 }
 
 .app-fade-enter-active,

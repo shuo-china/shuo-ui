@@ -6,15 +6,24 @@ $textarea-prefix-cls: #{$css-prefix}textarea;
   width: 100%;
   color: $text-color;
   font-size: $font-size-base;
+  line-height: 34px;
 
-  &-large &-inner {
-    height: 40px;
-    line-height: 40px;
+  &-large {
+    line-height: 42px;
+
+    .#{$input-prefix-cls}-inner {
+      height: 40px;
+      line-height: 40px;
+    }
   }
 
-  &-small &-inner {
-    height: 24px;
+  &-small {
     line-height: 24px;
+
+    .#{$input-prefix-cls}-inner {
+      height: 22px;
+      line-height: 22px;
+    }
   }
 
   &-wrapper {
@@ -31,16 +40,49 @@ $textarea-prefix-cls: #{$css-prefix}textarea;
     &:hover {
       border-color: $primary-color;
     }
+  }
 
-    &-focus {
+  &-focus {
+    .#{$input-prefix-cls}-wrapper {
       border-color: $primary-color;
       box-shadow: 0 0 0 2px fade($primary-color, 2);
     }
+  }
 
-    &-disabled {
-      background-color: shade($bg-color, 0.3);
-      cursor: no-drop;
-    }
+  &-with-prepend &-wrapper {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &-with-append &-wrapper {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &-prepend,
+  &-append {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 20px;
+    color: $text-secondary-color;
+    white-space: nowrap;
+    background-color: $bg-color;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-base;
+  }
+
+  &-prepend {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &-append {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 
   &-inner {
@@ -54,14 +96,32 @@ $textarea-prefix-cls: #{$css-prefix}textarea;
     @include placeholder;
 
     &[disabled] {
-      cursor: no-drop;
+      cursor: not-allowed;
     }
+  }
+
+  &-prefix,
+  &-suffix {
+    display: inline-flex;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: $text-secondary-color;
+  }
+
+  &-prefix > :last-child {
+    margin-right: 8px;
+  }
+
+  &-suffix > :first-child {
+    margin-left: 8px;
   }
 
   &-icon {
     height: 100%;
-    padding: 0 4px;
-    color: $text-secondary-color;
+    margin-left: 8px;
     font-size: 16px;
 
     &-clear,
@@ -75,28 +135,72 @@ $textarea-prefix-cls: #{$css-prefix}textarea;
     }
   }
 
-  &-prefix,
-  &-suffix {
-    display: inline-flex;
-    flex-shrink: 0;
-    flex-wrap: nowrap;
-    height: 100%;
+  &-disabled {
+    cursor: not-allowed;
+
+    .#{$input-prefix-cls}-wrapper {
+      background-color: $bg-color;
+    }
+  }
+}
+
+.#{$textarea-prefix-cls} {
+  display: inline-flex;
+  width: 100%;
+  color: $text-color;
+  font-size: $font-size-base;
+
+  &-inner {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 4px 10px;
+    line-height: 1.5;
+    background-color: $white;
+    background-image: none;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-base;
+    outline: none;
+    transition-duration: $transition-duration;
+    transition-property: border-color, box-shadow;
+    resize: vertical;
+
+    &:hover {
+      border-color: $primary-color;
+    }
   }
 
-  &-prefix &-icon {
-    margin-right: 4px;
+  &-focus {
+    .#{$textarea-prefix-cls}-inner {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px fade($primary-color, 2);
+    }
   }
 
-  &-suffix &-icon {
-    margin-left: 4px;
+  &-disabled {
+    .#{$textarea-prefix-cls}-inner {
+      background-color: $bg-color;
+      cursor: not-allowed;
+    }
   }
 }
 
 .#{$form-item-prefix-cls}-error {
   .#{$input-prefix-cls}-wrapper {
     border-color: $error-color;
+  }
 
-    &-focus {
+  .#{$input-prefix-cls}-focus {
+    .#{$input-prefix-cls}-wrapper {
+      box-shadow: 0 0 0 2px fade($error-color, 2);
+    }
+  }
+
+  .#{$textarea-prefix-cls}-inner {
+    border-color: $error-color;
+  }
+
+  .#{$textarea-prefix-cls}-focus {
+    .#{$textarea-prefix-cls}-inner {
       box-shadow: 0 0 0 2px fade($error-color, 2);
     }
   }

@@ -2,12 +2,16 @@
   <div :class="classNames">
     <template v-if="type !== 'textarea'">
       <!-- prepend -->
+      <div v-if="slots.prepend" :class="inputPrefixCls + '-prepend'">
+        <slot name="prepend"></slot>
+      </div>
       <!-- wrapper -->
-      <div :class="wrapperClassNames">
+      <div :class="inputPrefixCls + '-wrapper'">
         <!-- prefix -->
         <span :class="inputPrefixCls + '-prefix'">
           <slot name="prefix"></slot>
         </span>
+        <!-- input -->
         <input
           v-bind="$attrs"
           :class="inputPrefixCls + '-inner'"
@@ -38,9 +42,20 @@
         </span>
       </div>
       <!-- append -->
+      <div v-if="slots.append" :class="inputPrefixCls + '-append'">
+        <slot name="append"></slot>
+      </div>
     </template>
     <template v-else>
-      <textarea></textarea>
+      <textarea
+        v-bind="$attrs"
+        :disabled="itemDisabled"
+        :class="textareaPrefixCls + '-inner'"
+        @input="handleInput"
+        @change="handleChange"
+        @focus="handleFocus"
+        @blur="handleBlur"
+      ></textarea>
     </template>
   </div>
 </template>
@@ -53,7 +68,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, useSlots } from 'vue'
 import { SIcon } from '@shuo-ui/components'
 import { useFormItem } from '@shuo-ui/hooks'
 import { getPrefixCls } from '@shuo-ui/utils'
@@ -87,17 +102,28 @@ const emit = defineEmits<{
   (e: 'blur', value: Event): void
 }>()
 
-const classNames = computed(() =>
-  props.type !== 'textarea' ? [inputPrefixCls, `${inputPrefixCls}-${props.size}`] : textareaPrefixCls
-)
+const slots = useSlots()
 
-const wrapperClassNames = computed(() => [
-  `${inputPrefixCls}-wrapper`,
-  {
-    [`${inputPrefixCls}-wrapper-focus`]: focused.value,
-    [`${inputPrefixCls}-wrapper-disabled`]: itemDisabled.value
-  }
-])
+const classNames = computed(() =>
+  props.type !== 'textarea'
+    ? [
+        inputPrefixCls,
+        `${inputPrefixCls}-${props.size}`,
+        {
+          [`${inputPrefixCls}-with-prepend`]: !!slots.prepend,
+          [`${inputPrefixCls}-with-append`]: !!slots.append,
+          [`${inputPrefixCls}-disabled`]: itemDisabled.value,
+          [`${inputPrefixCls}-focus`]: focused.value
+        }
+      ]
+    : [
+        textareaPrefixCls,
+        {
+          [`${textareaPrefixCls}-disabled`]: itemDisabled.value,
+          [`${textareaPrefixCls}-focus`]: focused.value
+        }
+      ]
+)
 
 const { form, formItem } = useFormItem()
 
@@ -141,6 +167,7 @@ const handleClear = () => {
 
 const handleInput = async (event: Event) => {
   const { value } = event.target as TargetElement
+
   emit('update:modelValue', value)
   emit('input', value)
   setCurrentValue(value)

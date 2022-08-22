@@ -47,7 +47,7 @@ $button-prefix-cls: #{$css-prefix}button;
 
   &[disabled] {
     color: $text-secondary-color;
-    background-color: shade($bg-color, 0.3);
+    background-color: $bg-color;
     border: 1px solid $border-color;
     cursor: no-drop;
 
