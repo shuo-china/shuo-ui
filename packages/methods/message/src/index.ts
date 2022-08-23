@@ -2,26 +2,11 @@ import { createApp, watch } from 'vue'
 import { getPrefixCls, isString } from '@shuo-ui/utils'
 import MessageComponent from './message.vue'
 import type { App, ComponentPublicInstance } from 'vue'
+import type { Options, Message } from './types'
 
 const prefixCls = getPrefixCls('message')
 
 const types = ['info', 'success', 'warning', 'error', 'loading'] as const
-
-export type MessageType = typeof types[number]
-
-type Options =
-  | string
-  | {
-      type?: MessageType
-      duration?: number
-      content: string
-    }
-
-type MessageFn = (options: Options) => () => void
-
-type Message = {
-  [key in MessageType]: MessageFn
-} & MessageFn
 
 const message = (options => {
   const messageApp = createApp(MessageComponent, handleOptions(options))

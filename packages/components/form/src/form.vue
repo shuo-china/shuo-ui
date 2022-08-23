@@ -8,7 +8,7 @@
 import { computed, provide, toRefs } from 'vue'
 import { castArray, isEqual } from 'lodash'
 import { getPrefixCls } from '@shuo-ui/utils'
-import { formContextKey } from '@shuo-ui/constants'
+import { formContextKey } from './context'
 import type { ValidateFieldsError } from 'async-validator'
 import type {
   FormRules,
@@ -17,7 +17,7 @@ import type {
   FormValidateCallback,
   FormValidationResult,
   FormItemProp
-} from '@shuo-ui/constants'
+} from './types'
 
 const prefixCls = getPrefixCls('form')
 

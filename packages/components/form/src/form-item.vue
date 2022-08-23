@@ -20,10 +20,10 @@ import { computed, inject, nextTick, onBeforeUnmount, onMounted, provide, ref, t
 import { castArray, get, set, clone, isEqual } from 'lodash'
 import Schema from 'async-validator'
 import { addUnit, isArray, isString, isUndefined, getPrefixCls } from '@shuo-ui/utils'
-import { formContextKey, formItemContextKey } from '@shuo-ui/constants'
+import { formContextKey, formItemContextKey } from './context'
 import type { CSSProperties } from 'vue'
 import type { RuleItem } from 'async-validator'
-import type { FormItemContext, FormItemRule, FormItemProp } from '@shuo-ui/constants'
+import type { FormItemContext, FormItemRule, FormItemProp } from './types'
 import type { Arrayable } from '@shuo-ui/utils/typescript'
 
 const prefixCls = getPrefixCls('form-item')

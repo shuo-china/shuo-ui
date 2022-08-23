@@ -15,7 +15,7 @@
 import { SIcon } from '@shuo-ui/components'
 import { ref, onMounted, computed } from 'vue'
 import { getPrefixCls } from '@shuo-ui/utils'
-import type { MessageType } from './index'
+import type { MessageType } from './types'
 
 const prefixCls = getPrefixCls('message')
 

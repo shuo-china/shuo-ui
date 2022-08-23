@@ -1,4 +1,4 @@
-import type { Ref, InjectionKey } from 'vue'
+import type { Ref } from 'vue'
 import type { ValidateFieldsError, RuleItem } from 'async-validator'
 import type { Arrayable } from '@shuo-ui/utils/typescript'
 
@@ -33,6 +33,3 @@ export interface FormItemContext {
   validate: (trigger: string, callback?: FormItemValidateCallback) => void
   resetField(): void
 }
-
-export const formContextKey: InjectionKey<FormContext> = Symbol('formContextKey')
-export const formItemContextKey: InjectionKey<FormItemContext> = Symbol('formItemContextKey')

@@ -49,8 +49,9 @@
     <template v-else>
       <textarea
         v-bind="$attrs"
-        :disabled="itemDisabled"
         :class="textareaPrefixCls + '-inner'"
+        :value="currentValue"
+        :disabled="itemDisabled"
         @input="handleInput"
         @change="handleChange"
         @focus="handleFocus"

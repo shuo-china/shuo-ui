@@ -27,6 +27,7 @@ $textarea-prefix-cls: #{$css-prefix}textarea;
   }
 
   &-wrapper {
+    position: relative;
     display: inline-flex;
     flex-grow: 1;
     box-sizing: border-box;
