@@ -5,6 +5,7 @@ declare module '@vue/runtime-core' {
     SForm: typeof import('shuo-ui')['SForm']
     SFormItem: typeof import('shuo-ui')['SFormItem']
     SInput: typeof import('shuo-ui')['SInput']
+    STable: typeof import('shuo-ui')['STable']
   }
 
   interface ComponentCustomProperties {

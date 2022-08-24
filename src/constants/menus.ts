@@ -33,6 +33,15 @@ export const menuGroups: Record<string, MenuGroup> = {
       ]
     },
     {
+      title: '数据展示',
+      items: [
+        {
+          name: 'Table',
+          path: '/table'
+        }
+      ]
+    },
+    {
       title: '反馈',
       items: [
         {

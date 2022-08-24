@@ -1,0 +1,5 @@
+$table-prefix-cls: #{$css-prefix}table;
+
+.#{$table-prefix-cls} {
+  background-color: pink;
+}
