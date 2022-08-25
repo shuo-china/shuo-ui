@@ -3,15 +3,17 @@
     <colgroup>
       <col v-for="(column, index) in columns" :key="index" :width="column._width" />
     </colgroup>
-    <thead>
-      <tr>
-        <th v-for="(column, index) in columns" :key="index">
-          <div :class="cellClassNames">
-            <span>{{ column.title }}</span>
-          </div>
-        </th>
-      </tr>
-    </thead>
+    <tbody>
+      <template v-for="(row, index) in data" :key="index">
+        <tr>
+          <td v-for="(column, colIndex) in columns" :key="colIndex">
+            <div :class="cellClassNames">
+              <span>{{ row[column.key] }}</span>
+            </div>
+          </td>
+        </tr>
+      </template>
+    </tbody>
   </table>
 </template>
 
@@ -21,6 +23,7 @@ import { computed } from 'vue'
 const props = defineProps<{
   prefixCls: string
   columns: Record<string, any>[]
+  data: Record<string, any>[]
 }>()
 
 const cellClassNames = computed(() => [`${props.prefixCls}-cell`])

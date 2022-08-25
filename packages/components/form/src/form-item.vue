@@ -17,7 +17,7 @@
 
 <script setup lang="ts" name="SFormItem">
 import { computed, inject, nextTick, onBeforeUnmount, onMounted, provide, ref, toRefs, useSlots } from 'vue'
-import { castArray, get, set, clone, isEqual } from 'lodash'
+import { castArray, get, set, cloneDeep, isEqual } from 'lodash'
 import Schema from 'async-validator'
 import { addUnit, isArray, isString, isUndefined, getPrefixCls } from '@shuo-ui/utils'
 import { formContextKey, formItemContextKey } from './context'
@@ -151,7 +151,7 @@ const resetField: FormItemContext['resetField'] = async () => {
   const fieldValue = get(model, props.prop)
 
   if (!isEqual(fieldValue, initialValues)) {
-    set(model, props.prop, clone(initialValues))
+    set(model, props.prop, cloneDeep(initialValues))
   }
 
   await nextTick()
@@ -162,7 +162,7 @@ const resetField: FormItemContext['resetField'] = async () => {
 onMounted(() => {
   if (props.prop) {
     formContext?.addField(context)
-    initialValues = clone(fieldValue.value)
+    initialValues = cloneDeep(fieldValue.value)
   }
 })
 

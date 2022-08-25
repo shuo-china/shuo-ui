@@ -1,5 +1,8 @@
 $table-prefix-cls: #{$css-prefix}table;
 
 .#{$table-prefix-cls} {
-  background-color: pink;
+  &-header {
+    text-align: left;
+    background-color: pink;
+  }
 }
