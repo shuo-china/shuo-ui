@@ -4,15 +4,13 @@
       <col v-for="(column, index) in columns" :key="index" :width="column._width" />
     </colgroup>
     <tbody>
-      <template v-for="(row, index) in data" :key="index">
-        <tr>
-          <td v-for="(column, colIndex) in columns" :key="colIndex">
-            <div :class="cellClassNames">
-              <span>{{ row[column.key] }}</span>
-            </div>
-          </td>
-        </tr>
-      </template>
+      <tr v-for="(row, index) in data" :key="index">
+        <td v-for="(column, colIndex) in columns" :key="colIndex">
+          <div :class="cellClassNames">
+            <span>{{ row[column.key] }}</span>
+          </div>
+        </td>
+      </tr>
     </tbody>
   </table>
 </template>

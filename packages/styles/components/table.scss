@@ -1,8 +1,41 @@
 $table-prefix-cls: #{$css-prefix}table;
 
 .#{$table-prefix-cls} {
-  &-header {
+  &-wrapper {
+    position: relative;
+  }
+
+  box-sizing: border-box;
+  height: 100%;
+  color: $text-color;
+  font-size: $font-size-base;
+  background-color: $white;
+
+  table {
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    box-sizing: border-box;
     text-align: left;
-    background-color: pink;
+    vertical-align: middle;
+    border-bottom: 1px solid $border-color;
+  }
+
+  th {
+    height: 40px;
+    background-color: $bg-color;
+  }
+
+  td {
+    height: 48px;
+    background-color: $white;
+  }
+
+  &-cell {
+    box-sizing: border-box;
+    padding: 0 18px;
+    word-break: break-all;
   }
 }

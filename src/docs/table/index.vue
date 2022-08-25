@@ -5,14 +5,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { STable } from '@shuo-ui'
 
-const columns = ref([
+const columns = [
   {
     title: 'Name',
-    key: 'name',
-    width: 200
+    key: 'name'
   },
   {
     title: 'Age',
@@ -22,38 +20,32 @@ const columns = ref([
     title: 'Address',
     key: 'address'
   }
-])
+]
 
 const data = [
   {
-    id: '12987122',
-    name: '王小虎',
-    age: 12,
-    address: '江苏省徐州xxx'
+    name: 'John Brown',
+    age: 18,
+    address: 'New York No. 1 Lake Park',
+    date: '2016-10-03'
   },
   {
-    id: '12987122',
-    name: '王小虎',
-    age: 12,
-    address: '江苏省徐州xxx'
+    name: 'Jim Green',
+    age: 24,
+    address: 'London No. 1 Lake Park',
+    date: '2016-10-01'
   },
   {
-    id: '12987122',
-    name: '王小虎',
-    age: 12,
-    address: '江苏省徐州xxx'
+    name: 'Joe Black',
+    age: 30,
+    address: 'Sydney No. 1 Lake Park',
+    date: '2016-10-02'
   },
   {
-    id: '12987122',
-    name: '王小虎',
-    age: 12,
-    address: '江苏省徐州xxx'
-  },
-  {
-    id: '12987122',
-    name: '王小虎',
-    age: 12,
-    address: '江苏省徐州xxx'
+    name: 'Jon Snow',
+    age: 26,
+    address: 'Ottawa No. 2 Lake Park',
+    date: '2016-10-04'
   }
 ]
 </script>
