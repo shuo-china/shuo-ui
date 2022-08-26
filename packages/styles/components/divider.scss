@@ -1,0 +1,55 @@
+$divider-prefix-cls: #{$css-prefix}divider;
+
+.#{$divider-prefix-cls} {
+  position: relative;
+
+  &-horizontal {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 24px 0;
+    border-top: 1px solid $border-color;
+  }
+
+  &-vertical {
+    top: -0.05em;
+    display: inline-block;
+    width: 1px;
+    height: 0.9em;
+    margin: 0 8px;
+    vertical-align: middle;
+    border-left: 1px solid $border-color;
+  }
+
+  &-text {
+    position: absolute;
+    padding: 0 20px;
+    color: $text-color;
+    font-size: $font-size-base;
+    background-color: $white;
+
+    &-center {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &-left {
+      left: 20px;
+      transform: translateY(-50%);
+    }
+
+    &-right {
+      right: 20px;
+      transform: translateY(-50%);
+    }
+  }
+
+  &-dashed {
+    &.#{$divider-prefix-cls}-horizontal {
+      border-top-style: dashed;
+    }
+    &.#{$divider-prefix-cls}-vertical {
+      border-left-style: dashed;
+    }
+  }
+}

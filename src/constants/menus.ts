@@ -20,6 +20,14 @@ export const menuGroups: Record<string, MenuGroup> = {
         {
           name: 'Icon',
           path: '/icon'
+        },
+        {
+          name: 'Divider',
+          path: '/divider'
+        },
+        {
+          name: 'Space',
+          path: '/space'
         }
       ]
     },

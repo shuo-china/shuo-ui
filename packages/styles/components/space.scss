@@ -1,0 +1,41 @@
+$space-prefix-cls: #{$css-prefix}space;
+
+.#{$space-prefix-cls} {
+  display: inline-flex;
+
+  &-flex {
+    display: flex;
+  }
+
+  &-vertical {
+    flex-direction: column;
+  }
+
+  &-horizontal {
+    flex-direction: row;
+  }
+
+  &-wrap {
+    flex-wrap: wrap;
+  }
+
+  &-start {
+    align-items: flex-start;
+  }
+
+  &-end {
+    align-items: flex-end;
+  }
+
+  &-center {
+    align-items: center;
+  }
+
+  &-baseline {
+    align-items: baseline;
+  }
+
+  &-stretch {
+    align-items: stretch;
+  }
+}
