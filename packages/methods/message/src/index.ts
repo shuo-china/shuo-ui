@@ -1,4 +1,4 @@
-import { createApp, watch } from 'vue'
+import { createApp } from 'vue'
 import { getPrefixCls, isString } from '@shuo-ui/utils'
 import MessageComponent from './message.vue'
 import type { App, ComponentPublicInstance } from 'vue'
@@ -48,20 +48,13 @@ function showMessage(app: App) {
   const fragment = document.createDocumentFragment()
   const vm: ComponentPublicInstance<any> = app.mount(fragment)
 
-  rootDom.appendChild(fragment)
-  vm.setVisible(true)
+  vm.setAfterLeaveFn(() => {
+    app.unmount()
+  })
 
-  watch(
-    () => vm.visible,
-    visible => {
-      if (!visible) {
-        // 等待动画结束后卸载
-        setTimeout(() => {
-          app.unmount()
-        }, 300)
-      }
-    }
-  )
+  rootDom.appendChild(fragment)
+
+  vm.setVisible(true)
 
   return vm
 }

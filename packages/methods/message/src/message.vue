@@ -1,5 +1,5 @@
 <template>
-  <transition name="move-down">
+  <transition name="move-down" @after-leave="onAfterLeave">
     <div v-show="visible" :class="[prefixCls + '-notice']">
       <div :class="[prefixCls + '-content']">
         <div :class="iconClassNames">
@@ -56,8 +56,18 @@ onMounted(() => {
   }
 })
 
+const afterLeaveFn = ref<() => void>()
+
+const setAfterLeaveFn = (fn: () => void) => {
+  afterLeaveFn.value = fn
+}
+
+const onAfterLeave = () => {
+  afterLeaveFn.value?.()
+}
+
 defineExpose({
-  visible,
-  setVisible
+  setVisible,
+  setAfterLeaveFn
 })
 </script>
