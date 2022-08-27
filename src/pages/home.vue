@@ -1,67 +1,99 @@
 <template>
-  <div class="wrapper">
-    <div class="logo">
-      <img src="@/assets/images/logo.png" alt="logo" />
+  <div class="main">
+    <div class="banner">
+      <h1>Shuo UI</h1>
+      <p>基于 Vue3，轻量、简约的组件库</p>
+      <s-button type="primary" size="large" @click="router.push(`/components`)">开始使用</s-button>
     </div>
-    <div class="title">一个极简的Vue3组件库</div>
-    <div class="desc">简约，但不简单</div>
-    <div class="btns">
-      <s-button type="primary" class="btns__start" @click="router.push(`/components`)">立即开始</s-button>
+    <div class="editor-wrapper">
+      <div class="editor"><span id="typed"></span></div>
+    </div>
+    <div class="footer">
+      <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License.</a></p>
+      <p>Made with ❤️ <a href="https://github.com/shuo-china" target="_blank">by Shuo</a></p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import Typed from 'typed.js'
 
 const router = useRouter()
+
+let typed
+
+onMounted(() => {
+  const options = {
+    strings: [
+      'Shuo UI is a component library for Vue3.\nWritten in TypeScript.\nExtensive documentations and demos.\nTry it out!'
+    ],
+    typeSpeed: 30
+  }
+
+  typed = new Typed('#typed', options)
+})
+
+onBeforeUnmount(() => {
+  typed?.destroy()
+})
 </script>
 
 <style lang="scss" scoped>
 @import '@shuo-ui/styles/custom.module';
 
-.wrapper {
+.main {
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   min-height: calc(100vh - $navbar-height);
-  padding: 0 $padding-base;
+  padding: 60px $padding-large 0;
   background-color: $white;
 
-  .logo {
-    width: 180px;
-    height: 180px;
-    margin: 0 auto;
-    padding-top: 60px;
+  .banner {
+    text-align: center;
 
-    img {
-      width: 100%;
-      height: 100%;
+    h1 {
+      margin: 0;
+      color: $text-color;
+      font-size: 36px;
+    }
+
+    p {
+      margin: 24px 0;
+      color: $text-secondary-color;
+      font-size: 18px;
     }
   }
 
-  .title {
-    margin-top: 32px;
-    color: $text-color;
-    font-weight: bold;
-    font-size: 26px;
-    text-align: center;
+  .editor-wrapper {
+    flex: 1;
+    margin: 60px auto 0;
+
+    .editor {
+      width: 550px;
+      padding: 24px;
+      color: #f0f0f0;
+      font-size: 22px;
+      font-family: Consolas, monospace;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      text-align: left;
+      background-color: rgb(0 0 0 / 85%);
+      border-radius: 10px;
+      box-shadow: $shadow-base;
+    }
   }
 
-  .desc {
-    margin-top: 16px;
+  .footer {
+    padding: 24px 0;
     color: $text-secondary-color;
-    font-size: $font-size-base;
-    text-align: center;
-  }
-
-  .btns {
-    margin-top: 32px;
+    font-size: 12px;
     text-align: center;
 
-    &__start {
-      width: 170px;
-      height: 50px;
-      font-size: $font-size-large;
-      border-radius: 30px;
+    a {
+      color: $primary-color;
     }
   }
 }

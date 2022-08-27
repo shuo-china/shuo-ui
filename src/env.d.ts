@@ -8,3 +8,4 @@ declare module '*.vue' {
 }
 
 declare module '@shuo-ui'
+declare module 'typed.js'
