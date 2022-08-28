@@ -5,9 +5,13 @@
       <p>基于 Vue3，轻量、简约的组件库</p>
       <s-button type="primary" size="large" @click="router.push(`/components`)">开始使用</s-button>
     </div>
-    <div class="editor-wrapper">
-      <div class="editor"><span id="typed"></span></div>
+
+    <div class="editor">
+      <div class="editor-wrapper">
+        <div class="editor-body"><span id="typed"></span></div>
+      </div>
     </div>
+
     <div class="footer">
       <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License.</a></p>
       <p>Made with ❤️ <a href="https://github.com/shuo-china" target="_blank">by Shuo</a></p>
@@ -26,9 +30,7 @@ let typed
 
 onMounted(() => {
   const options = {
-    strings: [
-      'Shuo UI is a component library for Vue3.\nWritten in TypeScript.\nExtensive documentations and demos.\nTry it out!'
-    ],
+    strings: ['Shuo UI is a component library for Vue3.\nWritten in TypeScript.\nTry it out!'],
     typeSpeed: 30
   }
 
@@ -67,22 +69,26 @@ onBeforeUnmount(() => {
     }
   }
 
-  .editor-wrapper {
+  .editor {
     flex: 1;
-    margin: 60px auto 0;
 
-    .editor {
-      width: 550px;
-      padding: 24px;
-      color: #f0f0f0;
-      font-size: 22px;
-      font-family: Consolas, monospace;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      text-align: left;
-      background-color: rgb(0 0 0 / 85%);
+    .editor-wrapper {
+      max-width: 550px;
+      margin: 40px auto 0;
+      overflow: hidden;
       border-radius: 10px;
-      box-shadow: $shadow-base;
+
+      .editor-body {
+        padding: 24px;
+        color: #f0f0f0;
+        font-size: 22px;
+        font-family: Consolas, monospace;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        text-align: left;
+        background-color: rgb(0 0 0 / 85%);
+        box-shadow: $shadow-base;
+      }
     }
   }
 
