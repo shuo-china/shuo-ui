@@ -7,7 +7,6 @@
       {{ item }}
     </div>
   </s-space>
-  123
 </template>
 
 <script setup lang="ts">
