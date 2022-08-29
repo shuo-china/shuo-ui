@@ -64,6 +64,7 @@ const isShowCode = ref(false)
     .showcase {
       padding: $padding-base;
       overflow-x: auto;
+      color: $text-color;
     }
 
     .showcode {
@@ -77,7 +78,8 @@ const isShowCode = ref(false)
       justify-content: center;
       padding: 8px 0;
       color: $text-secondary-color;
-      font-size: $font-size-base;
+      font-size: $font-size-small;
+      line-height: 1;
       text-align: center;
       background-color: #fff;
       border-top: 1px solid $border-color;

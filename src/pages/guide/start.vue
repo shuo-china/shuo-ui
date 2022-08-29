@@ -40,12 +40,10 @@ app.use(shuoUI)
 app.mount('#app')
 `
 
-const code2 = `// tsconfig.json
-{
-  "compilerOptions": {
-    "types": ["shuo-ui/dist/types/global"]
-  }
-}`
+const code2 = `"compilerOptions": {
+  "types": ["shuo-ui/dist/types/global"]
+}
+`
 
 const code3 = `<template>
   <s-button>I am Button</s-button>

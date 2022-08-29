@@ -179,7 +179,7 @@ watch(
 
   .app-main {
     margin-left: 0;
-    padding: 0 $padding-base;
+    padding: 48px $padding-base;
   }
 }
 </style>

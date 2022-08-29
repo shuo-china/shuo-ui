@@ -164,6 +164,7 @@ $textarea-prefix-cls: #{$css-prefix}textarea;
     transition-duration: $transition-duration;
     transition-property: border-color, box-shadow;
     resize: vertical;
+    @include placeholder;
 
     &:hover {
       border-color: $primary-color;

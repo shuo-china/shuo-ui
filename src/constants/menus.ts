@@ -35,6 +35,10 @@ export const menuGroups: Record<string, MenuGroup> = {
       title: '数据录入',
       items: [
         {
+          name: 'Form',
+          path: '/form'
+        },
+        {
           name: 'Input',
           path: '/input'
         }

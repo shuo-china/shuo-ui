@@ -48,7 +48,6 @@ const router = useRouter()
     cursor: pointer;
 
     .logo {
-      width: 25px;
       height: 25px;
     }
 
@@ -99,7 +98,7 @@ const router = useRouter()
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 0 10px;
+    padding: 0 $padding-base;
     background-color: $bg-color;
 
     &__left {
