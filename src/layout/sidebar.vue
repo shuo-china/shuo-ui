@@ -78,7 +78,7 @@ watch(
   overflow-y: auto;
   font-size: $font-size-base;
   background-color: #fff;
-  border-right: 1px solid $border-color;
+  border-right: 1px solid #ebebeb;
   user-select: none;
 
   &::-webkit-scrollbar {
@@ -127,7 +127,7 @@ watch(
   margin-left: $sidebar-width;
   padding: 48px;
   overflow-x: auto;
-  background-color: $white;
+  background-color: #fafafa;
 }
 
 .app-fade-enter-active,

@@ -37,7 +37,7 @@ const router = useRouter()
   height: $navbar-height;
   padding: 0 $padding-large;
   background-color: $white;
-  border-bottom: 1px solid $border-color;
+  border-bottom: 1px solid #ebebeb;
   user-select: none;
 
   &__left {

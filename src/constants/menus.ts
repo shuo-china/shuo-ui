@@ -14,19 +14,19 @@ export const menuGroups: Record<string, MenuGroup> = {
       title: '基础',
       items: [
         {
-          name: 'Button',
+          name: 'Button 按钮',
           path: '/button'
         },
         {
-          name: 'Icon',
+          name: 'Icon 图标',
           path: '/icon'
         },
         {
-          name: 'Divider',
+          name: 'Divider 分割线',
           path: '/divider'
         },
         {
-          name: 'Space',
+          name: 'Space 间距',
           path: '/space'
         }
       ]
@@ -35,11 +35,11 @@ export const menuGroups: Record<string, MenuGroup> = {
       title: '数据录入',
       items: [
         {
-          name: 'Form',
+          name: 'Form 表单',
           path: '/form'
         },
         {
-          name: 'Input',
+          name: 'Input 输入框',
           path: '/input'
         }
       ]
@@ -48,7 +48,7 @@ export const menuGroups: Record<string, MenuGroup> = {
       title: '数据展示',
       items: [
         {
-          name: 'Table',
+          name: 'Table 表格',
           path: '/table'
         }
       ]
@@ -57,7 +57,7 @@ export const menuGroups: Record<string, MenuGroup> = {
       title: '反馈',
       items: [
         {
-          name: 'Message',
+          name: 'Message 消息提示',
           path: '/message'
         }
       ]

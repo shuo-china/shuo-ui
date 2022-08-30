@@ -57,12 +57,13 @@ const isShowCode = ref(false)
 
   &__example {
     margin: 12px 0;
+    overflow: hidden;
     background-color: #fff;
-    border: 1px solid $border-color;
-    border-radius: $border-radius-base;
+    border: 1px solid #ebebeb;
+    border-radius: $border-radius-large;
 
     .showcase {
-      padding: $padding-base;
+      padding: 30px;
       overflow-x: auto;
       color: $text-color;
     }
@@ -77,19 +78,19 @@ const isShowCode = ref(false)
       display: flex;
       justify-content: center;
       padding: 8px 0;
-      color: $text-secondary-color;
+      color: #999;
       font-size: $font-size-small;
       line-height: 1;
       text-align: center;
       background-color: #fff;
-      border-top: 1px solid $border-color;
+      border-top: 1px solid #ebebeb;
       cursor: pointer;
       transition: all $transition-duration;
       user-select: none;
 
       &:hover {
         color: $text-color;
-        background-color: $bg-color;
+        background-color: #ebebeb;
       }
 
       .icon {

@@ -2,7 +2,7 @@
   <div class="demo-wrapper">
     <div class="doc__title">Icon</div>
     <div class="doc__desc">提供了一套常用的图标集合。</div>
-    <demo :code="Demo1_Code" title="基础">
+    <demo :code="Demo1_Code" title="基础用法">
       <demo1 />
     </demo>
     <div class="icon-list">

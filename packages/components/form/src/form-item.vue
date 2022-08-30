@@ -5,7 +5,7 @@
       <slot name="label">{{ label }}</slot>
     </label>
     <!-- content -->
-    <div :class="[prefixCls + '-content']">
+    <div :class="[prefixCls + '-content']" :style="contentStyles">
       <slot></slot>
       <!-- error-tip -->
       <transition name="fade">
@@ -28,13 +28,18 @@ import type { Arrayable } from '@shuo-ui/utils/typescript'
 
 const prefixCls = getPrefixCls('form-item')
 
-const props = defineProps<{
-  label?: string
-  labelWidth?: string | number
-  prop?: FormItemProp
-  rules?: Arrayable<FormItemRule>
-  required?: boolean
-}>()
+const props = withDefaults(
+  defineProps<{
+    label?: string
+    labelWidth?: string | number
+    prop?: FormItemProp
+    rules?: Arrayable<FormItemRule>
+    required?: boolean
+  }>(),
+  {
+    required: undefined
+  }
+)
 
 const slots = useSlots()
 
@@ -61,6 +66,21 @@ const labelStyles = computed<CSSProperties>(() => {
   if (labelWidth) {
     return {
       width: labelWidth
+    }
+  }
+  return {}
+})
+
+const contentStyles = computed<CSSProperties>(() => {
+  if (formContext?.labelPosition.value === 'top' || formContext?.inline.value) {
+    return {}
+  }
+  if (!props.label && !slots.label) {
+    const labelWidth = addUnit(props.labelWidth || formContext?.labelWidth.value || '')
+    if (labelWidth) {
+      return {
+        marginLeft: labelWidth
+      }
     }
   }
   return {}
@@ -120,6 +140,7 @@ const getFilteredRules: (trigger: string) => RuleItem[] = trigger => {
 
 const validate: FormItemContext['validate'] = (trigger, callback) => {
   const rules = getFilteredRules(trigger)
+
   if (rules.length === 0) {
     callback?.(true)
     return

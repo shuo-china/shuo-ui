@@ -25,8 +25,8 @@ export interface FormItemRule extends RuleItem {
 export type FormItemValidateCallback = FormValidateCallback
 
 export interface FormItemContext {
-  labelWidth: Ref<string | number>
-  required: Ref<number | undefined>
+  labelWidth: Ref<string | number | undefined>
+  required: Ref<boolean | undefined>
   label: Ref<string | undefined>
   prop: Ref<FormItemProp | undefined>
   rules: Ref<Arrayable<FormItemRule> | undefined>
