@@ -47,6 +47,19 @@ $font-size-large: 15px;
 $font-family: 'Helvetica Neue', helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', arial,
   sans-serif;
 
+// Screen
+$sm: 768px;
+$md: 992px;
+$lg: 1200px;
+$xl: 1920px;
+$screens: (
+  'xs': '(max-width: #{$sm})',
+  'sm': '(min-width: #{$sm})',
+  'md': '(min-width: #{$md})',
+  'lg': '(min-width: #{$lg})',
+  'xl': '(min-width: #{$xl})'
+);
+
 /* stylelint-disable-next-line selector-pseudo-class-no-unknown */
 :export {
   /* stylelint-disable-next-line property-no-unknown */

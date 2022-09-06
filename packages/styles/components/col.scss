@@ -1,0 +1,70 @@
+@use 'sass:map';
+@use 'sass:math';
+
+$col-prefix-cls: #{$css-prefix}col;
+
+.#{$col-prefix-cls} {
+  box-sizing: border-box;
+}
+
+@for $i from 1 through 24 {
+  .#{$col-prefix-cls}-#{$i} {
+    @if $i == 0 {
+      display: none;
+    }
+
+    flex: 0 0 (math.div(1, 24) * $i * 100) * 1%;
+  }
+
+  .#{$col-prefix-cls}-offset-#{$i} {
+    margin-left: (math.div(1, 24) * $i * 100) * 1%;
+  }
+
+  .#{$col-prefix-cls}-pull-#{$i} {
+    position: relative;
+    right: (math.div(1, 24) * $i * 100) * 1%;
+  }
+
+  .#{$col-prefix-cls}-push-#{$i} {
+    position: relative;
+    left: (math.div(1, 24) * $i * 100) * 1%;
+  }
+}
+
+@mixin col-media($screen) {
+  @media only screen and #{map.get($screens, $screen)} {
+    @for $i from 1 through 24 {
+      .#{$col-prefix-cls}-#{$screen}-#{$i} {
+        @if $i == 0 {
+          display: none;
+        }
+
+        flex: 0 0 (math.div(1, 24) * $i * 100) * 1%;
+      }
+
+      .#{$col-prefix-cls}-#{$screen}-offset-#{$i} {
+        margin-left: (math.div(1, 24) * $i * 100) * 1%;
+      }
+
+      .#{$col-prefix-cls}-#{$screen}-pull-#{$i} {
+        position: relative;
+        right: (math.div(1, 24) * $i * 100) * 1%;
+      }
+
+      .#{$col-prefix-cls}-#{$screen}-push-#{$i} {
+        position: relative;
+        left: (math.div(1, 24) * $i * 100) * 1%;
+      }
+    }
+  }
+}
+
+@include col-media(xs);
+
+@include col-media(sm);
+
+@include col-media(md);
+
+@include col-media(lg);
+
+@include col-media(xl);

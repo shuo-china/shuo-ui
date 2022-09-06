@@ -1,0 +1,42 @@
+$row-prefix-cls: #{$css-prefix}row;
+
+.#{$row-prefix-cls} {
+  display: flex;
+  flex-flow: row wrap;
+
+  &-top {
+    align-items: flex-start;
+  }
+
+  &-middle {
+    align-items: center;
+  }
+
+  &-bottom {
+    align-items: flex-end;
+  }
+
+  &-start {
+    justify-content: start;
+  }
+
+  &-end {
+    justify-content: end;
+  }
+
+  &-center {
+    justify-content: center;
+  }
+
+  &-space-around {
+    justify-content: space-around;
+  }
+
+  &-space-between {
+    justify-content: space-between;
+  }
+
+  &-space-evenly {
+    justify-content: space-evenly;
+  }
+}

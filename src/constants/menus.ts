@@ -28,6 +28,10 @@ export const menuGroups: Record<string, MenuGroup> = {
         {
           name: 'Space 间距',
           path: '/space'
+        },
+        {
+          name: 'Layout 布局',
+          path: '/layout'
         }
       ]
     },
