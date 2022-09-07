@@ -8,24 +8,14 @@
 
 <script setup lang="ts" name="SDivider">
 import { computed, useSlots } from 'vue'
+import { dividerProps } from './divider'
 import { getPrefixCls } from '@shuo-ui/utils'
 
 const prefixCls = getPrefixCls('divider')
 
 const slots = useSlots()
 
-const props = withDefaults(
-  defineProps<{
-    direction?: 'horizontal' | 'vertical'
-    contentPosition?: 'left' | 'right' | 'center'
-    dashed?: boolean
-  }>(),
-  {
-    direction: 'horizontal',
-    contentPosition: 'center',
-    dashed: false
-  }
-)
+const props = defineProps(dividerProps)
 
 const classNames = computed(() => [
   prefixCls,

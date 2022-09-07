@@ -9,27 +9,13 @@
 
 <script setup lang="ts" name="SButton">
 import { computed } from 'vue'
+import { buttonProps } from './button'
 import { SIcon } from '@shuo-ui/components'
 import { getPrefixCls } from '@shuo-ui/utils'
 
 const prefixCls = getPrefixCls('button')
 
-const props = withDefaults(
-  defineProps<{
-    type?: 'default' | 'primary' | 'success' | 'error' | 'warning'
-    size?: 'small' | 'medium' | 'large'
-    loading?: boolean
-    round?: boolean
-    nativeType?: 'button' | 'submit' | 'reset'
-  }>(),
-  {
-    type: 'default',
-    size: 'medium',
-    loading: false,
-    round: false,
-    nativeType: 'button'
-  }
-)
+const props = defineProps(buttonProps)
 
 const classNames = computed(() => [
   prefixCls,

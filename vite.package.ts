@@ -26,10 +26,12 @@ const config: UserConfig = {
       formats: ['es', 'umd']
     },
     rollupOptions: {
-      external: ['vue', 'lodash'],
+      external: ['vue', 'lodash', 'async-validator'],
       output: {
         globals: {
-          vue: 'Vue'
+          vue: 'Vue',
+          lodash: 'lodash',
+          'async-validator': 'async-validator'
         }
       }
     }

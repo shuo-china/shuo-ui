@@ -14,6 +14,7 @@ $col-prefix-cls: #{$css-prefix}col;
     }
 
     flex: 0 0 (math.div(1, 24) * $i * 100) * 1%;
+    max-width: (math.div(1, 24) * $i * 100) * 1%;
   }
 
   .#{$col-prefix-cls}-offset-#{$i} {
@@ -40,6 +41,7 @@ $col-prefix-cls: #{$css-prefix}col;
         }
 
         flex: 0 0 (math.div(1, 24) * $i * 100) * 1%;
+        max-width: (math.div(1, 24) * $i * 100) * 1%;
       }
 
       .#{$col-prefix-cls}-#{$screen}-offset-#{$i} {

@@ -70,6 +70,7 @@ export default {
 
 <script setup lang="ts">
 import { ref, watch, computed, useSlots } from 'vue'
+import { inputProps, inputEmits } from './input'
 import { SIcon } from '@shuo-ui/components'
 import { useFormItem } from '@shuo-ui/hooks'
 import { getPrefixCls } from '@shuo-ui/utils'
@@ -79,29 +80,9 @@ type TargetElement = HTMLInputElement | HTMLTextAreaElement
 const inputPrefixCls = getPrefixCls('input')
 const textareaPrefixCls = getPrefixCls('textarea')
 
-const props = withDefaults(
-  defineProps<{
-    type?: string
-    modelValue?: string | number
-    size?: 'small' | 'medium' | 'large'
-    clearable?: boolean
-    disabled?: boolean
-  }>(),
-  {
-    type: 'text',
-    size: 'medium',
-    clearable: false,
-    disabled: false
-  }
-)
+const props = defineProps(inputProps)
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
-  (e: 'input', value: string): void
-  (e: 'change', value: string): void
-  (e: 'focus', value: Event): void
-  (e: 'blur', value: Event): void
-}>()
+const emit = defineEmits(inputEmits)
 
 const slots = useSlots()
 

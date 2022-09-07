@@ -17,29 +17,18 @@
 
 <script setup lang="ts" name="SFormItem">
 import { computed, inject, nextTick, onBeforeUnmount, onMounted, provide, ref, toRefs, useSlots } from 'vue'
+import { formItemProps } from './form-item'
 import { castArray, get, set, cloneDeep, isEqual } from 'lodash'
 import Schema from 'async-validator'
 import { addUnit, isArray, isString, isUndefined, getPrefixCls } from '@shuo-ui/utils'
 import { formContextKey, formItemContextKey } from './context'
 import type { CSSProperties } from 'vue'
 import type { RuleItem } from 'async-validator'
-import type { FormItemContext, FormItemRule, FormItemProp } from './types'
-import type { Arrayable } from '@shuo-ui/utils/typescript'
+import type { FormItemContext, FormItemRule } from './types'
 
 const prefixCls = getPrefixCls('form-item')
 
-const props = withDefaults(
-  defineProps<{
-    label?: string
-    labelWidth?: string | number
-    prop?: FormItemProp
-    rules?: Arrayable<FormItemRule>
-    required?: boolean
-  }>(),
-  {
-    required: undefined
-  }
-)
+const props = defineProps(formItemProps)
 
 const slots = useSlots()
 

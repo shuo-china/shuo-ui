@@ -2,7 +2,7 @@
   <div class="main">
     <div class="banner">
       <h1>Shuo UI</h1>
-      <p>基于 Vue3 的轻量、简约的组件库</p>
+      <p>一个轻量的 Vue3 组件库</p>
       <s-button type="primary" size="large" @click="router.push(`/components`)">开始使用</s-button>
     </div>
 

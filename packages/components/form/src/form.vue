@@ -6,36 +6,16 @@
 
 <script setup lang="ts" name="SForm">
 import { computed, provide, toRefs } from 'vue'
+import { formProps } from './form'
 import { castArray, isEqual } from 'lodash'
 import { getPrefixCls } from '@shuo-ui/utils'
 import { formContextKey } from './context'
 import type { ValidateFieldsError } from 'async-validator'
-import type {
-  FormRules,
-  FormContext,
-  FormItemContext,
-  FormValidateCallback,
-  FormValidationResult,
-  FormItemProp
-} from './types'
+import type { FormContext, FormItemContext, FormValidateCallback, FormValidationResult, FormItemProp } from './types'
 
 const prefixCls = getPrefixCls('form')
 
-const props = withDefaults(
-  defineProps<{
-    model?: Record<string, any>
-    rules?: FormRules
-    labelWidth?: string | number
-    labelPosition?: 'top' | 'left' | 'right'
-    inline?: boolean
-    disabled?: boolean
-  }>(),
-  {
-    labelPosition: 'right',
-    inline: false,
-    disalbed: false
-  }
-)
+const props = defineProps(formProps)
 
 const classNames = computed(() => [
   prefixCls,

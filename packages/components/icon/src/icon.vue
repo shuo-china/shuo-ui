@@ -4,6 +4,7 @@
 
 <script setup lang="ts" name="SIcon">
 import { computed } from 'vue'
+import { iconProps } from './icon'
 import { addUnit, isUndefined } from '@shuo-ui/utils'
 import { getPrefixCls } from '@shuo-ui/utils'
 import customStyles from '@shuo-ui/styles/custom.module.scss'
@@ -11,12 +12,7 @@ import type { CSSProperties } from 'vue'
 
 const prefixCls = getPrefixCls('icons')
 
-const props = defineProps<{
-  name: string
-  size?: number | string
-  color?: string
-  spin?: boolean
-}>()
+const props = defineProps(iconProps)
 
 const classNames = computed(() => [
   prefixCls,

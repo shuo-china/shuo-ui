@@ -66,6 +66,7 @@ const isShowCode = ref(false)
       padding: 30px;
       overflow-x: auto;
       color: $text-color;
+      font-size: 14px;
     }
 
     .showcode {

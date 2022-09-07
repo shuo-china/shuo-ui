@@ -1,6 +1,24 @@
 import { h, computed } from 'vue'
-import { isValidElementNode, isFragment, getPrefixCls, isString, isNumber, isArray } from '@shuo-ui/utils'
+import {
+  isValidElementNode,
+  isFragment,
+  getPrefixCls,
+  isString,
+  isNumber,
+  isArray,
+  isEmpty,
+  definePropType,
+  Arrayable
+} from '@shuo-ui/utils'
 import type { VNode, VNodeArrayChildren, CSSProperties } from 'vue'
+
+export const SpaceType = ['flex', 'inline-flex'] as const
+
+export const SpaceDirection = ['horizontal', 'vertical'] as const
+
+export const SpaceAlign = ['start', 'end', 'center', 'baseline', 'stretch'] as const
+
+type SpaceSize = Arrayable<keyof typeof spaceSize | number>
 
 const spaceSize = {
   small: 8,
@@ -12,32 +30,38 @@ export default {
   name: 'SSpace',
   props: {
     size: {
-      type: [String, Number, Array],
-      default: 'small'
+      type: definePropType<SpaceSize>([String, Number, Array]),
+      default: 'small',
+      validator: value => {
+        if (isString(value)) {
+          return Object.keys(spaceSize).includes(value)
+        } else if (isArray(value)) {
+          return !isEmpty(value) && value.every(v => isNumber(v) || Object.keys(spaceSize).includes(v))
+        } else if (isNumber(value)) {
+          return true
+        } else {
+          return false
+        }
+      }
     },
     wrap: {
       type: Boolean,
       default: false
     },
     type: {
-      type: String,
-      validator(value) {
-        return ['inline-flex', 'flex'].includes(value)
-      },
-      default: 'inline-flex'
+      type: definePropType<typeof SpaceType[number]>(String),
+      default: 'inline-flex',
+      validator: value => SpaceType.includes(value)
     },
     direction: {
-      type: String,
-      validator: value => {
-        return ['horizontal', 'vertical'].includes(value)
-      },
-      default: 'horizontal'
+      type: definePropType<typeof SpaceDirection[number]>(String),
+      default: 'horizontal',
+      validator: value => SpaceDirection.includes(value)
     },
     align: {
-      type: String,
-      validator: value => {
-        return ['start', 'end', 'center', 'baseline', 'stretch'].includes(value)
-      }
+      type: definePropType<typeof SpaceAlign[number]>(String),
+      default: '',
+      validator: value => [...SpaceAlign, ''].includes(value)
     }
   },
   setup(props, { slots }) {
