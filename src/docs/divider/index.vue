@@ -1,7 +1,7 @@
 <template>
-  <div class="demo-wrapper">
-    <div class="doc__title">Divider</div>
-    <div class="doc__desc">区隔内容的分割线。</div>
+  <div>
+    <div class="doc__title">Divider 分割线</div>
+    <div class="doc__desc">区隔内容的分割线</div>
     <demo :code="Demo1_Code" title="水平分割线">
       <demo1 />
     </demo>

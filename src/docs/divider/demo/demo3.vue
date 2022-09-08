@@ -1,9 +1,9 @@
 <template>
   <div>
-    <span>Prince</span>
+    <span>枯藤</span>
     <s-divider direction="vertical" />
-    <span>Fox </span>
+    <span>老树</span>
     <s-divider direction="vertical" />
-    <span>Rose </span>
+    <span>昏鸦</span>
   </div>
 </template>

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <span>I thought that I was rich, with a flower that was unique in all the world; and all I had was a common rose. A common rose.</span>
+    <span>靡不有初，鲜克有终。</span>
     <s-divider />
-    <span>I thought that I was rich, with a flower that was unique in all the world; and all I had was a common rose. A common rose.</span>
+    <span>靡不有初，鲜克有终。</span>
     <s-divider dashed />
-    <span>I thought that I was rich, with a flower that was unique in all the world; and all I had was a common rose. A common rose.</span>
+    <span>靡不有初，鲜克有终。</span>
   </div>
 </template>

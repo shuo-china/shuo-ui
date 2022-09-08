@@ -28,7 +28,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       },
       plugins: [vue(), vueSetupExtend()],
       server: {
-        port: 8888
+        port: 8824
       }
     }
   }

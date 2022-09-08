@@ -44,7 +44,6 @@ const code2 = `"compilerOptions": {
   "types": ["shuo-ui/dist/types/global"]
 }
 `
-
 const code3 = `<template>
   <s-button>I am Button</s-button>
 </template>

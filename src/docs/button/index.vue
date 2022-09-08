@@ -1,7 +1,7 @@
 <template>
-  <div class="demo-wrapper">
-    <div class="doc__title">Button</div>
-    <div class="doc__desc">常用的操作按钮。</div>
+  <div>
+    <div class="doc__title">Button 按钮</div>
+    <div class="doc__desc">常用的操作按钮</div>
     <demo :code="Demo1_Code" title="基础用法">
       <demo1 />
     </demo>

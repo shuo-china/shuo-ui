@@ -1,5 +1,7 @@
 <template>
   <div>
+    <div class="doc__title">Table 表格</div>
+    <div class="doc__desc">这个组件太难写了，容我再想想</div>
     <s-table :columns="columns" :data="data"></s-table>
   </div>
 </template>

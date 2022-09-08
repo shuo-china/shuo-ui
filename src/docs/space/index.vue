@@ -1,7 +1,7 @@
 <template>
-  <div class="demo-wrapper">
-    <div class="doc__title">Space</div>
-    <div class="doc__desc">设置组件之间的间距。</div>
+  <div>
+    <div class="doc__title">Space 间距</div>
+    <div class="doc__desc">设置组件之间的间距</div>
     <demo :code="Demo1_Code" title="基础用法">
       <demo1 />
     </demo>

@@ -1,7 +1,7 @@
 <template>
-  <div class="demo-wrapper">
-    <div class="doc__title">Form</div>
-    <div class="doc__desc">具有数据收集、校验和提交功能的表单。</div>
+  <div>
+    <div class="doc__title">Form 表单</div>
+    <div class="doc__desc">具有数据收集、校验和提交功能的表单</div>
     <demo :code="Demo1_Code" title="基础用法">
       <demo1 />
     </demo>

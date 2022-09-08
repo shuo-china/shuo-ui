@@ -1,7 +1,7 @@
 <template>
-  <div class="demo-wrapper">
-    <div class="doc__title">Input</div>
-    <div class="doc__desc">通过鼠标或键盘输入字符。</div>
+  <div>
+    <div class="doc__title">Input 输入框</div>
+    <div class="doc__desc">通过鼠标或键盘输入字符</div>
     <demo :code="Demo1_Code" title="基础用法">
       <demo1 />
     </demo>

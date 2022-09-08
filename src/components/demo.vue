@@ -1,24 +1,22 @@
 <template>
   <div class="demo">
-    <div class="demo__title">{{ title }}</div>
-    <div v-if="desc" class="demo__desc">{{ desc }}</div>
-    <div class="demo__example">
-      <div class="showcase">
+    <div class="demo-header">
+      <div class="title">{{ title }}</div>
+      <div class="toolbar">
+        <div class="toolbar-item" title="查看源码" @click="isShowCode = !isShowCode">
+          <s-icon name="code" :size="18" />
+        </div>
+      </div>
+    </div>
+    <div class="demo-content">
+      <p v-if="desc" class="desc">{{ desc }}</p>
+      <div class="example">
         <slot></slot>
       </div>
-      <transition name="fade">
-        <div v-show="isShowCode" v-highlight class="showcode">
-          <pre><code v-text="code"></code></pre>
-        </div>
-      </transition>
-      <div class="showbar" @click="isShowCode = !isShowCode">
-        <div class="icon">
-          <s-icon v-if="isShowCode" name="up" :size="14" />
-          <s-icon v-else name="down" :size="14" />
-        </div>
-        <span>
-          {{ isShowCode ? '收起代码' : '显示代码' }}
-        </span>
+    </div>
+    <div v-show="isShowCode" class="demo-footer">
+      <div v-highlight>
+        <pre><code v-text="code"></code></pre>
       </div>
     </div>
   </div>
@@ -40,63 +38,59 @@ const isShowCode = ref(false)
 @import '@shuo-ui/styles/custom.module';
 
 .demo {
-  margin: 48px 0;
+  margin-bottom: 24px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
 
-  &__title {
-    margin-bottom: 12px;
-    color: $text-color;
-    font-weight: bold;
-    font-size: $font-size-large;
+  &-header {
+    display: flex;
+    align-items: center;
+    padding: 20px 24px;
+
+    .title {
+      flex: 1;
+      color: $text-color;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      color: $text-secondary-color;
+
+      &-item {
+        margin-left: 6px;
+        cursor: pointer;
+      }
+    }
   }
 
-  &__desc {
-    margin: 12px 0;
-    color: $text-secondary-color;
-    font-size: 14px;
-  }
+  &-content {
+    padding: 0 24px 20px;
 
-  &__example {
-    margin: 12px 0;
-    overflow: hidden;
-    background-color: #fff;
-    border: 1px solid #ebebeb;
-    border-radius: $border-radius-large;
+    .desc {
+      margin-top: 0;
+      margin-bottom: 16px;
+      color: $text-color;
+      font-size: 14px;
+      line-height: 1.6;
+    }
 
-    .showcase {
-      padding: 30px;
-      overflow-x: auto;
+    .example {
       color: $text-color;
       font-size: 14px;
     }
+  }
 
-    .showcode {
-      pre {
-        margin: 0;
-      }
-    }
+  &-footer {
+    margin: 0 -1px;
+    overflow: hidden;
+    border-bottom-right-radius: $border-radius-base;
+    border-bottom-left-radius: $border-radius-base;
 
-    .showbar {
-      display: flex;
-      justify-content: center;
-      padding: 8px 0;
-      color: #999;
-      font-size: $font-size-small;
-      line-height: 1;
-      text-align: center;
-      background-color: #fff;
-      border-top: 1px solid #ebebeb;
-      cursor: pointer;
-      transition: all $transition-duration;
-      user-select: none;
-
-      &:hover {
-        color: $text-color;
-        background-color: #ebebeb;
-      }
-
-      .icon {
-        margin-right: 12px;
-      }
+    pre {
+      margin: 0;
     }
   }
 }

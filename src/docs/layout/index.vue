@@ -1,7 +1,7 @@
 <template>
-  <div class="demo-wrapper">
-    <div class="doc__title">Layout</div>
-    <div class="doc__desc">通过基础的 24 分栏，迅速简便地创建布局。</div>
+  <div>
+    <div class="doc__title">Layout 布局</div>
+    <div class="doc__desc">通过基础的 24 分栏，迅速简便地创建布局</div>
     <demo :code="Demo1_Code" title="基础用法">
       <demo1 />
     </demo>
