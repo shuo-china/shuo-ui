@@ -48,11 +48,11 @@ function showMessage(app: App) {
   const fragment = document.createDocumentFragment()
   const vm: ComponentPublicInstance<any> = app.mount(fragment)
 
+  rootDom.appendChild(fragment)
+
   vm.setAfterLeaveFn(() => {
     app.unmount()
   })
-
-  rootDom.appendChild(fragment)
 
   vm.setVisible(true)
 

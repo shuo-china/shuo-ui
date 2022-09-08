@@ -28,6 +28,7 @@
 </template>
 
 <script setup lang="ts">
+/* eslint-disable no-useless-escape */
 const code1 = `// main.ts
 import { createApp } from 'vue'
 import shuoUI from 'shuo-ui'

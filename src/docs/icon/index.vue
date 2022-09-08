@@ -33,6 +33,7 @@ import { Demo1, Demo1_Code } from './demo'
   margin-bottom: 16px;
   padding: 0 $padding-small;
   background-color: #fff;
+  border: 1px solid $border-color;
   border-radius: $border-radius-base;
 
   .icon {
