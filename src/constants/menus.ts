@@ -45,6 +45,10 @@ export const menuGroups: Record<string, MenuGroup> = {
         {
           name: 'Input 输入框',
           path: '/input'
+        },
+        {
+          name: 'Radio 单选框',
+          path: '/radio'
         }
       ]
     },
