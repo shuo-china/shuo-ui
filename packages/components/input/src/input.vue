@@ -72,8 +72,9 @@ export default {
 import { ref, watch, computed, useSlots } from 'vue'
 import { inputProps, inputEmits } from './input'
 import { SIcon } from '@shuo-ui/components'
-import { useFormItem } from '@shuo-ui/hooks'
-import { getPrefixCls } from '@shuo-ui/utils'
+import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '@shuo-ui/constants'
+import { useDisabled, useFormItem, useSize } from '@shuo-ui/hooks'
+import { getPrefixCls, isNil } from '@shuo-ui/utils'
 
 type TargetElement = HTMLInputElement | HTMLTextAreaElement
 
@@ -90,7 +91,7 @@ const classNames = computed(() =>
   props.type !== 'textarea'
     ? [
         inputPrefixCls,
-        `${inputPrefixCls}-${props.size}`,
+        `${inputPrefixCls}-${itemSize.value}`,
         {
           [`${inputPrefixCls}-with-prepend`]: !!slots.prepend,
           [`${inputPrefixCls}-with-append`]: !!slots.append,
@@ -107,19 +108,17 @@ const classNames = computed(() =>
       ]
 )
 
-const { form, formItem } = useFormItem()
+const { formItem } = useFormItem()
 
-const itemDisabled = computed(() => {
-  let state = props.disabled
-  if (!state && form) {
-    state = form.disabled.value
-  }
-
-  return !!state
-})
+const itemSize = useSize()
+const itemDisabled = useDisabled()
 
 const focused = ref(false)
+
 const showPwd = ref(false)
+const toogleShowPwd = () => {
+  showPwd.value = !showPwd.value
+}
 
 const currentType = computed(() => {
   let type = props.type
@@ -132,42 +131,39 @@ const currentType = computed(() => {
 const currentValue = ref(props.modelValue)
 
 const setCurrentValue = value => {
-  if (value === currentValue.value) return
-  currentValue.value = value
-  formItem?.validate('change')
+  const inputValue = isNil(value) ? '' : String(value)
+  if (inputValue === currentValue.value) return
+  currentValue.value = inputValue
+  formItem?.validate(CHANGE_EVENT)
 }
 
-const toogleShowPwd = () => {
-  showPwd.value = !showPwd.value
-}
-
-const handleClear = () => {
-  emit('update:modelValue', '')
-  emit('input', '')
-  setCurrentValue('')
-}
-
-const handleInput = async (event: Event) => {
+const handleInput = (event: Event) => {
   const { value } = event.target as TargetElement
 
-  emit('update:modelValue', value)
-  emit('input', value)
+  emit(UPDATE_MODEL_EVENT, value)
+  emit(INPUT_EVENT, value)
   setCurrentValue(value)
 }
 
 const handleChange = (event: Event) => {
-  emit('change', (event.target as TargetElement).value)
+  emit(CHANGE_EVENT, (event.target as TargetElement).value)
 }
 
 const handleFocus = (event: Event) => {
   focused.value = true
-  emit('focus', event)
+  emit(FOCUS_EVENT, event)
 }
 
 const handleBlur = (event: Event) => {
   focused.value = false
-  emit('blur', event)
-  formItem?.validate('blur')
+  emit(BLUR_EVENT, event)
+  formItem?.validate(BLUR_EVENT)
+}
+
+const handleClear = () => {
+  emit(UPDATE_MODEL_EVENT, '')
+  emit(INPUT_EVENT, '')
+  setCurrentValue('')
 }
 
 watch(

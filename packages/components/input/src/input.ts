@@ -1,6 +1,7 @@
 import { definePropType, isString } from '@shuo-ui/utils'
+import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '@shuo-ui/constants'
 
-export const InputSize = ['small', 'medium', 'large'] as const
+export const InputSize = ['small', 'default', 'large'] as const
 
 export const inputProps = {
   type: {
@@ -13,7 +14,6 @@ export const inputProps = {
   },
   size: {
     type: definePropType<typeof InputSize[number]>(String),
-    default: 'medium',
     validator: value => InputSize.includes(value)
   },
   clearable: {
@@ -27,9 +27,9 @@ export const inputProps = {
 }
 
 export const inputEmits = {
-  'update:modelValue': (value: string) => isString(value),
-  input: (value: string) => isString(value),
-  change: (value: string) => isString(value),
-  focus: (e: Event) => e instanceof Event,
-  blur: (e: Event) => e instanceof Event
+  [UPDATE_MODEL_EVENT]: (value: string) => isString(value),
+  [INPUT_EVENT]: (value: string) => isString(value),
+  [CHANGE_EVENT]: (value: string) => isString(value),
+  [FOCUS_EVENT]: (e: Event) => e instanceof Event,
+  [BLUR_EVENT]: (e: Event) => e instanceof Event
 }

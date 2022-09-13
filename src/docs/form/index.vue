@@ -14,9 +14,12 @@
     <demo :code="Demo4_Code" title="表单校验">
       <demo4 />
     </demo>
+    <demo :code="Demo5_Code" title="尺寸">
+      <demo5 />
+    </demo>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Demo1, Demo1_Code, Demo2, Demo2_Code, Demo3, Demo3_Code, Demo4, Demo4_Code } from './demo'
+import { Demo1, Demo1_Code, Demo2, Demo2_Code, Demo3, Demo3_Code, Demo4, Demo4_Code, Demo5, Demo5_Code } from './demo'
 </script>

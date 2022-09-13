@@ -51,6 +51,32 @@ $form-item-prefix-cls: #{$css-prefix}form-item;
   margin-bottom: 24px;
   font-size: $font-size-base;
 
+  &-small {
+    font-size: $font-size-small;
+
+    .#{$form-item-prefix-cls}-label {
+      height: 26px;
+      line-height: 26px;
+    }
+
+    .#{$form-item-prefix-cls}-content {
+      line-height: 26px;
+    }
+  }
+
+  &-large {
+    font-size: $font-size-large;
+
+    .#{$form-item-prefix-cls}-label {
+      height: 42px;
+      line-height: 42px;
+    }
+
+    .#{$form-item-prefix-cls}-content {
+      line-height: 42px;
+    }
+  }
+
   &-label {
     display: inline-flex;
     flex: 0 0 auto;

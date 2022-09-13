@@ -1,6 +1,7 @@
 import type { Ref } from 'vue'
 import type { ValidateFieldsError, RuleItem } from 'async-validator'
 import type { Arrayable } from '@shuo-ui/utils/typescript'
+import type { ComponentSize } from '@shuo-ui/constants'
 
 export type FormRules = Record<string, Arrayable<FormItemRule>>
 
@@ -14,6 +15,7 @@ export interface FormContext {
   model: Ref<Record<string, any> | undefined>
   rules: Ref<FormRules | undefined>
   labelWidth: Ref<number | string | undefined>
+  size: Ref<ComponentSize | undefined>
   addField: (field: FormItemContext) => void
   removeField: (field: FormItemContext) => void
 }
@@ -30,6 +32,7 @@ export interface FormItemContext {
   label: Ref<string | undefined>
   prop: Ref<FormItemProp | undefined>
   rules: Ref<Arrayable<FormItemRule> | undefined>
+  size: Ref<ComponentSize | undefined>
   validate: (trigger: string, callback?: FormItemValidateCallback) => void
   resetField(): void
 }

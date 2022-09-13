@@ -21,6 +21,7 @@ import { formItemProps } from './form-item'
 import { castArray, get, set, cloneDeep, isEqual } from 'lodash'
 import Schema from 'async-validator'
 import { addUnit, isArray, isString, isUndefined, getPrefixCls } from '@shuo-ui/utils'
+import { useSize } from '@shuo-ui/hooks'
 import { formContextKey, formItemContextKey } from './context'
 import type { CSSProperties } from 'vue'
 import type { RuleItem } from 'async-validator'
@@ -32,6 +33,8 @@ const props = defineProps(formItemProps)
 
 const slots = useSlots()
 
+const size = useSize()
+
 let initialValues = undefined
 
 const validateState = ref<'' | 'error' | 'validating' | 'success'>('')
@@ -41,6 +44,7 @@ const formContext = inject(formContextKey, undefined)
 
 const classNames = computed(() => [
   prefixCls,
+  `${prefixCls}-${size.value}`,
   {
     [`${prefixCls}-required`]: isRequired.value,
     [`${prefixCls}-error`]: validateState.value === 'error'

@@ -1,8 +1,8 @@
 import { definePropType } from '@shuo-ui/utils'
+import { componentSizes } from '@shuo-ui/constants'
+import type { ComponentSize } from '@shuo-ui/constants'
 
 export const ButtonType = ['default', 'primary', 'success', 'warning', 'error'] as const
-
-export const ButtonSize = ['small', 'medium', 'large'] as const
 
 export const ButtonNativeType = ['button', 'submit', 'reset'] as const
 
@@ -13,9 +13,9 @@ export const buttonProps = {
     validator: value => ButtonType.includes(value)
   },
   size: {
-    type: definePropType<typeof ButtonSize[number]>(String),
-    default: 'medium',
-    validator: value => ButtonSize.includes(value)
+    type: definePropType<ComponentSize>(String),
+    default: 'default',
+    validator: value => componentSizes.includes(value)
   },
   nativeType: {
     type: definePropType<typeof ButtonNativeType[number]>(String),

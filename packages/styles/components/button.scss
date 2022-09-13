@@ -20,13 +20,13 @@ $button-prefix-cls: #{$css-prefix}button;
   transition: all 0.3s;
   user-select: none;
 
-  &-small {
+  &-size-small {
     height: 28px;
     padding: 0 10px;
     font-size: $font-size-small;
   }
 
-  &-large {
+  &-size-large {
     height: 40px;
     padding: 0 18px;
     font-size: $font-size-large;

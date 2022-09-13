@@ -20,7 +20,7 @@ const props = defineProps(buttonProps)
 const classNames = computed(() => [
   prefixCls,
   `${prefixCls}-${props.type}`,
-  `${prefixCls}-${props.size}`,
+  `${prefixCls}-size-${props.size}`,
   {
     [`${prefixCls}-loading`]: !!props.loading,
     [`${prefixCls}-round`]: !!props.round
