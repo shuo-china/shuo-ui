@@ -85,7 +85,7 @@ const propString = computed(() => {
 })
 
 const fieldValue = computed(() => {
-  const model = formContext?.model.value
+  const model = formContext?.model?.value
   if (!model || !props.prop) {
     return
   }
@@ -96,7 +96,7 @@ const fieldValue = computed(() => {
 const allRules = computed(() => {
   const rules: FormItemRule[] = props.rules ? castArray(props.rules) : []
 
-  const formRules = formContext?.rules.value
+  const formRules = formContext?.rules?.value
   if (formRules && props.prop) {
     const _rules = get(formRules, props.prop)
     if (_rules) {
@@ -160,7 +160,7 @@ const validate: FormItemContext['validate'] = (trigger, callback) => {
 }
 
 const resetField: FormItemContext['resetField'] = async () => {
-  const model = formContext?.model.value
+  const model = formContext?.model?.value
   if (!model || !props.prop) return
   const fieldValue = get(model, props.prop)
 
@@ -188,7 +188,7 @@ const context: FormItemContext = {
   ...toRefs(props),
   validate,
   resetField
-} as FormItemContext
+}
 
 provide(formItemContextKey, context)
 </script>

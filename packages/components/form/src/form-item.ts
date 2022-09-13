@@ -2,6 +2,7 @@ import { Arrayable, definePropType } from '@shuo-ui/utils'
 import { componentSizes } from '@shuo-ui/constants'
 import type { ComponentSize } from '@shuo-ui/constants'
 import type { FormItemProp, FormItemRule } from './types'
+import type { ExtractPropTypes } from 'vue'
 
 export const formItemProps = {
   label: String,
@@ -24,3 +25,5 @@ export const formItemProps = {
     validator: value => componentSizes.includes(value)
   }
 }
+
+export type FormItemProps = ExtractPropTypes<typeof formItemProps>

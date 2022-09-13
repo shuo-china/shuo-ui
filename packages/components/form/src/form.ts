@@ -2,6 +2,7 @@ import { definePropType } from '@shuo-ui/utils'
 import { componentSizes } from '@shuo-ui/constants'
 import type { ComponentSize } from '@shuo-ui/constants'
 import type { FormRules } from './types'
+import type { ExtractPropTypes } from 'vue'
 
 export const FormLabelPosition = ['top', 'left', 'right'] as const
 
@@ -32,3 +33,5 @@ export const formProps = {
     validator: value => componentSizes.includes(value)
   }
 }
+
+export type FormProps = ExtractPropTypes<typeof formProps>

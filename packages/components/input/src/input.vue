@@ -17,7 +17,7 @@
           :class="inputPrefixCls + '-inner'"
           :type="currentType"
           :value="currentValue"
-          :disabled="itemDisabled"
+          :disabled="disabled"
           @input="handleInput"
           @change="handleChange"
           @focus="handleFocus"
@@ -27,14 +27,14 @@
         <span :class="inputPrefixCls + '-suffix'">
           <slot name="suffix"></slot>
           <s-icon
-            v-if="type === 'password' && !itemDisabled"
+            v-if="type === 'password' && !disabled"
             :name="showPwd ? 'eye' : 'eye-close'"
             :class="[inputPrefixCls + '-icon', inputPrefixCls + '-icon-pwd']"
             @click="toogleShowPwd"
           />
 
           <s-icon
-            v-if="clearable && currentValue && !itemDisabled"
+            v-if="clearable && currentValue && !disabled"
             name="close-circle-fill"
             :class="[inputPrefixCls + '-icon', inputPrefixCls + '-icon-clear']"
             @click="handleClear"
@@ -51,7 +51,7 @@
         v-bind="$attrs"
         :class="textareaPrefixCls + '-inner'"
         :value="currentValue"
-        :disabled="itemDisabled"
+        :disabled="disabled"
         @input="handleInput"
         @change="handleChange"
         @focus="handleFocus"
@@ -91,18 +91,18 @@ const classNames = computed(() =>
   props.type !== 'textarea'
     ? [
         inputPrefixCls,
-        `${inputPrefixCls}-${itemSize.value}`,
+        `${inputPrefixCls}-${size.value}`,
         {
           [`${inputPrefixCls}-with-prepend`]: !!slots.prepend,
           [`${inputPrefixCls}-with-append`]: !!slots.append,
-          [`${inputPrefixCls}-disabled`]: itemDisabled.value,
+          [`${inputPrefixCls}-disabled`]: disabled.value,
           [`${inputPrefixCls}-focus`]: focused.value
         }
       ]
     : [
         textareaPrefixCls,
         {
-          [`${textareaPrefixCls}-disabled`]: itemDisabled.value,
+          [`${textareaPrefixCls}-disabled`]: disabled.value,
           [`${textareaPrefixCls}-focus`]: focused.value
         }
       ]
@@ -110,8 +110,8 @@ const classNames = computed(() =>
 
 const { formItem } = useFormItem()
 
-const itemSize = useSize()
-const itemDisabled = useDisabled()
+const size = useSize()
+const disabled = useDisabled()
 
 const focused = ref(false)
 

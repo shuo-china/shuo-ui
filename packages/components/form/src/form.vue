@@ -47,7 +47,7 @@ const getFieldsByProps = (props: FormItemProp): FormItemContext[] => {
 
   const propsArr = castArray(props)
   return propsArr.length
-    ? fields.filter(field => field.prop.value && propsArr.some(prop => isEqual(field.prop.value, prop)))
+    ? fields.filter(field => field.prop?.value && propsArr.some(prop => isEqual(field.prop?.value, prop)))
     : fields
 }
 
@@ -106,7 +106,7 @@ const context: FormContext = {
   ...toRefs(props),
   addField,
   removeField
-} as FormContext
+}
 
 provide(formContextKey, context)
 

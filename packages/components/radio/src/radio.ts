@@ -1,5 +1,6 @@
-import { UPDATE_MODEL_EVENT } from '@shuo-ui/constants'
+import { UPDATE_MODEL_EVENT, componentSizes } from '@shuo-ui/constants'
 import { definePropType, isBoolean, isNumber, isString } from '@shuo-ui/utils'
+import type { ComponentSize } from '@shuo-ui/constants'
 
 export const RadioSize = ['small', 'default', 'large'] as const
 
@@ -17,9 +18,8 @@ export const radioProps = {
     default: false
   },
   size: {
-    type: definePropType<typeof RadioSize[number]>(String),
-    default: 'default',
-    validator: value => RadioSize.includes(value)
+    type: definePropType<ComponentSize>(String),
+    validator: value => componentSizes.includes(value)
   }
 }
 

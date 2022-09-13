@@ -1,33 +1,31 @@
 <template>
-  <div>
-    <input v-model="currentValue" type="radio" :value="label" @change="handleChange" />
-  </div>
+  <label>
+    <span>
+      <!-- 单选框 -->
+      <span></span>
+      <!-- 隐藏输入框 -->
+      <input v-model="currentValue" type="radio" :value="label" />
+    </span>
+    <span>
+      <slot>{{ label }}</slot>
+    </span>
+  </label>
 </template>
 
 <script setup lang="ts" name="SRadio">
-import { ref, watch } from 'vue'
+import { computed } from 'vue'
 import { radioProps, radioEmits } from './radio'
 import { UPDATE_MODEL_EVENT } from '@shuo-ui/constants'
 
 const props = defineProps(radioProps)
 const emit = defineEmits(radioEmits)
 
-const handleChange = (event: Event) => {
-  const { value } = event.target as HTMLInputElement
-
-  emit(UPDATE_MODEL_EVENT, value)
-}
-
-const currentValue = ref(props.modelValue)
-
-const setCurrentValue = value => {
-  currentValue.value = value
-}
-
-watch(
-  () => props.modelValue,
-  newValue => {
-    setCurrentValue(newValue)
+const currentValue = computed({
+  get() {
+    return props.modelValue
+  },
+  set(value) {
+    emit(UPDATE_MODEL_EVENT, value)
   }
-)
+})
 </script>
