@@ -65,50 +65,50 @@ export default {
     }
   },
   setup(props, { slots }) {
+    const prefixCls = getPrefixCls('space')
+
+    const getSize = (size: string | number) => {
+      return (isString(size) ? spaceSize[size] : size || 0) + 'px'
+    }
+
+    const _align = computed(() => {
+      if (!props.align) {
+        return props.direction === 'horizontal' ? 'center' : 'stretch'
+      }
+      return props.align
+    })
+
+    const styles = computed(() => {
+      const style: CSSProperties = {}
+      if (isString(props.size) || isNumber(props.size)) {
+        style.gap = getSize(props.size)
+      } else if (isArray(props.size)) {
+        if (props.size.length === 1) {
+          style.columnGap = getSize(props.size[0])
+        } else if (props.size.length > 1) {
+          style.columnGap = getSize(props.size[0])
+          style.rowGap = getSize(props.size[1])
+        }
+      }
+
+      return style
+    })
+
+    const classNames = computed(() => [
+      prefixCls,
+      `${prefixCls}-${props.direction}`,
+      `${prefixCls}-${_align.value}`,
+      {
+        [`${prefixCls}-flex`]: props.type === 'flex',
+        [`${prefixCls}-wrap`]: !!props.wrap
+      }
+    ])
+
     return () => {
       const children = slots.default?.()
       if ((children || []).length === 0) {
         return null
       }
-
-      const prefixCls = getPrefixCls('space')
-
-      const getSize = (size: string | number) => {
-        return (isString(size) ? spaceSize[size] : size || 0) + 'px'
-      }
-
-      const _align = computed(() => {
-        if (!props.align) {
-          return props.direction === 'horizontal' ? 'center' : 'stretch'
-        }
-        return props.align
-      })
-
-      const styles = computed(() => {
-        const style: CSSProperties = {}
-        if (isString(props.size) || isNumber(props.size)) {
-          style.gap = getSize(props.size)
-        } else if (isArray(props.size)) {
-          if (props.size.length === 1) {
-            style.columnGap = getSize(props.size[0])
-          } else if (props.size.length > 1) {
-            style.columnGap = getSize(props.size[0])
-            style.rowGap = getSize(props.size[1])
-          }
-        }
-
-        return style
-      })
-
-      const classNames = computed(() => [
-        prefixCls,
-        `${prefixCls}-${props.direction}`,
-        `${prefixCls}-${_align.value}`,
-        {
-          [`${prefixCls}-flex`]: props.type === 'flex',
-          [`${prefixCls}-wrap`]: !!props.wrap
-        }
-      ])
 
       if (isArray(children)) {
         const extractedChildren: VNode[] = []
