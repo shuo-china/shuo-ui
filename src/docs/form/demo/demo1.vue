@@ -3,6 +3,12 @@
     <s-form-item label="姓名">
       <s-input v-model="form.name" />
     </s-form-item>
+    <s-form-item label="性别">
+      <s-radio-group v-model="form.gender">
+        <s-radio :label="1">男</s-radio>
+        <s-radio :label="2">女</s-radio>
+      </s-radio-group>
+    </s-form-item>
     <s-form-item>
       <s-button type="primary" @click="onSubmit">Submit</s-button>
     </s-form-item>
@@ -13,7 +19,8 @@
 import { reactive } from 'vue'
 
 const form = reactive({
-  name: ''
+  name: '',
+  gender: ''
 })
 
 const onSubmit = () => {

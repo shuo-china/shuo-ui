@@ -1,5 +1,5 @@
 <template>
-  <s-form :model="form" :label-width="80" inline>
+  <s-form :model="form" :label-width="80" disabled>
     <s-form-item label="姓名">
       <s-input v-model="form.name" />
     </s-form-item>
@@ -9,21 +9,15 @@
         <s-radio :label="2">女</s-radio>
       </s-radio-group>
     </s-form-item>
-    <s-form-item>
-      <s-button type="primary" @click="onSubmit">Submit</s-button>
-    </s-form-item>
   </s-form>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+  import { reactive } from 'vue'
 
-const form = reactive({
-  name: '',
-  gender: ''
-})
+  const form = reactive({
+    name: '',
+    gender: ''
+  })
 
-const onSubmit = () => {
-  console.log('submit', form)
-}
-</script>
+  </script>

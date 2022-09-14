@@ -97,6 +97,7 @@ $textarea-prefix-cls: #{$css-prefix}textarea;
     @include placeholder;
 
     &[disabled] {
+      color: $disabled-text-color;
       cursor: not-allowed;
     }
   }
@@ -140,7 +141,7 @@ $textarea-prefix-cls: #{$css-prefix}textarea;
     cursor: not-allowed;
 
     .#{$input-prefix-cls}-wrapper {
-      background-color: $bg-color;
+      background-color: $disabled-bg-color;
     }
   }
 }
@@ -180,7 +181,8 @@ $textarea-prefix-cls: #{$css-prefix}textarea;
 
   &-disabled {
     .#{$textarea-prefix-cls}-inner {
-      background-color: $bg-color;
+      color: $disabled-text-color;
+      background-color: $disabled-bg-color;
       cursor: not-allowed;
     }
   }

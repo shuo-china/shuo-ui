@@ -1,7 +1,7 @@
 import { definePropType } from '@shuo-ui/utils'
 import { componentSizes } from '@shuo-ui/constants'
+import { radioEmits } from './radio'
 import type { ComponentSize } from '@shuo-ui/constants'
-import type { ExtractPropTypes } from 'vue'
 
 export const radioGroupProps = {
   modelValue: {
@@ -18,4 +18,4 @@ export const radioGroupProps = {
   }
 }
 
-export type RadioGroupProps = ExtractPropTypes<typeof radioGroupProps>
+export const radioGroupEmits = radioEmits

@@ -46,14 +46,14 @@ $button-prefix-cls: #{$css-prefix}button;
   }
 
   &[disabled] {
-    color: $text-secondary-color;
-    background-color: $bg-color;
+    color: $disabled-text-color;
+    background-color: $disabled-bg-color;
     border: 1px solid $border-color;
     cursor: no-drop;
 
     &:hover,
     &:active {
-      color: $text-secondary-color;
+      color: $disabled-text-color;
       border-color: $border-color;
     }
   }

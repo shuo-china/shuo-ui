@@ -1,4 +1,4 @@
-import { UPDATE_MODEL_EVENT, componentSizes } from '@shuo-ui/constants'
+import { UPDATE_MODEL_EVENT, CHANGE_EVENT, componentSizes } from '@shuo-ui/constants'
 import { definePropType, isBoolean, isNumber, isString } from '@shuo-ui/utils'
 import type { ComponentSize } from '@shuo-ui/constants'
 
@@ -25,5 +25,5 @@ export const radioProps = {
 
 export const radioEmits = {
   [UPDATE_MODEL_EVENT]: (value: string | number | boolean) => isString(value) || isNumber(value) || isBoolean(value),
-  change: (value: string | number | boolean) => isString(value) || isNumber(value) || isBoolean(value)
+  [CHANGE_EVENT]: (value: string | number | boolean) => isString(value) || isNumber(value) || isBoolean(value)
 }
