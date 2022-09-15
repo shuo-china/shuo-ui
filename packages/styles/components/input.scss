@@ -88,6 +88,7 @@ $textarea-prefix-cls: #{$css-prefix}textarea;
 
   &-inner {
     flex-grow: 1;
+    width: 100%;
     height: 34px;
     padding: 0;
     line-height: 34px;
@@ -142,6 +143,7 @@ $textarea-prefix-cls: #{$css-prefix}textarea;
 
     .#{$input-prefix-cls}-wrapper {
       background-color: $disabled-bg-color;
+      border-color: $border-color;
     }
   }
 }
@@ -184,6 +186,10 @@ $textarea-prefix-cls: #{$css-prefix}textarea;
       color: $disabled-text-color;
       background-color: $disabled-bg-color;
       cursor: not-allowed;
+
+      &:hover {
+        border-color: $border-color;
+      }
     }
   }
 }

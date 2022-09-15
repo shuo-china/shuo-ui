@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="doc__title">Table 表格</div>
-    <div class="doc__desc">这个组件功能繁杂，容我再想想</div>
+    <div class="doc__desc">表格功能繁杂，还在开发中...</div>
     <s-table :columns="columns" :data="data"></s-table>
   </div>
 </template>
@@ -26,28 +26,19 @@ const columns = [
 
 const data = [
   {
-    name: 'John Brown',
+    name: '李逍遥',
+    age: 19,
+    address: '小渔村'
+  },
+  {
+    name: '赵灵儿',
+    age: 16,
+    address: '仙灵岛'
+  },
+  {
+    name: '林月如',
     age: 18,
-    address: 'New York No. 1 Lake Park',
-    date: '2016-10-03'
-  },
-  {
-    name: 'Jim Green',
-    age: 24,
-    address: 'London No. 1 Lake Park',
-    date: '2016-10-01'
-  },
-  {
-    name: 'Joe Black',
-    age: 30,
-    address: 'Sydney No. 1 Lake Park',
-    date: '2016-10-02'
-  },
-  {
-    name: 'Jon Snow',
-    age: 26,
-    address: 'Ottawa No. 2 Lake Park',
-    date: '2016-10-04'
+    address: '林家堡'
   }
 ]
 </script>

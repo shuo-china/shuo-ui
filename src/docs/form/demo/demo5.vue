@@ -1,10 +1,6 @@
 <template>
-  <s-space direction="vertical" size="large">
-    <s-space>
-      <s-button @click="size='small'">Small</s-button>
-      <s-button @click="size='default'">Default</s-button>
-      <s-button @click="size='large'">Large</s-button>
-    </s-space>
+  <div>
+    <prop-option v-model="size" />
     <s-form :model="form" :label-width="80" :size="size">
       <s-form-item label="姓名">
         <s-input v-model="form.name" />
@@ -16,7 +12,7 @@
         </s-radio-group>
       </s-form-item>
     </s-form>
-  </s-space>
+  </div>
 </template>
 
 <script lang="ts" setup>

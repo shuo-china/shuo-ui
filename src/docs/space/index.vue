@@ -8,9 +8,12 @@
     <demo :code="Demo2_Code" title="垂直间距">
       <demo2 />
     </demo>
+    <demo :code="Demo3_Code" title="尺寸">
+      <demo3 />
+    </demo>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Demo1, Demo1_Code, Demo2, Demo2_Code } from './demo'
+import { Demo1, Demo1_Code, Demo2, Demo2_Code, Demo3, Demo3_Code } from './demo'
 </script>

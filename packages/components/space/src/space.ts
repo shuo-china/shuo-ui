@@ -22,8 +22,8 @@ type SpaceSize = Arrayable<keyof typeof spaceSize | number>
 
 const spaceSize = {
   small: 8,
-  middle: 16,
-  large: 24
+  default: 12,
+  large: 16
 }
 
 export default {
@@ -31,14 +31,14 @@ export default {
   props: {
     size: {
       type: definePropType<SpaceSize>([String, Number, Array]),
-      default: 'small',
+      default: 'default',
       validator: value => {
         if (isString(value)) {
           return Object.keys(spaceSize).includes(value)
-        } else if (isArray(value)) {
-          return !isEmpty(value) && value.every(v => isNumber(v) || Object.keys(spaceSize).includes(v))
         } else if (isNumber(value)) {
           return true
+        } else if (isArray(value)) {
+          return !isEmpty(value) && value.every(v => isNumber(v) || Object.keys(spaceSize).includes(v))
         } else {
           return false
         }
