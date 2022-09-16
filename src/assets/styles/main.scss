@@ -1,5 +1,9 @@
 @import '@shuo-ui/styles/custom.module';
 
+.hljs {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
 .doc {
   &__title {
     margin-bottom: 16px;

@@ -82,7 +82,7 @@ onBeforeUnmount(() => {
         padding: 24px;
         color: #f0f0f0;
         font-size: 22px;
-        font-family: Consolas, monospace;
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
         line-height: 1.6;
         white-space: pre-wrap;
         text-align: left;
