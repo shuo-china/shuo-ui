@@ -56,6 +56,10 @@ export const menuGroups: Record<string, MenuGroup> = {
       title: '数据展示',
       items: [
         {
+          name: 'Carousel 走马灯',
+          path: '/carousel'
+        },
+        {
           name: 'Table 表格',
           path: '/table'
         }
