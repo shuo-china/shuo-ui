@@ -1,4 +1,5 @@
-import type { Ref } from 'vue'
+import { carouselProps } from './carousel'
+import type { ExtractPropTypes, Ref } from 'vue'
 
 export interface CarouselContext {
   root: Ref<HTMLDivElement>
@@ -8,5 +9,7 @@ export interface CarouselContext {
 }
 
 export interface CarouselItemContext {
-  translateItem: (index: number, activeIndex: number) => void
+  translateItem: (index: number, activeIndex: number, oldActiveIndex: number) => void
 }
+
+export type CarouselProps = ExtractPropTypes<typeof carouselProps>

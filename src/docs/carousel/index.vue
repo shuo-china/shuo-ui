@@ -9,6 +9,15 @@
     <s-carousel-item>
       <div class="demo">3</div>
     </s-carousel-item>
+    <s-carousel-item>
+      <div class="demo">4</div>
+    </s-carousel-item>
+    <s-carousel-item>
+      <div class="demo">5</div>
+    </s-carousel-item>
+    <s-carousel-item>
+      <div class="demo">6</div>
+    </s-carousel-item>
   </s-carousel>
 </template>
 
