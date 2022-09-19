@@ -1,7 +1,7 @@
 <template>
   <div>
     <prop-option v-model="direction" :options="options" />
-    <s-carousel :loop="true" :height="300" :direction="direction" arrow="hover" :initial-index="1">
+    <s-carousel :loop="true" :height="300" :direction="direction" arrow="hover">
       <s-carousel-item>
         <div class="demo">1</div>
       </s-carousel-item>
@@ -46,6 +46,13 @@ const options = [
 <style lang="scss" scoped>
 .demo {
   height: 300px;
-  background-color: #364d79;
+}
+
+.s-carousel-item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.s-carousel-item:nth-child(2n + 1) {
+  background-color: #d3dce6;
 }
 </style>

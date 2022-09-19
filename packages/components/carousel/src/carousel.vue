@@ -35,6 +35,7 @@
             [prefixCls + '-indicator-active']: index === activeIndex
           }
         ]"
+        @mouseenter="handleIndicatorHover(index)"
         @click.stop="handleIndicatorClick(index)"
       >
         <button></button>
@@ -44,7 +45,7 @@
 </template>
 
 <script setup lang="ts" name="SCarousel">
-import { computed, onMounted, provide, ref, toRefs, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, provide, ref, toRefs, watch } from 'vue'
 import { carouselProps } from './carousel'
 import { getPrefixCls, addUnit } from '@shuo-ui/utils'
 import { carouselContextKey } from './context'
@@ -52,6 +53,8 @@ import { SIcon } from '@shuo-ui/components'
 import { throttle } from 'lodash'
 import type { CarouselContext, CarouselItemContext } from './types'
 import type { Ref } from 'vue'
+
+const THROTTLE_TIME = 500
 
 const prefixCls = getPrefixCls('carousel')
 
@@ -71,23 +74,25 @@ const arrowDisplay = computed(() => props.arrow !== 'never' && isVertical.value 
 
 const activeIndex = ref(-1)
 
-const setActiveItem = throttle(
-  (index: number) => {
-    const itemCount = items.value.length
+const _setActiveItem = (index: number) => {
+  const itemCount = items.value.length
 
-    if (index < 0) {
-      activeIndex.value = props.loop ? itemCount - 1 : 0
-    } else if (index >= itemCount) {
-      activeIndex.value = props.loop ? 0 : itemCount - 1
-    } else {
-      activeIndex.value = index
-    }
-  },
-  500,
-  {
-    trailing: false
+  if (index < 0) {
+    activeIndex.value = props.loop ? itemCount - 1 : 0
+  } else if (index >= itemCount) {
+    activeIndex.value = props.loop ? 0 : itemCount - 1
+  } else {
+    activeIndex.value = index
   }
-)
+}
+
+const setActiveItem = throttle(_setActiveItem, THROTTLE_TIME, {
+  trailing: false
+})
+
+const setActiveItemTrailing = throttle(_setActiveItem, THROTTLE_TIME, {
+  trailing: true
+})
 
 function prev() {
   setActiveItem(activeIndex.value - 1)
@@ -98,7 +103,13 @@ const next = () => {
 }
 
 const handleIndicatorClick = (index: number) => {
-  setActiveItem(index)
+  setActiveItemTrailing(index)
+}
+
+const handleIndicatorHover = (index: number) => {
+  if (props.trigger === 'hover' && index !== activeIndex.value) {
+    setActiveItemTrailing(index)
+  }
 }
 
 const playSlides = () => {
@@ -174,6 +185,10 @@ onMounted(() => {
   if (props.initialIndex < items.value.length && props.initialIndex >= 0) {
     activeIndex.value = props.initialIndex
   }
+})
+
+onBeforeUnmount(() => {
+  pauseTimer()
 })
 
 const items = ref<CarouselItemContext[]>([])
