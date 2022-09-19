@@ -1,15 +1,31 @@
 <template>
-  <div ref="root" :class="prefixCls">
-    <div :class="[prefixCls + '-container']">
-      <button :class="[prefixCls + '-arrow', prefixCls + '-arrow-left']" @click.stop="prev">
-        <s-icon name="left" :size="12" />
-      </button>
-      <button :class="[prefixCls + '-arrow', prefixCls + '-arrow-right']" @click.stop="next">
-        <s-icon name="right" :size="12" />
-      </button>
+  <div ref="root" :class="prefixCls" @mouseenter.stop="handleMouseEnter" @mouseleave.stop="handleMouseLeave">
+    <div :class="[prefixCls + '-container']" :style="{ height: addUnit(height) }">
+      <!-- prev -->
+      <transition v-if="arrowDisplay" name="fade">
+        <button
+          v-show="(arrow === 'always' || hover) && (props.loop || activeIndex > 0)"
+          :class="[prefixCls + '-arrow', prefixCls + '-arrow-left']"
+          @click.stop="prev"
+        >
+          <s-icon name="left" :size="12" />
+        </button>
+      </transition>
+      <!-- next -->
+      <transition v-if="arrowDisplay" name="fade">
+        <button
+          v-show="(arrow === 'always' || hover) && (props.loop || activeIndex < items.length - 1)"
+          :class="[prefixCls + '-arrow', prefixCls + '-arrow-right']"
+          @click.stop="next"
+        >
+          <s-icon name="right" :size="12" />
+        </button>
+      </transition>
+
       <slot></slot>
     </div>
-    <ul :class="[prefixCls + '-indicators']">
+    <!-- indicator -->
+    <ul :class="indicatorsClassNames">
       <li
         v-for="(item, index) in items"
         :key="index"
@@ -28,9 +44,9 @@
 </template>
 
 <script setup lang="ts" name="SCarousel">
-import { onMounted, provide, ref, toRefs, watch } from 'vue'
+import { computed, onMounted, provide, ref, toRefs, watch } from 'vue'
 import { carouselProps } from './carousel'
-import { getPrefixCls } from '@shuo-ui/utils'
+import { getPrefixCls, addUnit } from '@shuo-ui/utils'
 import { carouselContextKey } from './context'
 import { SIcon } from '@shuo-ui/components'
 import { throttle } from 'lodash'
@@ -39,9 +55,19 @@ import type { Ref } from 'vue'
 
 const prefixCls = getPrefixCls('carousel')
 
+const indicatorsClassNames = computed(() => [`${prefixCls}-indicators`, `${prefixCls}-indicators-${props.direction}`])
+
 const props = defineProps(carouselProps)
 
 const root = ref<HTMLDivElement>() as Ref<HTMLDivElement>
+
+const timer = ref<ReturnType<typeof setInterval> | null>(null)
+
+const hover = ref(false)
+
+const isVertical = computed(() => props.direction === 'left' || props.direction === 'right')
+
+const arrowDisplay = computed(() => props.arrow !== 'never' && isVertical.value === false)
 
 const activeIndex = ref(-1)
 
@@ -57,7 +83,7 @@ const setActiveItem = throttle(
       activeIndex.value = index
     }
   },
-  400,
+  500,
   {
     trailing: false
   }
@@ -75,21 +101,79 @@ const handleIndicatorClick = (index: number) => {
   setActiveItem(index)
 }
 
+const playSlides = () => {
+  if (activeIndex.value < items.value.length - 1) {
+    activeIndex.value = activeIndex.value + 1
+  } else if (props.loop) {
+    activeIndex.value = 0
+  }
+}
+
+function startTimer() {
+  if (props.interval <= 0 || !props.autoplay || timer.value) return
+  timer.value = setInterval(() => playSlides(), props.interval)
+}
+
+function pauseTimer() {
+  if (timer.value) {
+    clearInterval(timer.value)
+    timer.value = null
+  }
+}
+
 const resetItemPosition = (oldActiveIndex: number) => {
   items.value.forEach((item, index) => {
     item.translateItem(index, activeIndex.value, oldActiveIndex)
   })
 }
 
+const handleMouseEnter = () => {
+  hover.value = true
+  if (props.pauseOnHover) {
+    pauseTimer()
+  }
+}
+
+const handleMouseLeave = () => {
+  hover.value = false
+  startTimer()
+}
+
 watch(
   () => activeIndex.value,
-  (current, prev) => {
+  (_, prev) => {
     resetItemPosition(prev)
   }
 )
 
+watch(
+  () => props.loop,
+  () => {
+    resetItemPosition(activeIndex.value)
+  }
+)
+
+watch(
+  () => props.direction,
+  () => {
+    resetItemPosition(activeIndex.value)
+  }
+)
+
+watch(
+  () => props.autoplay,
+  current => {
+    current ? startTimer() : pauseTimer()
+  },
+  {
+    immediate: true
+  }
+)
+
 onMounted(() => {
-  activeIndex.value = 0
+  if (props.initialIndex < items.value.length && props.initialIndex >= 0) {
+    activeIndex.value = props.initialIndex
+  }
 })
 
 const items = ref<CarouselItemContext[]>([])
@@ -107,6 +191,7 @@ const removeItem: CarouselContext['removeItem'] = item => {
 
 const context: CarouselContext = {
   ...toRefs(props),
+  isVertical,
   root,
   items,
   addItem,

@@ -21,9 +21,13 @@ const classNames = computed(() => [
   }
 ])
 
-const styles = computed<CSSProperties>(() => ({
-  transform: `translateX(${translate.value}px)`
-}))
+const styles = computed<CSSProperties>(() => {
+  const translateType = `translate${carouselContext?.isVertical.value ? 'Y' : 'X'}`
+
+  return {
+    transform: `${translateType}(${translate.value}px)`
+  }
+})
 
 const ready = ref(false)
 
@@ -41,7 +45,7 @@ const isAnimating = (index: number, activeIndex: number, oldActiveIndex: number,
 
     const rangeData = isGrow ? range(oldActiveIndex, activeIndex + 1) : range(activeIndex, oldActiveIndex + 1)
 
-    if (!isReverse) {
+    if (!carouselContext?.loop.value || !isReverse) {
       return rangeData.includes(index)
     } else {
       return [...range(itemCount).filter(item => !rangeData.includes(item)), oldActiveIndex, activeIndex].includes(
@@ -76,7 +80,7 @@ const calcTranslate = (index: number, activeIndex: number) => {
   const rootEl = carouselContext?.root.value
   if (!rootEl) return 0
 
-  return (rootEl.offsetWidth || 0) * (index - activeIndex)
+  return ((carouselContext.isVertical.value ? rootEl.offsetHeight : rootEl.offsetWidth) || 0) * (index - activeIndex)
 }
 
 const translateItem = (index: number, activeIndex: number, oldActiveIndex: number) => {
@@ -86,7 +90,7 @@ const translateItem = (index: number, activeIndex: number, oldActiveIndex: numbe
 
   const isActive = index === activeIndex
 
-  if (!isActive && itemCount > 2) {
+  if (!isActive && itemCount > 2 && carouselContext?.loop.value) {
     index = processIndex(index, activeIndex, itemCount)
   }
 

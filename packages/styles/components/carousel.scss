@@ -3,7 +3,7 @@ $carousel-item-prefix-cls: #{$css-prefix}carousel-item;
 
 .#{$carousel-prefix-cls} {
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 
   &-container {
     position: relative;
@@ -45,28 +45,72 @@ $carousel-item-prefix-cls: #{$css-prefix}carousel-item;
 
   &-indicators {
     position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
     z-index: 2;
     display: flex;
     justify-content: center;
-    margin: 0 15%;
+    margin: 0;
     padding: 0;
     list-style: none;
 
+    &-bottom,
+    &-top {
+      right: 0;
+      left: 0;
+      flex-direction: row;
+      margin: 0 15%;
+      .#{$carousel-prefix-cls}-indicator {
+        width: 16px;
+        height: 3px;
+        padding: 12px 4px;
+
+        &-active {
+          width: 24px;
+        }
+      }
+    }
+
+    &-bottom {
+      bottom: 0;
+    }
+
+    &-top {
+      top: 0;
+    }
+
+    &-left,
+    &-right {
+      top: 50%;
+      flex-direction: column;
+      height: 100%;
+      transform: translateY(-50%);
+      .#{$carousel-prefix-cls}-indicator {
+        width: 3px;
+        height: 16px;
+        padding: 4px 12px;
+
+        &-active {
+          height: 24px;
+        }
+      }
+    }
+
+    &left {
+      left: 0;
+    }
+
+    &-right {
+      right: 0;
+    }
+
     .#{$carousel-prefix-cls}-indicator {
       display: inline-block;
-      width: 20px;
-      height: 3px;
-      padding: 12px 4px;
       cursor: pointer;
       transition: all $transition-duration;
 
       button {
         display: block;
         width: 100%;
-        height: 3px;
+        height: 100%;
         margin: 0;
         padding: 0;
         color: transparent;
@@ -85,8 +129,6 @@ $carousel-item-prefix-cls: #{$css-prefix}carousel-item;
       }
 
       &-active {
-        width: 28px;
-
         button {
           opacity: 1;
         }
@@ -104,6 +146,7 @@ $carousel-item-prefix-cls: #{$css-prefix}carousel-item;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  outline: none;
 
   &-animating {
     transition: transform 0.4s ease-in-out;

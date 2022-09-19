@@ -1,8 +1,9 @@
 import { carouselProps } from './carousel'
-import type { ExtractPropTypes, Ref } from 'vue'
+import type { ComputedRef, ExtractPropTypes, Ref, ToRefs } from 'vue'
 
-export interface CarouselContext {
+export interface CarouselContext extends ToRefs<CarouselProps> {
   root: Ref<HTMLDivElement>
+  isVertical: ComputedRef<boolean>
   items: Ref<CarouselItemContext[]>
   addItem: (item: CarouselItemContext) => void
   removeItem: (item: CarouselItemContext) => void

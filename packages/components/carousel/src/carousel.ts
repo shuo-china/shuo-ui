@@ -1,6 +1,8 @@
 import { definePropType } from '@shuo-ui/utils'
 
-export const CarouselDirection = ['horizontal', 'vertical'] as const
+export const CarouselDirection = ['top', 'left', 'right', 'bottom'] as const
+
+export const CarouselArrow = ['always', 'hover', 'never'] as const
 
 export const carouselProps = {
   initialIndex: {
@@ -8,7 +10,7 @@ export const carouselProps = {
     default: 0
   },
   height: {
-    type: String,
+    type: [String, Number],
     default: ''
   },
   autoplay: {
@@ -23,9 +25,18 @@ export const carouselProps = {
     type: Boolean,
     default: true
   },
+  pauseOnHover: {
+    type: Boolean,
+    default: true
+  },
   direction: {
     type: definePropType<typeof CarouselDirection[number]>(String),
-    default: 'horizontal',
+    default: 'bottom',
     validator: value => CarouselDirection.includes(value)
+  },
+  arrow: {
+    type: definePropType<typeof CarouselArrow[number]>(String),
+    default: 'hover',
+    validator: value => CarouselArrow.includes(value)
   }
 }
