@@ -1,4 +1,5 @@
-import { definePropType } from '@shuo-ui/utils'
+import { definePropType, isNumber } from '@shuo-ui/utils'
+import { CHANGE_EVENT } from '@shuo-ui/constants'
 
 export const CarouselTrigger = ['hover', 'click'] as const
 
@@ -13,12 +14,16 @@ export const carouselProps = {
   },
   height: {
     type: [String, Number],
-    default: ''
+    default: 300
   },
   trigger: {
     type: String,
     values: ['hover', 'click'],
     default: 'click'
+  },
+  indicator: {
+    type: Boolean,
+    default: true
   },
   autoplay: {
     type: Boolean,
@@ -46,4 +51,8 @@ export const carouselProps = {
     default: 'hover',
     validator: value => CarouselArrow.includes(value)
   }
+}
+
+export const carouselEmits = {
+  [CHANGE_EVENT]: (currentIndex: number, prevIndex: number) => isNumber(currentIndex) && isNumber(prevIndex)
 }

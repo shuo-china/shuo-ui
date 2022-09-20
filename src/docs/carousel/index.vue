@@ -1,58 +1,16 @@
 <template>
   <div>
-    <prop-option v-model="direction" :options="options" />
-    <s-carousel :loop="true" :height="300" :direction="direction" arrow="hover">
-      <s-carousel-item>
-        <div class="demo">1</div>
-      </s-carousel-item>
-      <s-carousel-item>
-        <div class="demo">2</div>
-      </s-carousel-item>
-      <s-carousel-item>
-        <div class="demo">3</div>
-      </s-carousel-item>
-      <s-carousel-item>
-        <div class="demo">4</div>
-      </s-carousel-item>
-    </s-carousel>
+    <div class="doc__title">Carousel 走马灯</div>
+    <div class="doc__desc">旋转木马，一组轮播的区域</div>
+    <demo :code="Demo1_Code" title="基础用法">
+      <demo1 />
+    </demo>
+    <demo :code="Demo2_Code" title="垂直布局">
+      <demo2 />
+    </demo>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const direction = ref('bottom')
-
-const options = [
-  {
-    label: '上',
-    value: 'top'
-  },
-  {
-    label: '右',
-    value: 'right'
-  },
-  {
-    label: '下',
-    value: 'bottom'
-  },
-  {
-    label: '左',
-    value: 'left'
-  }
-]
+import { Demo1, Demo1_Code, Demo2, Demo2_Code } from './demo'
 </script>
-
-<style lang="scss" scoped>
-.demo {
-  height: 300px;
-}
-
-.s-carousel-item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.s-carousel-item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
-</style>

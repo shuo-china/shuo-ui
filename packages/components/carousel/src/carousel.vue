@@ -25,7 +25,7 @@
       <slot></slot>
     </div>
     <!-- indicator -->
-    <ul :class="indicatorsClassNames">
+    <ul v-if="indicator" :class="indicatorsClassNames">
       <li
         v-for="(item, index) in items"
         :key="index"
@@ -46,15 +46,16 @@
 
 <script setup lang="ts" name="SCarousel">
 import { computed, onBeforeUnmount, onMounted, provide, ref, toRefs, watch } from 'vue'
-import { carouselProps } from './carousel'
+import { carouselEmits, carouselProps } from './carousel'
 import { getPrefixCls, addUnit } from '@shuo-ui/utils'
+import { useResizeObserver } from '@shuo-ui/hooks'
 import { carouselContextKey } from './context'
 import { SIcon } from '@shuo-ui/components'
 import { throttle } from 'lodash'
+import { CHANGE_EVENT } from '@shuo-ui/constants'
 import type { CarouselContext, CarouselItemContext } from './types'
-import type { Ref } from 'vue'
 
-const THROTTLE_TIME = 500
+const THROTTLE_TIME = 400
 
 const prefixCls = getPrefixCls('carousel')
 
@@ -62,7 +63,9 @@ const indicatorsClassNames = computed(() => [`${prefixCls}-indicators`, `${prefi
 
 const props = defineProps(carouselProps)
 
-const root = ref<HTMLDivElement>() as Ref<HTMLDivElement>
+const emit = defineEmits(carouselEmits)
+
+const root = ref<HTMLDivElement | undefined>()
 
 const timer = ref<ReturnType<typeof setInterval> | null>(null)
 
@@ -87,10 +90,6 @@ const _setActiveItem = (index: number) => {
 }
 
 const setActiveItem = throttle(_setActiveItem, THROTTLE_TIME, {
-  trailing: false
-})
-
-const setActiveItemTrailing = throttle(_setActiveItem, THROTTLE_TIME, {
   trailing: true
 })
 
@@ -103,12 +102,12 @@ const next = () => {
 }
 
 const handleIndicatorClick = (index: number) => {
-  setActiveItemTrailing(index)
+  setActiveItem(index)
 }
 
 const handleIndicatorHover = (index: number) => {
   if (props.trigger === 'hover' && index !== activeIndex.value) {
-    setActiveItemTrailing(index)
+    setActiveItem(index)
   }
 }
 
@@ -152,8 +151,9 @@ const handleMouseLeave = () => {
 
 watch(
   () => activeIndex.value,
-  (_, prev) => {
+  (current, prev) => {
     resetItemPosition(prev)
+    emit(CHANGE_EVENT, current, prev)
   }
 )
 
@@ -180,6 +180,10 @@ watch(
     immediate: true
   }
 )
+
+useResizeObserver(root, () => {
+  resetItemPosition(activeIndex.value)
+})
 
 onMounted(() => {
   if (props.initialIndex < items.value.length && props.initialIndex >= 0) {
@@ -214,4 +218,10 @@ const context: CarouselContext = {
 }
 
 provide(carouselContextKey, context)
+
+defineExpose({
+  prev,
+  next,
+  setActiveItem
+})
 </script>
