@@ -26,12 +26,13 @@ const config: UserConfig = {
       formats: ['es', 'umd']
     },
     rollupOptions: {
-      external: ['vue', 'lodash', 'async-validator'],
+      external: ['vue', 'lodash', 'async-validator', '@popperjs/core'],
       output: {
         globals: {
           vue: 'Vue',
           lodash: 'lodash',
-          'async-validator': 'async-validator'
+          'async-validator': 'async-validator',
+          '@popperjs/core': '@popperjs/core'
         }
       }
     }

@@ -60,6 +60,10 @@ export const menuGroups: Record<string, MenuGroup> = {
           path: '/carousel'
         },
         {
+          name: 'Tooltip 文字提示',
+          path: '/tooltip'
+        },
+        {
           name: 'Table 表格',
           path: '/table'
         }

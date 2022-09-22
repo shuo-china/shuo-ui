@@ -1,0 +1,9 @@
+$tooltip-prefix-cls: #{$css-prefix}tooltip;
+
+.#{$tooltip-prefix-cls} {
+  display: inline-block;
+
+  &-popcorn {
+    display: inline-block;
+  }
+}
