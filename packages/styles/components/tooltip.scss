@@ -5,5 +5,81 @@ $tooltip-prefix-cls: #{$css-prefix}tooltip;
 
   &-popcorn {
     display: inline-block;
+    width: inherit;
+  }
+
+  &-popper {
+    &[data-popper-placement^='top'] .#{$tooltip-prefix-cls}-arrow {
+      bottom: -5px;
+
+      &::before {
+        bottom: 0;
+        border-width: 5px 5px 0;
+        border-top-color: rgb(0 0 0 / 75%);
+      }
+    }
+
+    &[data-popper-placement^='bottom'] .#{$tooltip-prefix-cls}-arrow {
+      top: -5px;
+
+      &::before {
+        top: 0;
+        border-width: 0 5px 5px;
+        border-bottom-color: rgb(0 0 0 / 75%);
+      }
+    }
+
+    &[data-popper-placement^='left'] .#{$tooltip-prefix-cls}-arrow {
+      right: -5px;
+
+      &::before {
+        right: 0;
+        border-width: 5px 0 5px 5px;
+        border-left-color: rgb(0 0 0 / 75%);
+      }
+    }
+
+    &[data-popper-placement^='right'] .#{$tooltip-prefix-cls}-arrow {
+      left: -5px;
+
+      &::before {
+        left: 0;
+        border-width: 5px 5px 5px 0;
+        border-right-color: rgb(0 0 0 / 75%);
+      }
+    }
+  }
+
+  &-arrow {
+    width: 10px;
+    height: 10px;
+    visibility: hidden;
+  }
+
+  &-arrow::before {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    visibility: visible;
+    content: '';
+  }
+
+  &-content {
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+    min-width: 30px;
+    min-height: 34px;
+    padding: 6px 12px;
+    color: $white;
+    font-size: 12px;
+    line-height: 1;
+    text-decoration: none;
+    word-wrap: break-word;
+    background-color: rgb(0 0 0 / 75%);
+    border-radius: 4px;
+    box-shadow: $shadow-base;
   }
 }
