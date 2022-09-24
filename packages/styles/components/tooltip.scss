@@ -9,6 +9,8 @@ $tooltip-prefix-cls: #{$css-prefix}tooltip;
   }
 
   &-popper {
+    z-index: 999;
+
     &[data-popper-placement^='top'] .#{$tooltip-prefix-cls}-arrow {
       bottom: -5px;
 
