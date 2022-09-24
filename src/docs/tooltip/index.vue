@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <prop-option v-model="placement" :options="options" />
-    <s-tooltip content="悬" :placement="placement">
+    <s-tooltip content="asssssssssssssss" :placement="placement">
       <div class="box">box</div>
     </s-tooltip>
   </div>
@@ -10,8 +10,6 @@
 <script setup>
 import { ref } from 'vue'
 import { TooltipPlacement } from '@shuo-ui/components/tooltip/src/tooltip'
-
-console.log(TooltipPlacement)
 
 const placement = ref('bottom-start')
 

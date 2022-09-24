@@ -1,11 +1,11 @@
 <template>
   <div :class="[prefixCls]" @mouseenter="handleShowPopper" @mouseleave="handleClosePopper">
-    <div ref="popcorn" :class="[prefixCls + '-popcorn']">
+    <div ref="referenceEl" :class="[prefixCls + '-reference']">
       <slot></slot>
     </div>
     <teleport to="body">
       <transition name="fade">
-        <div v-show="true" ref="tooltip" :class="[prefixCls + '-popper']">
+        <div v-show="true" ref="popperEl" :class="[prefixCls + '-popper']">
           <div :class="[prefixCls + '-arrow']" data-popper-arrow></div>
           <div :class="[prefixCls + '-content']">
             <slot name="content">{{ content }}</slot>
@@ -17,79 +17,65 @@
 </template>
 
 <script setup lang="ts" name="STooltip">
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { tooltipProps, tooltipEmits } from './tooltip'
 import { createPopper } from '@popperjs/core'
 import { getPrefixCls } from '@shuo-ui/utils'
-import type { OptionsGeneric, Modifier } from '@popperjs/core'
 
 const prefixCls = getPrefixCls('tooltip')
 
 const props = defineProps(tooltipProps)
 const emit = defineEmits(tooltipEmits)
 
+// popper instance
 let popper: ReturnType<typeof createPopper> | undefined
+const referenceEl = ref<HTMLDivElement>()
+const popperEl = ref<HTMLDivElement>()
 
-const popcorn = ref<HTMLDivElement>()
-const tooltip = ref<HTMLDivElement>()
+// visible
 const visible = ref(false)
-
 const handleShowPopper = () => {
   visible.value = true
 }
-
 const handleClosePopper = () => {
   visible.value = false
 }
 
-const setPopperEventListeners = enabled => {
-  popper?.setOptions(options => ({
-    ...options,
-    modifiers: [...(options.modifiers || []), { name: 'eventListeners', enabled }]
-  }))
-}
-const enablePopperEventListeners = () => setPopperEventListeners(true)
-const disablePopperEventListeners = () => setPopperEventListeners(false)
-
-watch(visible, current => {
-  if (current) {
-    popper?.update()
-    enablePopperEventListeners()
-  } else {
-    disablePopperEventListeners()
-  }
+// popper options
+const enabledPopperEventListeners = ref(false)
+const popperOptions = computed(() => ({
+  placement: props.placement,
+  modifiers: [
+    {
+      name: 'offset',
+      options: {
+        offset: [0, 12]
+      }
+    },
+    {
+      name: 'arrow',
+      options: {
+        padding: 8
+      }
+    },
+    {
+      name: 'eventListeners',
+      enabled: enabledPopperEventListeners.value
+    }
+  ]
+}))
+watch(popperOptions, current => {
+  popper?.setOptions(current)
 })
 
-watch(
-  () => props.placement,
-  current => {
-    popper?.setOptions(options => ({
-      ...options,
-      placement: current
-    }))
+watch(visible, async current => {
+  if (current) {
+    await nextTick()
+    enabledPopperEventListeners.value = true
+    popper ? popper.update() : (popper = createPopper(referenceEl.value!, popperEl.value!, popperOptions.value))
+  } else {
+    enabledPopperEventListeners.value = false
   }
-)
-
-onMounted(() => {
-  const options: Partial<OptionsGeneric<Partial<Modifier<any, any>>>> = {
-    placement: props.placement,
-    modifiers: [
-      {
-        name: 'arrow',
-        options: {
-          padding: ({ popper, reference, placement }) => popper.width / reference.width
-        }
-      },
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 12]
-        }
-      }
-    ]
-  }
-
-  popper = createPopper(popcorn.value!, tooltip.value!, options)
 })
 
 onBeforeUnmount(() => {

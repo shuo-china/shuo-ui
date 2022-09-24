@@ -1,20 +1,9 @@
 import { UPDATE_MODEL_EVENT } from '@shuo-ui/constants'
 import { definePropType, isBoolean } from '@shuo-ui/utils'
+import { placements } from '@popperjs/core'
+import type { Placement } from '@popperjs/core'
 
-export const TooltipPlacement = [
-  'top',
-  'top-start',
-  'top-end',
-  'bottom',
-  'bottom-start',
-  'bottom-end',
-  'left',
-  'left-start',
-  'left-end',
-  'right',
-  'right-start',
-  'right-end'
-] as const
+export const TooltipPlacement = placements
 
 export const tooltipProps = {
   modelValue: {
@@ -26,7 +15,7 @@ export const tooltipProps = {
     default: ''
   },
   placement: {
-    type: definePropType<typeof TooltipPlacement[number]>(String),
+    type: definePropType<Placement>(String),
     validator: value => TooltipPlacement.includes(value),
     default: 'top'
   }
