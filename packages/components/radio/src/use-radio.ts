@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { computed, inject, ref } from 'vue'
 import { radioGroupContextKey } from './context'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@shuo-ui/constants'

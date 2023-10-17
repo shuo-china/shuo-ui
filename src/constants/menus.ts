@@ -59,10 +59,10 @@ export const menuGroups: Record<string, MenuGroup> = {
           name: 'Carousel 走马灯',
           path: '/carousel'
         },
-        {
-          name: 'Tooltip 文字提示',
-          path: '/tooltip'
-        },
+        // {
+        //   name: 'Tooltip 文字提示',
+        //   path: '/tooltip'
+        // },
         {
           name: 'Table 表格',
           path: '/table'
